@@ -1,0 +1,50 @@
+{
+    "@id": "https://data.kb.se/search?q=Norrl%C3%A4ndska+korrespondenten&from=1871-01-01&to=1871-12-10&limit=5&_sort=datePublished",
+    "total": 0,
+    "hits": [],
+    "aggs": {
+        "datePublished": {
+            "label": "Tidsperiod",
+            "values": [],
+            "precision": "month"
+        },
+        "genreForm": {
+            "label": "Genre/Form",
+            "values": []
+        },
+        "instanceOf": {
+            "label": "Verkstyp",
+            "values": []
+        },
+        "isPartOf": {
+            "label": "Titel",
+            "values": []
+        }
+    },
+    "search": {
+        "mapping": [
+            {
+                "value": "Norrländska korrespondenten",
+                "variable": "q"
+            },
+            {
+                "value": "1871-01-01",
+                "variable": "from",
+                "up": {
+                    "@id": "https://data.kb.se/search?q=Norrl%C3%A4ndska+korrespondenten&to=1871-12-10&limit=5&_sort=datePublished"
+                }
+            },
+            {
+                "value": "1871-12-10",
+                "variable": "to",
+                "up": {
+                    "@id": "https://data.kb.se/search?q=Norrl%C3%A4ndska+korrespondenten&from=1871-01-01&limit=5&_sort=datePublished"
+                }
+            },
+            {
+                "value": "datePublished",
+                "variable": "_sort"
+            }
+        ]
+    }
+}
