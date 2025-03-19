@@ -1,0 +1,144 @@
+---
+title: "Untitled"
+format: html
+---
+
+
+```{python}
+import json
+
+with open('/Users/jonathanjayes/Documents/PhD/newspapers-1/data/kb_newspapers_with_years_complete.json') as f:
+    data = json.load(f)
+
+# Flatten the data
+flattened_data = []
+
+for newspaper in data:
+    for year, issues_count in newspaper['issues_by_year'].items():
+        if issues_count > 0:
+            flattened_data.append({
+                'name': newspaper['name'],
+                'url': newspaper['url'],
+                'total_pages': newspaper['total_pages'],
+                'year': int(year),
+                'issues_count': issues_count
+            })
+
+# Convert to DataFrame
+import pandas as pd
+df = pd.DataFrame(flattened_data)
+# Display the first few rows
+df.head()
+
+# show the url of the final item in the dataframe
+df.iloc[-1]['url']
+
+# write to excel at /Users/jonathanjayes/Documents/PhD/newspapers-1/data/kb_newspapers_by_year.xlsx
+df.to_excel('/Users/jonathanjayes/Documents/PhD/newspapers-1/data/kb_newspapers_by_year.xlsx', index=False)
+```
+
+
+```{r}
+# data is at data/kb_newspapers_with_years_complete.json
+# Load necessary libraries
+library(tidyverse)
+library(readxl)
+library(gt)
+
+# Read the data from data/kb_newspapers_by_year.xlsx
+
+df <- read_excel('/Users/jonathanjayes/Documents/PhD/newspapers-1/data/kb_newspapers_by_year.xlsx')
+
+```
+
+
+Count the number of different papers
+
+```{r}
+df %>%
+    select(name, total_pages) %>%
+    distinct() %>%
+    arrange(desc(total_pages)) %>%
+    head(20) %>%
+    gt() %>% 
+    tab_header(
+        title = "Largest 20 Papers by Page Count"
+    ) %>%
+    cols_label(
+        name = "Newspaper Name",
+        total_pages = "Total Pages"
+    ) %>%
+    fmt_number(
+        columns = vars(total_pages),
+        decimals = 0
+    ) 
+```
+
+
+But we care about the number of isues in our time period, let's say 1850 to 1925.
+
+```{r}
+top_20 <- df %>%
+    filter(
+        year <= 1925,
+        year >= 1850
+    ) %>%
+    group_by(name) %>%
+    summarise(total_issues = sum(issues_count)) %>%
+    arrange(desc(total_issues)) %>%
+    head(20)
+
+
+top_20 %>% 
+    gt() %>%
+    tab_header(
+        title = "Largest 20 Papers by Issue Count",
+        subtitle = "In the period 1850-1925"
+    ) %>%
+    cols_label(
+        name = "Newspaper Name",
+        total_issues = "Total Issues"
+    ) %>%
+    fmt_number(
+        columns = vars(total_issues),
+        decimals = 0
+    )
+
+```
+
+Make a plot of the number of newspapers by year
+
+```{r}
+df %>%
+    filter(
+        year <= 1925,
+        year >= 1850
+    ) %>%
+    filter(name %in% top_20$name) %>%
+    group_by(name) %>%
+    mutate(
+        avg_year = mean(year)
+    ) %>%
+    ungroup() %>%
+    mutate(
+        name = fct_reorder(name, avg_year)
+    ) %>%
+    ggplot(aes(x = year, y = name, size = issues_count)) +
+    geom_point() +
+    theme_minimal() +
+    labs(
+        title = "Number of Newspapers by Year",
+        x = "Year",
+        y = "Newspaper Name",
+        size = "Number of Issues"
+    )
+```
+
+Could there be multiple scans of the same newspaper?
+
+
+
+```{r}
+
+df %>% arrange(desc(issues_count)) %>% slice(1) %>% pull(url)
+```
