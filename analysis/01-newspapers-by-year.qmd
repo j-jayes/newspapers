@@ -5,9 +5,10 @@ format: html
 
 
 ```{python}
+#| eval: false
 import json
 
-with open('/Users/jonathanjayes/Documents/PhD/newspapers-1/data/kb_newspapers_with_years_complete.json') as f:
+with open('/Users/jonathanjayes/Documents/PhD/newspapers-1/data/intermediate/kb_newspapers_with_years_complete.json') as f:
     data = json.load(f)
 
 # Flatten the data
@@ -34,7 +35,7 @@ df.head()
 df.iloc[-1]['url']
 
 # write to excel at /Users/jonathanjayes/Documents/PhD/newspapers-1/data/kb_newspapers_by_year.xlsx
-df.to_excel('/Users/jonathanjayes/Documents/PhD/newspapers-1/data/kb_newspapers_by_year.xlsx', index=False)
+df.to_excel('/Users/jonathanjayes/Documents/PhD/newspapers-1/data/processed/kb_newspapers_by_year.xlsx', index=False)
 ```
 
 
@@ -47,12 +48,12 @@ library(gt)
 
 # Read the data from data/kb_newspapers_by_year.xlsx
 
-df <- read_excel('/Users/jonathanjayes/Documents/PhD/newspapers-1/data/kb_newspapers_by_year.xlsx')
+df <- read_excel('/Users/jonathanjayes/Documents/PhD/newspapers-1/data/processed/kb_newspapers_by_year.xlsx')
 
 ```
 
 
-Count the number of different papers
+Count the number of different papers in the entire dataset, not just the years we are interested in.
 
 ```{r}
 df %>%
@@ -74,8 +75,7 @@ df %>%
     ) 
 ```
 
-
-But we care about the number of isues in our time period, let's say 1850 to 1925.
+But we care about the number of issues in our time period, let's say 1850 to 1925.
 
 ```{r}
 top_20 <- df %>%
@@ -104,6 +104,8 @@ top_20 %>%
         decimals = 0
     )
 
+
+top_20 %>% select(name)
 ```
 
 Make a plot of the number of newspapers by year
@@ -134,9 +136,46 @@ df %>%
     )
 ```
 
+```{r}
+newspaper_info <- tribble(
+    ~name, ~published_in, ~regional_national,
+    "Aftonbladet", "Stockholm", "National",
+    "Sydsvenska Dagbladet", "Malmö", "Regional",
+    "Göteborgs Handels- och Sjöfartstidning", "Göteborg", "Regional/National*",
+    "Göteborgs-Posten", "Göteborg", "Regional",
+    "Stockholms Dagblad", "Stockholm", "National",
+    "Post- och Inrikes Tidningar", "Stockholm", "National",
+    "Nya Dagligt Allehanda", "Stockholm", "National",
+    "Öresundsposten (Ängelholm : 1847)", "Ängelholm/Helsingborg", "Regional",
+    "Svenska Dagbladet", "Stockholm", "National",
+    "Norrköpings Tidningar", "Norrköping", "Regional",
+    "Sundsvalls Tidning", "Sundsvall", "Regional",
+    "Arbetet (1887)", "Malmö", "Regional",
+    "Göteborgs Aftonblad (1888)", "Göteborg", "Regional",
+    "Norrbottens-Kuriren", "Luleå", "Regional",
+    "Smålandsposten", "Växjö", "Regional",
+    "Östgöta Correspondenten", "Linköping", "Regional",
+    "Kalmar", "Kalmar", "Regional",
+    "Kristianstadsbladet", "Kristianstad", "Regional",
+    "Norrlandsposten (1837)", "Gävle", "Regional",
+    "Härnösandsposten", "Härnösand", "Regional"
+)
+
+# Display the tibble
+newspaper_info %>%
+    gt() %>%
+    tab_header(
+        title = "Newspaper Information",
+        subtitle = "Published location and circulation area"
+    ) %>%
+    cols_label(
+        name = "Newspaper Name",
+        published_in = "Published In",
+        regional_national = "Regional/National"
+    ) 
+```
+
 Could there be multiple scans of the same newspaper?
-
-
 
 ```{r}
 
