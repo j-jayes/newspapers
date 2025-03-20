@@ -110,6 +110,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="purpose" class="level2">
+<h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
+<p>I have scraped the information on which newspapers are in the KB dataset, inlcuding all of the years which they have on the data.kb.se portal, not just the years that are outside of the copyright period. This is useful for understanding the dataset and for checking if there are any adverts for lediga platser / platssökande in the newspapers.</p>
+</section>
+<section id="load-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="load-the-data">Load the data</h2>
+<p>The data is in the file <code>data/processed/kb_newspapers_with_years_complete.json</code> and is a list of dictionaries, each containing the name of the newspaper, the URL to the newspaper, the total number of pages, and a dictionary of years and the number of issues for that year.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
@@ -156,49 +163,98 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the data from data/kb_newspapers_by_year.xlsx</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">'/Users/jonathanjayes/Documents/PhD/newspapers-1/data/processed/kb_newspapers_by_year.xlsx'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"/Users/jonathanjayes/Documents/PhD/newspapers-1/data/processed/kb_newspapers_by_year.xlsx"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>distinct_papers <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(name, total_pages) <span class="sc">%&gt;%</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>()</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>n_distinct_papers <span class="ot">&lt;-</span> <span class="fu">nrow</span>(distinct_papers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
+<p>There are 1945 distinct papers in the dataset.</p>
+<p>The distribution of the number of pages per papers is as follows:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>distinct_papers <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_pages)) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_log10</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># use scales package to format the x axis to numbers</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">number_format</span>(<span class="at">big.mark =</span> <span class="st">","</span>, <span class="at">decimal.mark =</span> <span class="st">"."</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(total_pages)), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">median</span>(total_pages), <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">"Median:"</span>, <span class="fu">round</span>(<span class="fu">median</span>(total_pages), <span class="dv">2</span>))),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="dv">0</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">"red"</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(total_pages)), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">mean</span>(total_pages), <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">"Mean:"</span>, <span class="fu">round</span>(<span class="fu">mean</span>(total_pages), <span class="dv">0</span>))),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="dv">0</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Distribution of the number of pages per paper"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Number of pages"</span>,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Number of newspapers with this many pages"</span>,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Red line is the median, blue line is the mean"</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01-newspapers-by-year_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>Count the number of different papers in the entire dataset, not just the years we are interested in.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(name, total_pages) <span class="sc">%&gt;%</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(total_pages)) <span class="sc">%&gt;%</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_header</span>(</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Largest 20 Papers by Page Count"</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols_label</span>(</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"Newspaper Name"</span>,</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">total_pages =</span> <span class="st">"Total Pages"</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt_number</span>(</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">columns =</span> <span class="fu">c</span>(total_pages),</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">decimals =</span> <span class="dv">0</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(name, total_pages) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(total_pages)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_header</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Largest 20 Papers by Page Count"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols_label</span>(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"Newspaper Name"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">total_pages =</span> <span class="st">"Total Pages"</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt_number</span>(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">columns =</span> <span class="fu">c</span>(total_pages),</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">decimals =</span> <span class="dv">0</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="hdvbyuywik" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hdvbyuywik table {
+<div id="natolvxikt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#natolvxikt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hdvbyuywik thead, #hdvbyuywik tbody, #hdvbyuywik tfoot, #hdvbyuywik tr, #hdvbyuywik td, #hdvbyuywik th {
+#natolvxikt thead, #natolvxikt tbody, #natolvxikt tfoot, #natolvxikt tr, #natolvxikt td, #natolvxikt th {
   border-style: none;
 }
 
-#hdvbyuywik p {
+#natolvxikt p {
   margin: 0;
   padding: 0;
 }
 
-#hdvbyuywik .gt_table {
+#natolvxikt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -224,12 +280,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#hdvbyuywik .gt_caption {
+#natolvxikt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hdvbyuywik .gt_title {
+#natolvxikt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -241,7 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#hdvbyuywik .gt_subtitle {
+#natolvxikt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -253,7 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#hdvbyuywik .gt_heading {
+#natolvxikt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -265,13 +321,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#hdvbyuywik .gt_bottom_border {
+#natolvxikt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hdvbyuywik .gt_col_headings {
+#natolvxikt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -286,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#hdvbyuywik .gt_col_heading {
+#natolvxikt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -306,7 +362,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#hdvbyuywik .gt_column_spanner_outer {
+#natolvxikt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -318,15 +374,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#hdvbyuywik .gt_column_spanner_outer:first-child {
+#natolvxikt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hdvbyuywik .gt_column_spanner_outer:last-child {
+#natolvxikt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hdvbyuywik .gt_column_spanner {
+#natolvxikt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -338,11 +394,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#hdvbyuywik .gt_spanner_row {
+#natolvxikt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hdvbyuywik .gt_group_heading {
+#natolvxikt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -368,7 +424,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#hdvbyuywik .gt_empty_group_heading {
+#natolvxikt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -383,15 +439,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#hdvbyuywik .gt_from_md > :first-child {
+#natolvxikt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hdvbyuywik .gt_from_md > :last-child {
+#natolvxikt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hdvbyuywik .gt_row {
+#natolvxikt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -410,7 +466,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#hdvbyuywik .gt_stub {
+#natolvxikt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -423,7 +479,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hdvbyuywik .gt_stub_row_group {
+#natolvxikt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -437,15 +493,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#hdvbyuywik .gt_row_group_first td {
+#natolvxikt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hdvbyuywik .gt_row_group_first th {
+#natolvxikt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hdvbyuywik .gt_summary_row {
+#natolvxikt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -455,16 +511,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hdvbyuywik .gt_first_summary_row {
+#natolvxikt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hdvbyuywik .gt_first_summary_row.thick {
+#natolvxikt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hdvbyuywik .gt_last_summary_row {
+#natolvxikt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -474,7 +530,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#hdvbyuywik .gt_grand_summary_row {
+#natolvxikt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -484,7 +540,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hdvbyuywik .gt_first_grand_summary_row {
+#natolvxikt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -494,7 +550,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#hdvbyuywik .gt_last_grand_summary_row_top {
+#natolvxikt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -504,11 +560,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#hdvbyuywik .gt_striped {
+#natolvxikt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hdvbyuywik .gt_table_body {
+#natolvxikt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -517,7 +573,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#hdvbyuywik .gt_footnotes {
+#natolvxikt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -531,7 +587,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#hdvbyuywik .gt_footnote {
+#natolvxikt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -540,7 +596,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hdvbyuywik .gt_sourcenotes {
+#natolvxikt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -554,7 +610,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#hdvbyuywik .gt_sourcenote {
+#natolvxikt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -562,63 +618,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hdvbyuywik .gt_left {
+#natolvxikt .gt_left {
   text-align: left;
 }
 
-#hdvbyuywik .gt_center {
+#natolvxikt .gt_center {
   text-align: center;
 }
 
-#hdvbyuywik .gt_right {
+#natolvxikt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hdvbyuywik .gt_font_normal {
+#natolvxikt .gt_font_normal {
   font-weight: normal;
 }
 
-#hdvbyuywik .gt_font_bold {
+#natolvxikt .gt_font_bold {
   font-weight: bold;
 }
 
-#hdvbyuywik .gt_font_italic {
+#natolvxikt .gt_font_italic {
   font-style: italic;
 }
 
-#hdvbyuywik .gt_super {
+#natolvxikt .gt_super {
   font-size: 65%;
 }
 
-#hdvbyuywik .gt_footnote_marks {
+#natolvxikt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hdvbyuywik .gt_asterisk {
+#natolvxikt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hdvbyuywik .gt_indent_1 {
+#natolvxikt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hdvbyuywik .gt_indent_2 {
+#natolvxikt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hdvbyuywik .gt_indent_3 {
+#natolvxikt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hdvbyuywik .gt_indent_4 {
+#natolvxikt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hdvbyuywik .gt_indent_5 {
+#natolvxikt .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -721,53 +777,106 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>But we care about the number of issues in our time period, let’s say 1850 to 1925.</p>
+<p>Now we are counting the number of issues rather than the number of pages, where the number of pages per issue ranges between 2 and 8 depending on the year and the paper.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>top_20 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        year <span class="sc">&lt;=</span> <span class="dv">1925</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        year <span class="sc">&gt;=</span> <span class="dv">1850</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">total_issues =</span> <span class="fu">sum</span>(issues_count)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(total_issues)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">20</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>top_20 <span class="sc">%&gt;%</span> </span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_header</span>(</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Largest 20 Papers by Issue Count"</span>,</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">"In the period 1850-1925"</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols_label</span>(</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"Newspaper Name"</span>,</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">total_issues =</span> <span class="st">"Total Issues"</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt_number</span>(</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">columns =</span> <span class="fu">c</span>(total_issues),</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">decimals =</span> <span class="dv">0</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n_papers_in_period <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        year <span class="sc">&lt;=</span> <span class="dv">1925</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        year <span class="sc">&gt;=</span> <span class="dv">1850</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(name) <span class="sc">%&gt;%</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nrow</span>()</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        year <span class="sc">&lt;=</span> <span class="dv">1925</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        year <span class="sc">&gt;=</span> <span class="dv">1850</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">decade =</span> <span class="fu">floor</span>(year <span class="sc">/</span> <span class="dv">10</span>) <span class="sc">*</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(name, decade) <span class="sc">%&gt;%</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">issues_count_sum =</span> <span class="fu">sum</span>(issues_count) <span class="sc">/</span> <span class="dv">10</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> issues_count_sum, <span class="at">y =</span> <span class="fu">factor</span>(decade))) <span class="sc">+</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density_ridges</span>(<span class="at">stat =</span> <span class="st">"binline"</span>, <span class="at">bins =</span> <span class="dv">20</span>, <span class="at">scale =</span> <span class="fl">0.95</span>, <span class="at">draw_baseline =</span> <span class="cn">FALSE</span>, <span class="at">fill =</span> <span class="st">"midnightblue"</span>, <span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_log10</span>(</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># use scales package to format the x axis to numbers</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">number_format</span>(<span class="at">big.mark =</span> <span class="st">","</span>, <span class="at">decimal.mark =</span> <span class="st">"."</span>),</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> <span class="dv">200</span>), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Distribution of the number of issues per year"</span>,</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">"Grouped by decade in the period 1850-1925"</span>,</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Number of issues per year"</span>,</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Decade"</span>,</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Red line indicates 200 issues per year"</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="noxeiskllv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#noxeiskllv table {
+<div>
+<figure class="figure">
+<p><img src="01-newspapers-by-year_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There are 1326 papers in the period 1850-1925.</p>
+<p>There are relatively few papers that have more than 200 issues per year in our sample.</p>
+<p>Which are the largest papers by issue count in the period 1850-1925?</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>top_20 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        year <span class="sc">&lt;=</span> <span class="dv">1925</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        year <span class="sc">&gt;=</span> <span class="dv">1850</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">total_issues =</span> <span class="fu">sum</span>(issues_count)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(total_issues)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">20</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>top_20 <span class="sc">%&gt;%</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_header</span>(</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Largest 20 Papers by Issue Count"</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">"In the period 1850-1925"</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols_label</span>(</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"Newspaper Name"</span>,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">total_issues =</span> <span class="st">"Total Issues"</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt_number</span>(</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">columns =</span> <span class="fu">c</span>(total_issues),</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">decimals =</span> <span class="dv">0</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="zvlkpurvbd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zvlkpurvbd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#noxeiskllv thead, #noxeiskllv tbody, #noxeiskllv tfoot, #noxeiskllv tr, #noxeiskllv td, #noxeiskllv th {
+#zvlkpurvbd thead, #zvlkpurvbd tbody, #zvlkpurvbd tfoot, #zvlkpurvbd tr, #zvlkpurvbd td, #zvlkpurvbd th {
   border-style: none;
 }
 
-#noxeiskllv p {
+#zvlkpurvbd p {
   margin: 0;
   padding: 0;
 }
 
-#noxeiskllv .gt_table {
+#zvlkpurvbd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -793,12 +902,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#noxeiskllv .gt_caption {
+#zvlkpurvbd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#noxeiskllv .gt_title {
+#zvlkpurvbd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -810,7 +919,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#noxeiskllv .gt_subtitle {
+#zvlkpurvbd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -822,7 +931,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#noxeiskllv .gt_heading {
+#zvlkpurvbd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -834,13 +943,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#noxeiskllv .gt_bottom_border {
+#zvlkpurvbd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#noxeiskllv .gt_col_headings {
+#zvlkpurvbd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -855,7 +964,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#noxeiskllv .gt_col_heading {
+#zvlkpurvbd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -875,7 +984,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#noxeiskllv .gt_column_spanner_outer {
+#zvlkpurvbd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -887,15 +996,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#noxeiskllv .gt_column_spanner_outer:first-child {
+#zvlkpurvbd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#noxeiskllv .gt_column_spanner_outer:last-child {
+#zvlkpurvbd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#noxeiskllv .gt_column_spanner {
+#zvlkpurvbd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -907,11 +1016,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#noxeiskllv .gt_spanner_row {
+#zvlkpurvbd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#noxeiskllv .gt_group_heading {
+#zvlkpurvbd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -937,7 +1046,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#noxeiskllv .gt_empty_group_heading {
+#zvlkpurvbd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -952,15 +1061,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#noxeiskllv .gt_from_md > :first-child {
+#zvlkpurvbd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#noxeiskllv .gt_from_md > :last-child {
+#zvlkpurvbd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#noxeiskllv .gt_row {
+#zvlkpurvbd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -979,7 +1088,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#noxeiskllv .gt_stub {
+#zvlkpurvbd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -992,7 +1101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#noxeiskllv .gt_stub_row_group {
+#zvlkpurvbd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1006,15 +1115,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#noxeiskllv .gt_row_group_first td {
+#zvlkpurvbd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#noxeiskllv .gt_row_group_first th {
+#zvlkpurvbd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#noxeiskllv .gt_summary_row {
+#zvlkpurvbd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1024,16 +1133,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#noxeiskllv .gt_first_summary_row {
+#zvlkpurvbd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#noxeiskllv .gt_first_summary_row.thick {
+#zvlkpurvbd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#noxeiskllv .gt_last_summary_row {
+#zvlkpurvbd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1043,7 +1152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#noxeiskllv .gt_grand_summary_row {
+#zvlkpurvbd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1053,7 +1162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#noxeiskllv .gt_first_grand_summary_row {
+#zvlkpurvbd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1063,7 +1172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#noxeiskllv .gt_last_grand_summary_row_top {
+#zvlkpurvbd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1073,11 +1182,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#noxeiskllv .gt_striped {
+#zvlkpurvbd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#noxeiskllv .gt_table_body {
+#zvlkpurvbd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1086,7 +1195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#noxeiskllv .gt_footnotes {
+#zvlkpurvbd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1100,7 +1209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#noxeiskllv .gt_footnote {
+#zvlkpurvbd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1109,7 +1218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#noxeiskllv .gt_sourcenotes {
+#zvlkpurvbd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1123,7 +1232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#noxeiskllv .gt_sourcenote {
+#zvlkpurvbd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1131,63 +1240,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#noxeiskllv .gt_left {
+#zvlkpurvbd .gt_left {
   text-align: left;
 }
 
-#noxeiskllv .gt_center {
+#zvlkpurvbd .gt_center {
   text-align: center;
 }
 
-#noxeiskllv .gt_right {
+#zvlkpurvbd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#noxeiskllv .gt_font_normal {
+#zvlkpurvbd .gt_font_normal {
   font-weight: normal;
 }
 
-#noxeiskllv .gt_font_bold {
+#zvlkpurvbd .gt_font_bold {
   font-weight: bold;
 }
 
-#noxeiskllv .gt_font_italic {
+#zvlkpurvbd .gt_font_italic {
   font-style: italic;
 }
 
-#noxeiskllv .gt_super {
+#zvlkpurvbd .gt_super {
   font-size: 65%;
 }
 
-#noxeiskllv .gt_footnote_marks {
+#zvlkpurvbd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#noxeiskllv .gt_asterisk {
+#zvlkpurvbd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#noxeiskllv .gt_indent_1 {
+#zvlkpurvbd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#noxeiskllv .gt_indent_2 {
+#zvlkpurvbd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#noxeiskllv .gt_indent_3 {
+#zvlkpurvbd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#noxeiskllv .gt_indent_4 {
+#zvlkpurvbd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#noxeiskllv .gt_indent_5 {
+#zvlkpurvbd .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1296,37 +1405,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        year <span class="sc">&lt;=</span> <span class="dv">1925</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        year <span class="sc">&gt;=</span> <span class="dv">1850</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(name <span class="sc">%in%</span> top_20<span class="sc">$</span>name) <span class="sc">%&gt;%</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">avg_year =</span> <span class="fu">mean</span>(year)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="fu">fct_reorder</span>(name, avg_year)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> name, <span class="at">size =</span> issues_count, <span class="at">colour =</span> issues_count)) <span class="sc">+</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_colour_viridis_c</span>() <span class="sc">+</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Newspapers in the dataset"</span>,</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">"Range and number of issues per year for subset</span><span class="sc">\n</span><span class="st"> of 20 newspapers"</span>,</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Newspaper Name"</span>,</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">size =</span> <span class="st">"Number of Issues"</span>,</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">colour =</span> <span class="st">"Number of Issues"</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        year <span class="sc">&lt;=</span> <span class="dv">1925</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        year <span class="sc">&gt;=</span> <span class="dv">1850</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(name <span class="sc">%in%</span> top_20<span class="sc">$</span>name) <span class="sc">%&gt;%</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">avg_year =</span> <span class="fu">mean</span>(year)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="fu">fct_reorder</span>(name, avg_year)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> name, <span class="at">size =</span> issues_count, <span class="at">colour =</span> issues_count)) <span class="sc">+</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_colour_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Newspapers in the dataset"</span>,</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">"Range and number of issues per year for subset</span><span class="sc">\n</span><span class="st"> of 20 newspapers"</span>,</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Newspaper Name"</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">size =</span> <span class="st">"Number of Issues"</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">colour =</span> <span class="st">"Number of Issues"</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="01-newspapers-by-year_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="01-newspapers-by-year_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1335,61 +1444,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>newspaper_info <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>name, <span class="sc">~</span>published_in, <span class="sc">~</span>regional_national,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Aftonbladet"</span>, <span class="st">"Stockholm"</span>, <span class="st">"National"</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sydsvenska Dagbladet"</span>, <span class="st">"Malmö"</span>, <span class="st">"Regional"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Göteborgs Handels- och Sjöfartstidning"</span>, <span class="st">"Göteborg"</span>, <span class="st">"Regional/National*"</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Göteborgs-Posten"</span>, <span class="st">"Göteborg"</span>, <span class="st">"Regional"</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Stockholms Dagblad"</span>, <span class="st">"Stockholm"</span>, <span class="st">"National"</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Post- och Inrikes Tidningar"</span>, <span class="st">"Stockholm"</span>, <span class="st">"National"</span>,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Nya Dagligt Allehanda"</span>, <span class="st">"Stockholm"</span>, <span class="st">"National"</span>,</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Öresundsposten (Ängelholm : 1847)"</span>, <span class="st">"Ängelholm/Helsingborg"</span>, <span class="st">"Regional"</span>,</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Svenska Dagbladet"</span>, <span class="st">"Stockholm"</span>, <span class="st">"National"</span>,</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Norrköpings Tidningar"</span>, <span class="st">"Norrköping"</span>, <span class="st">"Regional"</span>,</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sundsvalls Tidning"</span>, <span class="st">"Sundsvall"</span>, <span class="st">"Regional"</span>,</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Arbetet (1887)"</span>, <span class="st">"Malmö"</span>, <span class="st">"Regional"</span>,</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Göteborgs Aftonblad (1888)"</span>, <span class="st">"Göteborg"</span>, <span class="st">"Regional"</span>,</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Norrbottens-Kuriren"</span>, <span class="st">"Luleå"</span>, <span class="st">"Regional"</span>,</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Smålandsposten"</span>, <span class="st">"Växjö"</span>, <span class="st">"Regional"</span>,</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Östgöta Correspondenten"</span>, <span class="st">"Linköping"</span>, <span class="st">"Regional"</span>,</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Kalmar"</span>, <span class="st">"Kalmar"</span>, <span class="st">"Regional"</span>,</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Kristianstadsbladet"</span>, <span class="st">"Kristianstad"</span>, <span class="st">"Regional"</span>,</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Norrlandsposten (1837)"</span>, <span class="st">"Gävle"</span>, <span class="st">"Regional"</span>,</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Härnösandsposten"</span>, <span class="st">"Härnösand"</span>, <span class="st">"Regional"</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the tibble</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>newspaper_info <span class="sc">%&gt;%</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_header</span>(</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Newspaper Information"</span>,</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">"Published location and circulation area"</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols_label</span>(</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"Newspaper Name"</span>,</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">published_in =</span> <span class="st">"Published In"</span>,</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">regional_national =</span> <span class="st">"Regional/National"</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>newspaper_info <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>name, <span class="sc">~</span>published_in, <span class="sc">~</span>regional_national,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Aftonbladet"</span>, <span class="st">"Stockholm"</span>, <span class="st">"National"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sydsvenska Dagbladet"</span>, <span class="st">"Malmö"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Göteborgs Handels- och Sjöfartstidning"</span>, <span class="st">"Göteborg"</span>, <span class="st">"Regional/National*"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Göteborgs-Posten"</span>, <span class="st">"Göteborg"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Stockholms Dagblad"</span>, <span class="st">"Stockholm"</span>, <span class="st">"National"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Post- och Inrikes Tidningar"</span>, <span class="st">"Stockholm"</span>, <span class="st">"National"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Nya Dagligt Allehanda"</span>, <span class="st">"Stockholm"</span>, <span class="st">"National"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Öresundsposten (Ängelholm : 1847)"</span>, <span class="st">"Ängelholm/Helsingborg"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Svenska Dagbladet"</span>, <span class="st">"Stockholm"</span>, <span class="st">"National"</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Norrköpings Tidningar"</span>, <span class="st">"Norrköping"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sundsvalls Tidning"</span>, <span class="st">"Sundsvall"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Arbetet (1887)"</span>, <span class="st">"Malmö"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Göteborgs Aftonblad (1888)"</span>, <span class="st">"Göteborg"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Norrbottens-Kuriren"</span>, <span class="st">"Luleå"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Smålandsposten"</span>, <span class="st">"Växjö"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Östgöta Correspondenten"</span>, <span class="st">"Linköping"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Kalmar"</span>, <span class="st">"Kalmar"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Kristianstadsbladet"</span>, <span class="st">"Kristianstad"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Norrlandsposten (1837)"</span>, <span class="st">"Gävle"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Härnösandsposten"</span>, <span class="st">"Härnösand"</span>, <span class="st">"Regional"</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the tibble</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>newspaper_info <span class="sc">%&gt;%</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_header</span>(</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Newspaper Information"</span>,</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">"Published location and circulation area"</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols_label</span>(</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"Newspaper Name"</span>,</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">published_in =</span> <span class="st">"Published In"</span>,</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">regional_national =</span> <span class="st">"Regional/National"</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="uhuzwzonij" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#uhuzwzonij table {
+<div id="yabknazsjj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yabknazsjj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#uhuzwzonij thead, #uhuzwzonij tbody, #uhuzwzonij tfoot, #uhuzwzonij tr, #uhuzwzonij td, #uhuzwzonij th {
+#yabknazsjj thead, #yabknazsjj tbody, #yabknazsjj tfoot, #yabknazsjj tr, #yabknazsjj td, #yabknazsjj th {
   border-style: none;
 }
 
-#uhuzwzonij p {
+#yabknazsjj p {
   margin: 0;
   padding: 0;
 }
 
-#uhuzwzonij .gt_table {
+#yabknazsjj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1415,12 +1524,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#uhuzwzonij .gt_caption {
+#yabknazsjj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#uhuzwzonij .gt_title {
+#yabknazsjj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1432,7 +1541,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#uhuzwzonij .gt_subtitle {
+#yabknazsjj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1444,7 +1553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#uhuzwzonij .gt_heading {
+#yabknazsjj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1456,13 +1565,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#uhuzwzonij .gt_bottom_border {
+#yabknazsjj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uhuzwzonij .gt_col_headings {
+#yabknazsjj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1477,7 +1586,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#uhuzwzonij .gt_col_heading {
+#yabknazsjj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1497,7 +1606,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#uhuzwzonij .gt_column_spanner_outer {
+#yabknazsjj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1509,15 +1618,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#uhuzwzonij .gt_column_spanner_outer:first-child {
+#yabknazsjj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uhuzwzonij .gt_column_spanner_outer:last-child {
+#yabknazsjj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uhuzwzonij .gt_column_spanner {
+#yabknazsjj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1529,11 +1638,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#uhuzwzonij .gt_spanner_row {
+#yabknazsjj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#uhuzwzonij .gt_group_heading {
+#yabknazsjj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1559,7 +1668,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#uhuzwzonij .gt_empty_group_heading {
+#yabknazsjj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1574,15 +1683,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#uhuzwzonij .gt_from_md > :first-child {
+#yabknazsjj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#uhuzwzonij .gt_from_md > :last-child {
+#yabknazsjj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#uhuzwzonij .gt_row {
+#yabknazsjj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1601,7 +1710,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#uhuzwzonij .gt_stub {
+#yabknazsjj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1614,7 +1723,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#uhuzwzonij .gt_stub_row_group {
+#yabknazsjj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1628,15 +1737,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#uhuzwzonij .gt_row_group_first td {
+#yabknazsjj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#uhuzwzonij .gt_row_group_first th {
+#yabknazsjj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#uhuzwzonij .gt_summary_row {
+#yabknazsjj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1646,16 +1755,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#uhuzwzonij .gt_first_summary_row {
+#yabknazsjj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#uhuzwzonij .gt_first_summary_row.thick {
+#yabknazsjj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#uhuzwzonij .gt_last_summary_row {
+#yabknazsjj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1665,7 +1774,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#uhuzwzonij .gt_grand_summary_row {
+#yabknazsjj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1675,7 +1784,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#uhuzwzonij .gt_first_grand_summary_row {
+#yabknazsjj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1685,7 +1794,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#uhuzwzonij .gt_last_grand_summary_row_top {
+#yabknazsjj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1695,11 +1804,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#uhuzwzonij .gt_striped {
+#yabknazsjj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uhuzwzonij .gt_table_body {
+#yabknazsjj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1708,7 +1817,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#uhuzwzonij .gt_footnotes {
+#yabknazsjj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1722,7 +1831,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#uhuzwzonij .gt_footnote {
+#yabknazsjj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1731,7 +1840,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#uhuzwzonij .gt_sourcenotes {
+#yabknazsjj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1745,7 +1854,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#uhuzwzonij .gt_sourcenote {
+#yabknazsjj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1753,63 +1862,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#uhuzwzonij .gt_left {
+#yabknazsjj .gt_left {
   text-align: left;
 }
 
-#uhuzwzonij .gt_center {
+#yabknazsjj .gt_center {
   text-align: center;
 }
 
-#uhuzwzonij .gt_right {
+#yabknazsjj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uhuzwzonij .gt_font_normal {
+#yabknazsjj .gt_font_normal {
   font-weight: normal;
 }
 
-#uhuzwzonij .gt_font_bold {
+#yabknazsjj .gt_font_bold {
   font-weight: bold;
 }
 
-#uhuzwzonij .gt_font_italic {
+#yabknazsjj .gt_font_italic {
   font-style: italic;
 }
 
-#uhuzwzonij .gt_super {
+#yabknazsjj .gt_super {
   font-size: 65%;
 }
 
-#uhuzwzonij .gt_footnote_marks {
+#yabknazsjj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#uhuzwzonij .gt_asterisk {
+#yabknazsjj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#uhuzwzonij .gt_indent_1 {
+#yabknazsjj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#uhuzwzonij .gt_indent_2 {
+#yabknazsjj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#uhuzwzonij .gt_indent_3 {
+#yabknazsjj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#uhuzwzonij .gt_indent_4 {
+#yabknazsjj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#uhuzwzonij .gt_indent_5 {
+#yabknazsjj .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1941,35 +2050,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># append &amp;from=1900-01-01&amp;to=1900-12-31 to the url</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(name <span class="sc">%in%</span> newspaper_info<span class="sc">$</span>name) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1900</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, url, year) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">url =</span> <span class="fu">paste0</span>(url, <span class="st">"/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(name, url) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">url =</span> <span class="fu">paste0</span>(<span class="st">"&lt;a href='"</span>, url, <span class="st">"'&gt;"</span>, url, <span class="st">"&lt;/a&gt;"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols_label</span>(</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"Newspaper Name"</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">url =</span> <span class="st">"URL"</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt_markdown</span>(<span class="at">columns =</span> <span class="fu">everything</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># append &amp;from=1900-01-01&amp;to=1900-12-31 to the url</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(name <span class="sc">%in%</span> newspaper_info<span class="sc">$</span>name) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1900</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, url, year) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">url =</span> <span class="fu">paste0</span>(url, <span class="st">"/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(name, url) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">url =</span> <span class="fu">paste0</span>(<span class="st">"&lt;a href='"</span>, url, <span class="st">"'&gt;"</span>, url, <span class="st">"&lt;/a&gt;"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols_label</span>(</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"Newspaper Name"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">url =</span> <span class="st">"URL"</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt_markdown</span>(<span class="at">columns =</span> <span class="fu">everything</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="iucbpflvxm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#iucbpflvxm table {
+<div id="yrrvlcufzj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yrrvlcufzj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#iucbpflvxm thead, #iucbpflvxm tbody, #iucbpflvxm tfoot, #iucbpflvxm tr, #iucbpflvxm td, #iucbpflvxm th {
+#yrrvlcufzj thead, #yrrvlcufzj tbody, #yrrvlcufzj tfoot, #yrrvlcufzj tr, #yrrvlcufzj td, #yrrvlcufzj th {
   border-style: none;
 }
 
-#iucbpflvxm p {
+#yrrvlcufzj p {
   margin: 0;
   padding: 0;
 }
 
-#iucbpflvxm .gt_table {
+#yrrvlcufzj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1995,12 +2104,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#iucbpflvxm .gt_caption {
+#yrrvlcufzj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#iucbpflvxm .gt_title {
+#yrrvlcufzj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2012,7 +2121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#iucbpflvxm .gt_subtitle {
+#yrrvlcufzj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2024,7 +2133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#iucbpflvxm .gt_heading {
+#yrrvlcufzj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2036,13 +2145,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#iucbpflvxm .gt_bottom_border {
+#yrrvlcufzj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#iucbpflvxm .gt_col_headings {
+#yrrvlcufzj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2057,7 +2166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#iucbpflvxm .gt_col_heading {
+#yrrvlcufzj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2077,7 +2186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#iucbpflvxm .gt_column_spanner_outer {
+#yrrvlcufzj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2089,15 +2198,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#iucbpflvxm .gt_column_spanner_outer:first-child {
+#yrrvlcufzj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#iucbpflvxm .gt_column_spanner_outer:last-child {
+#yrrvlcufzj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#iucbpflvxm .gt_column_spanner {
+#yrrvlcufzj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2109,11 +2218,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#iucbpflvxm .gt_spanner_row {
+#yrrvlcufzj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#iucbpflvxm .gt_group_heading {
+#yrrvlcufzj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2139,7 +2248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#iucbpflvxm .gt_empty_group_heading {
+#yrrvlcufzj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2154,15 +2263,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#iucbpflvxm .gt_from_md > :first-child {
+#yrrvlcufzj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#iucbpflvxm .gt_from_md > :last-child {
+#yrrvlcufzj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#iucbpflvxm .gt_row {
+#yrrvlcufzj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2181,7 +2290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#iucbpflvxm .gt_stub {
+#yrrvlcufzj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2194,7 +2303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#iucbpflvxm .gt_stub_row_group {
+#yrrvlcufzj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2208,15 +2317,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#iucbpflvxm .gt_row_group_first td {
+#yrrvlcufzj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#iucbpflvxm .gt_row_group_first th {
+#yrrvlcufzj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#iucbpflvxm .gt_summary_row {
+#yrrvlcufzj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2226,16 +2335,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#iucbpflvxm .gt_first_summary_row {
+#yrrvlcufzj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#iucbpflvxm .gt_first_summary_row.thick {
+#yrrvlcufzj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#iucbpflvxm .gt_last_summary_row {
+#yrrvlcufzj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2245,7 +2354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#iucbpflvxm .gt_grand_summary_row {
+#yrrvlcufzj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2255,7 +2364,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#iucbpflvxm .gt_first_grand_summary_row {
+#yrrvlcufzj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2265,7 +2374,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#iucbpflvxm .gt_last_grand_summary_row_top {
+#yrrvlcufzj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2275,11 +2384,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#iucbpflvxm .gt_striped {
+#yrrvlcufzj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#iucbpflvxm .gt_table_body {
+#yrrvlcufzj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2288,7 +2397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#iucbpflvxm .gt_footnotes {
+#yrrvlcufzj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2302,7 +2411,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#iucbpflvxm .gt_footnote {
+#yrrvlcufzj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2311,7 +2420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#iucbpflvxm .gt_sourcenotes {
+#yrrvlcufzj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2325,7 +2434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#iucbpflvxm .gt_sourcenote {
+#yrrvlcufzj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2333,63 +2442,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#iucbpflvxm .gt_left {
+#yrrvlcufzj .gt_left {
   text-align: left;
 }
 
-#iucbpflvxm .gt_center {
+#yrrvlcufzj .gt_center {
   text-align: center;
 }
 
-#iucbpflvxm .gt_right {
+#yrrvlcufzj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#iucbpflvxm .gt_font_normal {
+#yrrvlcufzj .gt_font_normal {
   font-weight: normal;
 }
 
-#iucbpflvxm .gt_font_bold {
+#yrrvlcufzj .gt_font_bold {
   font-weight: bold;
 }
 
-#iucbpflvxm .gt_font_italic {
+#yrrvlcufzj .gt_font_italic {
   font-style: italic;
 }
 
-#iucbpflvxm .gt_super {
+#yrrvlcufzj .gt_super {
   font-size: 65%;
 }
 
-#iucbpflvxm .gt_footnote_marks {
+#yrrvlcufzj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#iucbpflvxm .gt_asterisk {
+#yrrvlcufzj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#iucbpflvxm .gt_indent_1 {
+#yrrvlcufzj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#iucbpflvxm .gt_indent_2 {
+#yrrvlcufzj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#iucbpflvxm .gt_indent_3 {
+#yrrvlcufzj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#iucbpflvxm .gt_indent_4 {
+#yrrvlcufzj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#iucbpflvxm .gt_indent_5 {
+#yrrvlcufzj .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2458,10 +2567,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>NYA DAGLIGT ALLEHANDA: yes, regular place</p>
 <p>SMÅLANDSPOSTEN: yes, regular place, quite a number</p>
 <p>ÖRESUNDSPOSTEN: lots of adverts, regular place</p>
+</section>
 <section id="digitizing-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="digitizing-the-data">Digitizing the data</h2>
 <p>I have made mad progress with how we can digitize the data.</p>
+<p>There is a new tool called <code>doclayout-yolo</code> that can identify different layout components of even old newspapers, and it is much easier to use than <code>LayoutParser</code> from Melissa Dell and her team.</p>
+<p>The strategy I have used comes from a great paper called <a href="https://arxiv.org/abs/2502.14901">Reading the unreadable: Creating a dataset of 19th century English newspapers using image-to-text language models</a> by Jonathan Bourne.</p>
+<p>He splits the digitization of old periodicals into a few steps:</p>
+<ol type="1">
+<li><p>image preprocessing</p></li>
+<li><p>breaking up the image into patches based on their content</p></li>
+<li><p>passing these patches to a multimodal large language model instead of a traditional OCR model.</p></li>
+</ol>
+<p>This overcomes the problem of the OCR model not being able to read the text in the image, and instead uses the multimodal model to understand the content of the image and extract the text.</p>
+<p>In my testing, this works way better than traditional OCR models, and is much easier to use.</p>
+<p>Have a look at the image below of a newspaper page from 1900, and the results of the <code>doclayout-yolo</code> model.</p>
 <p><img src="result.png" class="img-fluid"></p>
+</section>
+<section id="getting-the-newspapers" class="level2">
+<h2 class="anchored" data-anchor-id="getting-the-newspapers">Getting the newspapers</h2>
+<p>I have also worked hard on scraping the newspaper images from data.kb.se, and I have a <a href="https://github.com/j-jayes/newspapers-etl">github repo and python script</a> that can download the images from the KB website that runs online and in the background. I am really happy with it.</p>
+</section>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next steps</h2>
+<p>The things I need to work on are the algorithm to decide on the best patch size for the images, and the best way to pass the patches to the multimodal model.</p>
 </section>
 
 </main>

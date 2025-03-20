@@ -6,8 +6,20 @@ format:
   html:
     code-fold: true
     code-summary: "Show the code"
+
+execute:
+    warning: false
+    message: false
 ---
 
+## Purpose
+
+I have scraped the information on which newspapers are in the KB dataset, inlcuding all of the years which they have on the data.kb.se portal, not just the years that are outside of the copyright period.
+This is useful for understanding the dataset and for checking if there are any adverts for lediga platser / platssökande in the newspapers.
+
+
+## Load the data
+The data is in the file `data/processed/kb_newspapers_with_years_complete.json` and is a list of dictionaries, each containing the name of the newspaper, the URL to the newspaper, the total number of pages, and a dictionary of years and the number of issues for that year.
 
 ```{python}
 #| eval: false
@@ -57,14 +69,57 @@ library(gt)
 
 # Read the data from data/kb_newspapers_by_year.xlsx
 
-df <- read_excel('/Users/jonathanjayes/Documents/PhD/newspapers-1/data/processed/kb_newspapers_by_year.xlsx')
+df <- read_excel("/Users/jonathanjayes/Documents/PhD/newspapers-1/data/processed/kb_newspapers_by_year.xlsx")
 
+distinct_papers <- df %>%
+    select(name, total_pages) %>%
+    distinct()
+
+
+n_distinct_papers <- nrow(distinct_papers)
 ```
 
+There are `r n_distinct_papers` distinct papers in the dataset.
+
+The distribution of the number of pages per papers is as follows:
+
+
+```{r}
+distinct_papers %>% 
+ggplot(aes(x = total_pages)) +
+    geom_histogram(bins = 100) +
+    scale_x_log10(
+        # use scales package to format the x axis to numbers
+        labels = scales::number_format(big.mark = ",", decimal.mark = "."),
+    ) +
+    geom_vline(aes(xintercept = median(total_pages)), color = "red", linetype = "dashed") +
+    geom_text(
+        aes(x = median(total_pages), label = paste("Median:", round(median(total_pages), 2))),
+        y = 0,
+        vjust = -1,
+        color = "red"
+    ) +
+    geom_vline(aes(xintercept = mean(total_pages)), color = "blue", linetype = "dashed") +
+    geom_text(
+        aes(x = mean(total_pages), label = paste("Mean:", round(mean(total_pages), 0))),
+        y = 0,
+        vjust = -1,
+        color = "blue"
+    ) +
+    theme_minimal() +
+    labs(
+        title = "Distribution of the number of pages per paper",
+        x = "Number of pages",
+        y = "Number of newspapers with this many pages",
+        caption = "Red line is the median, blue line is the mean"
+    )
+
+```
 
 Count the number of different papers in the entire dataset, not just the years we are interested in.
 
 ```{r}
+
 df %>%
     select(name, total_pages) %>%
     distinct() %>%
@@ -86,7 +141,59 @@ df %>%
 
 But we care about the number of issues in our time period, let's say 1850 to 1925.
 
+Now we are counting the number of issues rather than the number of pages, where the number of pages per issue ranges between 2 and 8 depending on the year and the paper.
+
 ```{r}
+library(ggridges)
+
+n_papers_in_period <- df %>%
+    filter(
+        year <= 1925,
+        year >= 1850
+    ) %>%
+    distinct(name) %>%
+    nrow()
+
+
+df %>%
+    filter(
+        year <= 1925,
+        year >= 1850
+    ) %>%
+    mutate(decade = floor(year / 10) * 10) %>%
+    group_by(name, decade) %>%
+    summarise(
+        issues_count_sum = sum(issues_count) / 10
+    ) %>%
+    ungroup() %>%
+    ggplot(aes(x = issues_count_sum, y = factor(decade))) +
+    geom_density_ridges(stat = "binline", bins = 20, scale = 0.95, draw_baseline = FALSE, fill = "midnightblue", alpha = .8) +
+    scale_x_log10(
+        # use scales package to format the x axis to numbers
+        labels = scales::number_format(big.mark = ",", decimal.mark = "."),
+    ) +
+    geom_vline(aes(xintercept = 200), color = "red", linetype = "dashed") +
+    theme_minimal() +
+    labs(
+        title = "Distribution of the number of issues per year",
+        subtitle = "Grouped by decade in the period 1850-1925",
+        x = "Number of issues per year",
+        y = "Decade",
+        caption = "Red line indicates 200 issues per year"
+    ) 
+
+
+```
+
+There are `r n_papers_in_period` papers in the period 1850-1925.
+
+There are relatively few papers that have more than 200 issues per year in our sample.
+
+Which are the largest papers by issue count in the period 1850-1925?
+
+```{r}
+
+
 top_20 <- df %>%
     filter(
         year <= 1925,
@@ -98,7 +205,7 @@ top_20 <- df %>%
     head(20)
 
 
-top_20 %>% 
+top_20 %>%
     gt() %>%
     tab_header(
         title = "Largest 20 Papers by Issue Count",
@@ -114,6 +221,7 @@ top_20 %>%
     )
 
 ```
+
 
 Make a plot of the number of newspapers by year
 
@@ -234,4 +342,31 @@ SMÅLANDSPOSTEN: yes, regular place, quite a number
 
 I have made mad progress with how we can digitize the data.
 
+There is a new tool called `doclayout-yolo` that can identify different layout components of even old newspapers, and it is much easier to use than `LayoutParser` from Melissa Dell and her team. 
+
+The strategy I have used comes from a great paper called [Reading the unreadable: Creating a dataset of 19th century English newspapers using image-to-text language models](https://arxiv.org/abs/2502.14901) by Jonathan Bourne.
+
+He splits the digitization of old periodicals into a few steps:
+
+1. image preprocessing
+
+2. breaking up the image into patches based on their content
+
+3. passing these patches to a multimodal large language model instead of a traditional OCR model.
+
+This overcomes the problem of the OCR model not being able to read the text in the image, and instead uses the multimodal model to understand the content of the image and extract the text.
+
+In my testing, this works way better than traditional OCR models, and is much easier to use.
+
+Have a look at the image below of a newspaper page from 1900, and the results of the `doclayout-yolo` model.
+
 ![](result.png)
+
+## Getting the newspapers
+
+I have also worked hard on scraping the newspaper images from data.kb.se, and I have a [github repo and python script](https://github.com/j-jayes/newspapers-etl) that can download the images from the KB website that runs online and in the background. I am really happy with it. 
+
+## Next steps
+
+The things I need to work on are the algorithm to decide on the best patch size for the images, and the best way to pass the patches
+to the multimodal model.
