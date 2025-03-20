@@ -19,6 +19,7 @@ This is useful for understanding the dataset and for checking if there are any a
 
 
 ## Load the data
+
 The data is in the file `data/processed/kb_newspapers_with_years_complete.json` and is a list of dictionaries, each containing the name of the newspaper, the URL to the newspaper, the total number of pages, and a dictionary of years and the number of issues for that year.
 
 ```{python}
