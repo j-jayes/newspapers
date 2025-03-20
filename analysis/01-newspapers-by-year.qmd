@@ -1,6 +1,11 @@
 ---
-title: "Untitled"
-format: html
+title: "Information on the newspapers in the KB dataset"
+author: "Jonathan Jayes"
+date: today
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
 ---
 
 
@@ -40,6 +45,10 @@ df.to_excel('/Users/jonathanjayes/Documents/PhD/newspapers-1/data/processed/kb_n
 
 
 ```{r}
+#| message: false
+#| warning: false
+
+
 # data is at data/kb_newspapers_with_years_complete.json
 # Load necessary libraries
 library(tidyverse)
@@ -70,7 +79,7 @@ df %>%
         total_pages = "Total Pages"
     ) %>%
     fmt_number(
-        columns = vars(total_pages),
+        columns = c(total_pages),
         decimals = 0
     ) 
 ```
@@ -100,12 +109,10 @@ top_20 %>%
         total_issues = "Total Issues"
     ) %>%
     fmt_number(
-        columns = vars(total_issues),
+        columns = c(total_issues),
         decimals = 0
     )
 
-
-top_20 %>% select(name)
 ```
 
 Make a plot of the number of newspapers by year
@@ -125,16 +132,21 @@ df %>%
     mutate(
         name = fct_reorder(name, avg_year)
     ) %>%
-    ggplot(aes(x = year, y = name, size = issues_count)) +
+    ggplot(aes(x = year, y = name, size = issues_count, colour = issues_count)) +
     geom_point() +
+    scale_colour_viridis_c() +
     theme_minimal() +
     labs(
-        title = "Number of Newspapers by Year",
+        title = "Newspapers in the dataset",
+        subtitle = "Range and number of issues per year for subset\n of 20 newspapers",
         x = "Year",
         y = "Newspaper Name",
-        size = "Number of Issues"
+        size = "Number of Issues",
+        colour = "Number of Issues"
     )
 ```
+
+Can we collect some more information about the papers that are in the dataset in 1900, including where they are published and if they are national or regional?
 
 ```{r}
 newspaper_info <- tribble(
@@ -175,9 +187,51 @@ newspaper_info %>%
     ) 
 ```
 
-Could there be multiple scans of the same newspaper?
+
+
+Are there adverts for lediga platser / platssökande? Let's take a baseline year of 1900 to check.
+
+To answer we need to form the URL for the newspaper and year, then check manually if there are any adverts for lediga platser / platssökande.
+
+These are the URLs we can visit to check
 
 ```{r}
 
-df %>% arrange(desc(issues_count)) %>% slice(1) %>% pull(url)
+# append &from=1900-01-01&to=1900-12-31 to the url
+df %>% filter(name %in% newspaper_info$name) %>% filter(year == 1900) %>% select(name, url, year) %>% mutate(url = paste0(url, "/search?query=lediga%20platser&from=1900-01-01&to=1900-12-31")) %>% 
+    select(name, url) %>% 
+    mutate(url = paste0("<a href='", url, "'>", url, "</a>")) %>% 
+    gt() %>% 
+    cols_label(
+        name = "Newspaper Name",
+        url = "URL"
+    ) %>%
+    fmt_markdown(columns = everything()) 
+    
 ```
+
+Here are the results of the spot checks
+
+Aftonbladet: not that I can see
+
+ARBETET: not that I can see
+
+Hernösands-posten: some adverts, not regular place
+
+KALMAR: some adverts, not regular place
+
+KRISTIANSTADSBLADET: yes!
+
+NORRLANDSPOSTEN: some adverts, there is a regular place, not a lot
+
+NYA DAGLIGT ALLEHANDA: yes, regular place
+
+SMÅLANDSPOSTEN: yes, regular place, quite a number
+
+ÖRESUNDSPOSTEN: lots of adverts, regular place
+
+## Digitizing the data
+
+I have made mad progress with how we can digitize the data.
+
+![](result.png)

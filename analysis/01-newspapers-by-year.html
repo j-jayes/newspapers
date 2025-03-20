@@ -1,0 +1,2894 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jonathan Jayes">
+<meta name="dcterms.date" content="2025-03-20">
+
+<title>Information on the newspapers in the KB dataset</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="01-newspapers-by-year_files/libs/clipboard/clipboard.min.js"></script>
+<script src="01-newspapers-by-year_files/libs/quarto-html/quarto.js"></script>
+<script src="01-newspapers-by-year_files/libs/quarto-html/popper.min.js"></script>
+<script src="01-newspapers-by-year_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="01-newspapers-by-year_files/libs/quarto-html/anchor.min.js"></script>
+<link href="01-newspapers-by-year_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="01-newspapers-by-year_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="01-newspapers-by-year_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="01-newspapers-by-year_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="01-newspapers-by-year_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Information on the newspapers in the KB dataset</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jonathan Jayes </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 20, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'/Users/jonathanjayes/Documents/PhD/newspapers-1/data/intermediate/kb_newspapers_with_years_complete.json'</span>) <span class="im">as</span> f:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> json.load(f)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Flatten the data</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>flattened_data <span class="op">=</span> []</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> newspaper <span class="kw">in</span> data:</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> year, issues_count <span class="kw">in</span> newspaper[<span class="st">'issues_by_year'</span>].items():</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> issues_count <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            flattened_data.append({</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                <span class="st">'name'</span>: newspaper[<span class="st">'name'</span>],</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                <span class="st">'url'</span>: newspaper[<span class="st">'url'</span>],</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                <span class="st">'total_pages'</span>: newspaper[<span class="st">'total_pages'</span>],</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                <span class="st">'year'</span>: <span class="bu">int</span>(year),</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                <span class="st">'issues_count'</span>: issues_count</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>            })</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to DataFrame</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(flattened_data)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the first few rows</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>df.head()</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># show the url of the final item in the dataframe</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="op">-</span><span class="dv">1</span>][<span class="st">'url'</span>]</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># write to excel at /Users/jonathanjayes/Documents/PhD/newspapers-1/data/kb_newspapers_by_year.xlsx</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>df.to_excel(<span class="st">'/Users/jonathanjayes/Documents/PhD/newspapers-1/data/processed/kb_newspapers_by_year.xlsx'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data is at data/kb_newspapers_with_years_complete.json</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the data from data/kb_newspapers_by_year.xlsx</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">'/Users/jonathanjayes/Documents/PhD/newspapers-1/data/processed/kb_newspapers_by_year.xlsx'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Count the number of different papers in the entire dataset, not just the years we are interested in.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(name, total_pages) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(total_pages)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_header</span>(</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Largest 20 Papers by Page Count"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols_label</span>(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"Newspaper Name"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">total_pages =</span> <span class="st">"Total Pages"</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt_number</span>(</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">columns =</span> <span class="fu">c</span>(total_pages),</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">decimals =</span> <span class="dv">0</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="hdvbyuywik" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hdvbyuywik table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hdvbyuywik thead, #hdvbyuywik tbody, #hdvbyuywik tfoot, #hdvbyuywik tr, #hdvbyuywik td, #hdvbyuywik th {
+  border-style: none;
+}
+
+#hdvbyuywik p {
+  margin: 0;
+  padding: 0;
+}
+
+#hdvbyuywik .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hdvbyuywik .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hdvbyuywik .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hdvbyuywik .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hdvbyuywik .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hdvbyuywik .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hdvbyuywik .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hdvbyuywik .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hdvbyuywik .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hdvbyuywik .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hdvbyuywik .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hdvbyuywik .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hdvbyuywik .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hdvbyuywik .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hdvbyuywik .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hdvbyuywik .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hdvbyuywik .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hdvbyuywik .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hdvbyuywik .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hdvbyuywik .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hdvbyuywik .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hdvbyuywik .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hdvbyuywik .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hdvbyuywik .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hdvbyuywik .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hdvbyuywik .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hdvbyuywik .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hdvbyuywik .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hdvbyuywik .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hdvbyuywik .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hdvbyuywik .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hdvbyuywik .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hdvbyuywik .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hdvbyuywik .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hdvbyuywik .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hdvbyuywik .gt_left {
+  text-align: left;
+}
+
+#hdvbyuywik .gt_center {
+  text-align: center;
+}
+
+#hdvbyuywik .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hdvbyuywik .gt_font_normal {
+  font-weight: normal;
+}
+
+#hdvbyuywik .gt_font_bold {
+  font-weight: bold;
+}
+
+#hdvbyuywik .gt_font_italic {
+  font-style: italic;
+}
+
+#hdvbyuywik .gt_super {
+  font-size: 65%;
+}
+
+#hdvbyuywik .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hdvbyuywik .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hdvbyuywik .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hdvbyuywik .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hdvbyuywik .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hdvbyuywik .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hdvbyuywik .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border">Largest 20 Papers by Page Count</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Newspaper Name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Newspaper Name</th>
+<th id="Total Pages" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Total Pages</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Aftonbladet</td>
+<td class="gt_row gt_right" headers="total_pages">2,386,337</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Svenska dagbladet</td>
+<td class="gt_row gt_right" headers="total_pages">1,850,209</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Göteborgsposten</td>
+<td class="gt_row gt_right" headers="total_pages">1,226,343</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Arbetet (1887)</td>
+<td class="gt_row gt_right" headers="total_pages">777,663</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">GT (1995)</td>
+<td class="gt_row gt_right" headers="total_pages">769,254</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Dagens industri</td>
+<td class="gt_row gt_right" headers="total_pages">620,509</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Kvällsposten</td>
+<td class="gt_row gt_right" headers="total_pages">601,071</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Göteborgs handels- och sjöfartstidning (1832)</td>
+<td class="gt_row gt_right" headers="total_pages">502,766</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Sydsvenskan</td>
+<td class="gt_row gt_right" headers="total_pages">439,419</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">GT (1967)</td>
+<td class="gt_row gt_right" headers="total_pages">385,042</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Nerikes allehanda</td>
+<td class="gt_row gt_right" headers="total_pages">295,247</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Norrköpings tidningar</td>
+<td class="gt_row gt_right" headers="total_pages">295,116</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Östgöta correspondenten</td>
+<td class="gt_row gt_right" headers="total_pages">283,171</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Borås tidning</td>
+<td class="gt_row gt_right" headers="total_pages">283,134</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Helsingborgs dagblad</td>
+<td class="gt_row gt_right" headers="total_pages">282,474</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Barometern</td>
+<td class="gt_row gt_right" headers="total_pages">272,875</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Landskronaposten</td>
+<td class="gt_row gt_right" headers="total_pages">256,153</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Nordvästra Skånes tidningar</td>
+<td class="gt_row gt_right" headers="total_pages">246,232</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Sundsvalls tidning</td>
+<td class="gt_row gt_right" headers="total_pages">244,137</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Smålandsposten</td>
+<td class="gt_row gt_right" headers="total_pages">233,111</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>But we care about the number of issues in our time period, let’s say 1850 to 1925.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>top_20 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        year <span class="sc">&lt;=</span> <span class="dv">1925</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        year <span class="sc">&gt;=</span> <span class="dv">1850</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">total_issues =</span> <span class="fu">sum</span>(issues_count)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(total_issues)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">20</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>top_20 <span class="sc">%&gt;%</span> </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_header</span>(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Largest 20 Papers by Issue Count"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">"In the period 1850-1925"</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols_label</span>(</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"Newspaper Name"</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">total_issues =</span> <span class="st">"Total Issues"</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt_number</span>(</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">columns =</span> <span class="fu">c</span>(total_issues),</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">decimals =</span> <span class="dv">0</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="noxeiskllv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#noxeiskllv table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#noxeiskllv thead, #noxeiskllv tbody, #noxeiskllv tfoot, #noxeiskllv tr, #noxeiskllv td, #noxeiskllv th {
+  border-style: none;
+}
+
+#noxeiskllv p {
+  margin: 0;
+  padding: 0;
+}
+
+#noxeiskllv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#noxeiskllv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#noxeiskllv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#noxeiskllv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#noxeiskllv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#noxeiskllv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#noxeiskllv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#noxeiskllv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#noxeiskllv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#noxeiskllv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#noxeiskllv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#noxeiskllv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#noxeiskllv .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#noxeiskllv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#noxeiskllv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#noxeiskllv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#noxeiskllv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#noxeiskllv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#noxeiskllv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#noxeiskllv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#noxeiskllv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#noxeiskllv .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#noxeiskllv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#noxeiskllv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#noxeiskllv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#noxeiskllv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#noxeiskllv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#noxeiskllv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#noxeiskllv .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#noxeiskllv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#noxeiskllv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#noxeiskllv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#noxeiskllv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#noxeiskllv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#noxeiskllv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#noxeiskllv .gt_left {
+  text-align: left;
+}
+
+#noxeiskllv .gt_center {
+  text-align: center;
+}
+
+#noxeiskllv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#noxeiskllv .gt_font_normal {
+  font-weight: normal;
+}
+
+#noxeiskllv .gt_font_bold {
+  font-weight: bold;
+}
+
+#noxeiskllv .gt_font_italic {
+  font-style: italic;
+}
+
+#noxeiskllv .gt_super {
+  font-size: 65%;
+}
+
+#noxeiskllv .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#noxeiskllv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#noxeiskllv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#noxeiskllv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#noxeiskllv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#noxeiskllv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#noxeiskllv .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="2" class="gt_heading gt_title gt_font_normal">Largest 20 Papers by Issue Count</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">In the period 1850-1925</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="Newspaper Name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Newspaper Name</th>
+<th id="Total Issues" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Total Issues</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Aftonbladet</td>
+<td class="gt_row gt_right" headers="total_issues">24,006</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Sydsvenska dagbladet</td>
+<td class="gt_row gt_right" headers="total_issues">23,995</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Göteborgs handels- och sjöfartstidning (1832)</td>
+<td class="gt_row gt_right" headers="total_issues">23,477</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Göteborgsposten</td>
+<td class="gt_row gt_right" headers="total_issues">20,320</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Stockholms dagblad</td>
+<td class="gt_row gt_right" headers="total_issues">20,172</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Post- och inrikes tidningar</td>
+<td class="gt_row gt_right" headers="total_issues">17,330</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Nya Dagligt Allehanda</td>
+<td class="gt_row gt_right" headers="total_issues">14,316</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Öresundsposten (Ängelholm : 1847)</td>
+<td class="gt_row gt_right" headers="total_issues">14,021</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Svenska dagbladet</td>
+<td class="gt_row gt_right" headers="total_issues">13,990</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Norrköpings tidningar</td>
+<td class="gt_row gt_right" headers="total_issues">13,336</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Sundsvalls tidning</td>
+<td class="gt_row gt_right" headers="total_issues">11,669</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Arbetet (1887)</td>
+<td class="gt_row gt_right" headers="total_issues">11,152</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Göteborgs aftonblad (1888)</td>
+<td class="gt_row gt_right" headers="total_issues">10,797</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Norrbottens kuriren</td>
+<td class="gt_row gt_right" headers="total_issues">10,772</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Smålandsposten</td>
+<td class="gt_row gt_right" headers="total_issues">10,219</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Östgöta correspondenten</td>
+<td class="gt_row gt_right" headers="total_issues">10,110</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Kalmar</td>
+<td class="gt_row gt_right" headers="total_issues">9,856</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Kristianstadsbladet</td>
+<td class="gt_row gt_right" headers="total_issues">9,752</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Norrlandsposten (1837)</td>
+<td class="gt_row gt_right" headers="total_issues">9,705</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Härnösandsposten</td>
+<td class="gt_row gt_right" headers="total_issues">9,635</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Make a plot of the number of newspapers by year</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        year <span class="sc">&lt;=</span> <span class="dv">1925</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        year <span class="sc">&gt;=</span> <span class="dv">1850</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(name <span class="sc">%in%</span> top_20<span class="sc">$</span>name) <span class="sc">%&gt;%</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">avg_year =</span> <span class="fu">mean</span>(year)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="fu">fct_reorder</span>(name, avg_year)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> name, <span class="at">size =</span> issues_count, <span class="at">colour =</span> issues_count)) <span class="sc">+</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_colour_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Newspapers in the dataset"</span>,</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">"Range and number of issues per year for subset</span><span class="sc">\n</span><span class="st"> of 20 newspapers"</span>,</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Newspaper Name"</span>,</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">size =</span> <span class="st">"Number of Issues"</span>,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">colour =</span> <span class="st">"Number of Issues"</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01-newspapers-by-year_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Can we collect some more information about the papers that are in the dataset in 1900, including where they are published and if they are national or regional?</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>newspaper_info <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>name, <span class="sc">~</span>published_in, <span class="sc">~</span>regional_national,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Aftonbladet"</span>, <span class="st">"Stockholm"</span>, <span class="st">"National"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sydsvenska Dagbladet"</span>, <span class="st">"Malmö"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Göteborgs Handels- och Sjöfartstidning"</span>, <span class="st">"Göteborg"</span>, <span class="st">"Regional/National*"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Göteborgs-Posten"</span>, <span class="st">"Göteborg"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Stockholms Dagblad"</span>, <span class="st">"Stockholm"</span>, <span class="st">"National"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Post- och Inrikes Tidningar"</span>, <span class="st">"Stockholm"</span>, <span class="st">"National"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Nya Dagligt Allehanda"</span>, <span class="st">"Stockholm"</span>, <span class="st">"National"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Öresundsposten (Ängelholm : 1847)"</span>, <span class="st">"Ängelholm/Helsingborg"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Svenska Dagbladet"</span>, <span class="st">"Stockholm"</span>, <span class="st">"National"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Norrköpings Tidningar"</span>, <span class="st">"Norrköping"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sundsvalls Tidning"</span>, <span class="st">"Sundsvall"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Arbetet (1887)"</span>, <span class="st">"Malmö"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Göteborgs Aftonblad (1888)"</span>, <span class="st">"Göteborg"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Norrbottens-Kuriren"</span>, <span class="st">"Luleå"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Smålandsposten"</span>, <span class="st">"Växjö"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Östgöta Correspondenten"</span>, <span class="st">"Linköping"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Kalmar"</span>, <span class="st">"Kalmar"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Kristianstadsbladet"</span>, <span class="st">"Kristianstad"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Norrlandsposten (1837)"</span>, <span class="st">"Gävle"</span>, <span class="st">"Regional"</span>,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Härnösandsposten"</span>, <span class="st">"Härnösand"</span>, <span class="st">"Regional"</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the tibble</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>newspaper_info <span class="sc">%&gt;%</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_header</span>(</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Newspaper Information"</span>,</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">"Published location and circulation area"</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols_label</span>(</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"Newspaper Name"</span>,</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">published_in =</span> <span class="st">"Published In"</span>,</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">regional_national =</span> <span class="st">"Regional/National"</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="uhuzwzonij" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#uhuzwzonij table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#uhuzwzonij thead, #uhuzwzonij tbody, #uhuzwzonij tfoot, #uhuzwzonij tr, #uhuzwzonij td, #uhuzwzonij th {
+  border-style: none;
+}
+
+#uhuzwzonij p {
+  margin: 0;
+  padding: 0;
+}
+
+#uhuzwzonij .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#uhuzwzonij .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#uhuzwzonij .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#uhuzwzonij .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#uhuzwzonij .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#uhuzwzonij .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uhuzwzonij .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#uhuzwzonij .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#uhuzwzonij .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#uhuzwzonij .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#uhuzwzonij .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#uhuzwzonij .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#uhuzwzonij .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#uhuzwzonij .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#uhuzwzonij .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#uhuzwzonij .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#uhuzwzonij .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#uhuzwzonij .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#uhuzwzonij .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uhuzwzonij .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#uhuzwzonij .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#uhuzwzonij .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#uhuzwzonij .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uhuzwzonij .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#uhuzwzonij .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#uhuzwzonij .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uhuzwzonij .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uhuzwzonij .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#uhuzwzonij .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uhuzwzonij .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#uhuzwzonij .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uhuzwzonij .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#uhuzwzonij .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uhuzwzonij .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#uhuzwzonij .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uhuzwzonij .gt_left {
+  text-align: left;
+}
+
+#uhuzwzonij .gt_center {
+  text-align: center;
+}
+
+#uhuzwzonij .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#uhuzwzonij .gt_font_normal {
+  font-weight: normal;
+}
+
+#uhuzwzonij .gt_font_bold {
+  font-weight: bold;
+}
+
+#uhuzwzonij .gt_font_italic {
+  font-style: italic;
+}
+
+#uhuzwzonij .gt_super {
+  font-size: 65%;
+}
+
+#uhuzwzonij .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#uhuzwzonij .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#uhuzwzonij .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#uhuzwzonij .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#uhuzwzonij .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#uhuzwzonij .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#uhuzwzonij .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="3" class="gt_heading gt_title gt_font_normal">Newspaper Information</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Published location and circulation area</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="Newspaper Name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Newspaper Name</th>
+<th id="Published In" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Published In</th>
+<th id="Regional/National" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Regional/National</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Aftonbladet</td>
+<td class="gt_row gt_left" headers="published_in">Stockholm</td>
+<td class="gt_row gt_left" headers="regional_national">National</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Sydsvenska Dagbladet</td>
+<td class="gt_row gt_left" headers="published_in">Malmö</td>
+<td class="gt_row gt_left" headers="regional_national">Regional</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Göteborgs Handels- och Sjöfartstidning</td>
+<td class="gt_row gt_left" headers="published_in">Göteborg</td>
+<td class="gt_row gt_left" headers="regional_national">Regional/National*</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Göteborgs-Posten</td>
+<td class="gt_row gt_left" headers="published_in">Göteborg</td>
+<td class="gt_row gt_left" headers="regional_national">Regional</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Stockholms Dagblad</td>
+<td class="gt_row gt_left" headers="published_in">Stockholm</td>
+<td class="gt_row gt_left" headers="regional_national">National</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Post- och Inrikes Tidningar</td>
+<td class="gt_row gt_left" headers="published_in">Stockholm</td>
+<td class="gt_row gt_left" headers="regional_national">National</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Nya Dagligt Allehanda</td>
+<td class="gt_row gt_left" headers="published_in">Stockholm</td>
+<td class="gt_row gt_left" headers="regional_national">National</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Öresundsposten (Ängelholm : 1847)</td>
+<td class="gt_row gt_left" headers="published_in">Ängelholm/Helsingborg</td>
+<td class="gt_row gt_left" headers="regional_national">Regional</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Svenska Dagbladet</td>
+<td class="gt_row gt_left" headers="published_in">Stockholm</td>
+<td class="gt_row gt_left" headers="regional_national">National</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Norrköpings Tidningar</td>
+<td class="gt_row gt_left" headers="published_in">Norrköping</td>
+<td class="gt_row gt_left" headers="regional_national">Regional</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Sundsvalls Tidning</td>
+<td class="gt_row gt_left" headers="published_in">Sundsvall</td>
+<td class="gt_row gt_left" headers="regional_national">Regional</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Arbetet (1887)</td>
+<td class="gt_row gt_left" headers="published_in">Malmö</td>
+<td class="gt_row gt_left" headers="regional_national">Regional</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Göteborgs Aftonblad (1888)</td>
+<td class="gt_row gt_left" headers="published_in">Göteborg</td>
+<td class="gt_row gt_left" headers="regional_national">Regional</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Norrbottens-Kuriren</td>
+<td class="gt_row gt_left" headers="published_in">Luleå</td>
+<td class="gt_row gt_left" headers="regional_national">Regional</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Smålandsposten</td>
+<td class="gt_row gt_left" headers="published_in">Växjö</td>
+<td class="gt_row gt_left" headers="regional_national">Regional</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Östgöta Correspondenten</td>
+<td class="gt_row gt_left" headers="published_in">Linköping</td>
+<td class="gt_row gt_left" headers="regional_national">Regional</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Kalmar</td>
+<td class="gt_row gt_left" headers="published_in">Kalmar</td>
+<td class="gt_row gt_left" headers="regional_national">Regional</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Kristianstadsbladet</td>
+<td class="gt_row gt_left" headers="published_in">Kristianstad</td>
+<td class="gt_row gt_left" headers="regional_national">Regional</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">Norrlandsposten (1837)</td>
+<td class="gt_row gt_left" headers="published_in">Gävle</td>
+<td class="gt_row gt_left" headers="regional_national">Regional</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name">Härnösandsposten</td>
+<td class="gt_row gt_left" headers="published_in">Härnösand</td>
+<td class="gt_row gt_left" headers="regional_national">Regional</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Are there adverts for lediga platser / platssökande? Let’s take a baseline year of 1900 to check.</p>
+<p>To answer we need to form the URL for the newspaper and year, then check manually if there are any adverts for lediga platser / platssökande.</p>
+<p>These are the URLs we can visit to check</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># append &amp;from=1900-01-01&amp;to=1900-12-31 to the url</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(name <span class="sc">%in%</span> newspaper_info<span class="sc">$</span>name) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1900</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, url, year) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">url =</span> <span class="fu">paste0</span>(url, <span class="st">"/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(name, url) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">url =</span> <span class="fu">paste0</span>(<span class="st">"&lt;a href='"</span>, url, <span class="st">"'&gt;"</span>, url, <span class="st">"&lt;/a&gt;"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols_label</span>(</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"Newspaper Name"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">url =</span> <span class="st">"URL"</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt_markdown</span>(<span class="at">columns =</span> <span class="fu">everything</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="iucbpflvxm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iucbpflvxm table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#iucbpflvxm thead, #iucbpflvxm tbody, #iucbpflvxm tfoot, #iucbpflvxm tr, #iucbpflvxm td, #iucbpflvxm th {
+  border-style: none;
+}
+
+#iucbpflvxm p {
+  margin: 0;
+  padding: 0;
+}
+
+#iucbpflvxm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#iucbpflvxm .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#iucbpflvxm .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#iucbpflvxm .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#iucbpflvxm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iucbpflvxm .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iucbpflvxm .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iucbpflvxm .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#iucbpflvxm .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#iucbpflvxm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#iucbpflvxm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#iucbpflvxm .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#iucbpflvxm .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#iucbpflvxm .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#iucbpflvxm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iucbpflvxm .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#iucbpflvxm .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#iucbpflvxm .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#iucbpflvxm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iucbpflvxm .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#iucbpflvxm .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#iucbpflvxm .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#iucbpflvxm .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iucbpflvxm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#iucbpflvxm .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#iucbpflvxm .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iucbpflvxm .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iucbpflvxm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#iucbpflvxm .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iucbpflvxm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#iucbpflvxm .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iucbpflvxm .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iucbpflvxm .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iucbpflvxm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iucbpflvxm .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iucbpflvxm .gt_left {
+  text-align: left;
+}
+
+#iucbpflvxm .gt_center {
+  text-align: center;
+}
+
+#iucbpflvxm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#iucbpflvxm .gt_font_normal {
+  font-weight: normal;
+}
+
+#iucbpflvxm .gt_font_bold {
+  font-weight: bold;
+}
+
+#iucbpflvxm .gt_font_italic {
+  font-style: italic;
+}
+
+#iucbpflvxm .gt_super {
+  font-size: 65%;
+}
+
+#iucbpflvxm .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#iucbpflvxm .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#iucbpflvxm .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#iucbpflvxm .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#iucbpflvxm .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#iucbpflvxm .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#iucbpflvxm .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header gt_col_headings">
+<th id="Newspaper Name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Newspaper Name</th>
+<th id="URL" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">URL</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="name"><p>Aftonbladet</p></td>
+<td class="gt_row gt_left" headers="url"><p><a href="https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2Fdwpgqn5q03ft91j%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31">https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2Fdwpgqn5q03ft91j%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31</a></p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name"><p>Arbetet (1887)</p></td>
+<td class="gt_row gt_left" headers="url"><p><a href="https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2Fm5zb892z28pt2qz%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31">https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2Fm5zb892z28pt2qz%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31</a></p></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name"><p>Härnösandsposten</p></td>
+<td class="gt_row gt_left" headers="url"><p><a href="https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2Ffzr36ppr3zvlbfj%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31">https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2Ffzr36ppr3zvlbfj%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31</a></p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name"><p>Kalmar</p></td>
+<td class="gt_row gt_left" headers="url"><p><a href="https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2F1kcddz1c25nn9hp%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31">https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2F1kcddz1c25nn9hp%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31</a></p></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name"><p>Kristianstadsbladet</p></td>
+<td class="gt_row gt_left" headers="url"><p><a href="https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2F2ldlr5qd26w1zpd%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31">https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2F2ldlr5qd26w1zpd%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31</a></p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name"><p>Norrlandsposten (1837)</p></td>
+<td class="gt_row gt_left" headers="url"><p><a href="https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2Fbvn1nv7n15kxpxv%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31">https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2Fbvn1nv7n15kxpxv%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31</a></p></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name"><p>Nya Dagligt Allehanda</p></td>
+<td class="gt_row gt_left" headers="url"><p><a href="https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2F2ldqsh7d0gp04wb%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31">https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2F2ldqsh7d0gp04wb%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31</a></p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name"><p>Smålandsposten</p></td>
+<td class="gt_row gt_left" headers="url"><p><a href="https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2F2ldlh4fd4sjd672%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31">https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2F2ldlh4fd4sjd672%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31</a></p></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name"><p>Öresundsposten (Ängelholm : 1847)</p></td>
+<td class="gt_row gt_left" headers="url"><p><a href="https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2Ffrw7sd3hcl0kg11f%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31">https://tidningar.kb.se/search?isPartOf.%40id=https%3A%2F%2Flibris.kb.se%2Ffrw7sd3hcl0kg11f%23it/search?query=lediga%20platser&amp;from=1900-01-01&amp;to=1900-12-31</a></p></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Here are the results of the spot checks</p>
+<p>Aftonbladet: not that I can see</p>
+<p>ARBETET: not that I can see</p>
+<p>Hernösands-posten: some adverts, not regular place</p>
+<p>KALMAR: some adverts, not regular place</p>
+<p>KRISTIANSTADSBLADET: yes!</p>
+<p>NORRLANDSPOSTEN: some adverts, there is a regular place, not a lot</p>
+<p>NYA DAGLIGT ALLEHANDA: yes, regular place</p>
+<p>SMÅLANDSPOSTEN: yes, regular place, quite a number</p>
+<p>ÖRESUNDSPOSTEN: lots of adverts, regular place</p>
+<section id="digitizing-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="digitizing-the-data">Digitizing the data</h2>
+<p>I have made mad progress with how we can digitize the data.</p>
+<p><img src="result.png" class="img-fluid"></p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
