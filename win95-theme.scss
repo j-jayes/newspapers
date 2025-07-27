@@ -1,0 +1,236 @@
+/*-- scss:defaults --*/
+
+//
+// Windows 95 Powerpoint Theme for Quarto Reveal.js
+// v5 - Dynamic browser window titles
+//
+
+// ----------------------------------------------------------------------------
+// -- FONTS
+// ----------------------------------------------------------------------------
+
+// Using a classic pixel font for that authentic retro feel.
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+// Main font for the presentation body
+$font-family-sans-serif: 'VT323', monospace;
+
+// Font sizes
+$font-size: 28px;
+$font-size-h1: 48px;
+$font-size-h2: 38px;
+$font-size-h3: 32px;
+
+// ----------------------------------------------------------------------------
+// -- COLORS
+// ----------------------------------------------------------------------------
+
+// The iconic Windows 95 teal background
+$win95-teal: #008080;
+
+// The classic blue for title bars and links
+$win95-blue: #0000a0;
+
+// System colors for UI elements
+$win95-light-gray: #c0c0c0;
+$win95-dark-gray: #808080;
+$win95-white: #ffffff;
+$win95-black: #000000;
+
+// Setting the presentation colors
+$body-bg: $win95-teal;
+$body-color: $win95-black;
+$link-color: $win95-blue;
+$selection-bg: $win95-blue;
+$selection-color: $win95-white;
+
+/*-- scss:rules --*/
+
+//
+// General slide styling
+//
+.reveal .slides section {
+  // Giving slides the appearance of a window
+  border: 2px solid $win95-light-gray;
+  border-right-color: $win95-black;
+  border-bottom-color: $win95-black;
+  background-color: $win95-light-gray;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  padding: 45px 20px 20px 20px; // Add padding for title bar and content
+  box-sizing: border-box;
+}
+
+//
+// Title bar for each slide (except the first one)
+//
+.reveal .slides section:not(:first-child)::before {
+  content: 'Microsoft PowerPoint';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  padding: 5px 10px;
+  background: linear-gradient(to right, $win95-blue, lighten($win95-blue, 20%));
+  color: $win95-white;
+  font-family: $font-family-sans-serif;
+  font-size: 18px;
+  line-height: 20px;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+//
+// Title Slide Specifics
+//
+.reveal .slides section:first-child {
+  // Override the window style for a full-page look
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+  padding: 0;
+
+  // Center the content
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+// Style the main title on the title slide for emphasis
+.reveal .slides section:first-child h1 {
+    font-size: 72px;
+}
+
+// Style for author/date on the title slide
+.reveal .slides section:first-child p {
+    font-size: 32px;
+    margin-top: 20px;
+}
+
+
+//
+// Heading styles
+//
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: $font-family-sans-serif;
+  color: $win95-black;
+  text-shadow: 1px 1px 1px $win95-white;
+}
+
+//
+// Styling for links
+//
+.reveal a {
+  text-decoration: underline;
+}
+
+//
+// Code blocks with a classic terminal look
+//
+.reveal pre {
+  background-color: $win95-black;
+  color: #00ff00; // Green text for that old-school terminal vibe
+  border: 2px solid $win95-dark-gray;
+  border-right-color: $win95-light-gray;
+  border-bottom-color: $win95-light-gray;
+  box-shadow: none;
+  font-family: 'VT323', monospace;
+}
+
+.reveal pre code {
+  color: #00ff00;
+  max-height: 500px;
+  overflow: auto;
+}
+
+//
+// Progress bar styling
+//
+.reveal .progress {
+  background: $win95-dark-gray;
+  color: $win95-blue;
+}
+
+//
+// Slide controls (arrows)
+//
+.reveal .controls-arrow {
+  color: $win95-blue;
+}
+
+//
+// Adding a "beveled" button effect to interactive elements
+//
+.reveal .slide-number,
+.reveal .speaker-notes,
+.reveal .fullscreen-button {
+  background-color: $win95-light-gray;
+  border: 2px solid $win95-light-gray;
+  border-right-color: $win95-black;
+  border-bottom-color: $win95-black;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.reveal .slide-number:active,
+.reveal .speaker-notes:active,
+.reveal .fullscreen-button:active {
+  border-top-color: $win95-black;
+  border-left-color: $win95-black;
+  border-right-color: $win95-light-gray;
+  border-bottom-color: $win95-light-gray;
+}
+
+// ----------------------------------------------------------------------------
+// -- BROWSER WINDOW CLASS (REVISED FOR DYNAMIC TITLE)
+// ----------------------------------------------------------------------------
+.browser-window {
+  position: relative;
+  border: 2px solid $win95-light-gray;
+  border-right-color: $win95-black;
+  border-bottom-color: $win95-black;
+  background-color: $win95-light-gray;
+  padding: 35px 5px 5px 5px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  margin: 10px 0; // Adjusted margin
+  box-sizing: border-box; // Ensures padding/border is inside the element's width
+  max-width: 100%; // Prevents overflow
+}
+
+.browser-window::before {
+  // Use a CSS variable for the title, with a fallback.
+  content: var(--browser-title, 'Image');
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 25px;
+  padding: 5px 8px;
+  background: $win95-blue; // Solid blue for browser windows
+  color: $win95-white;
+  font-family: $font-family-sans-serif;
+  font-size: 16px;
+  line-height: 15px;
+  text-align: left;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.browser-window img {
+  display: block;
+  width: 100%;
+  height: auto; // Maintains aspect ratio
+  border: 1px solid $win95-dark-gray;
+  max-height: 60vh; // Prevents very tall images from overflowing
+  object-fit: contain; // Ensures the whole image is visible
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptual Framework: Demand-Pull</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        /* General styling for the Windows 95 aesthetic */
+        body {
+            background-color: #008080; /* Windows 95 Teal */
+            font-family: 'VT323', monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #000;
+        }
+
+        /* The main window container */
+        .win95-window {
+            background-color: #c0c0c0; /* Light gray */
+            border: 2px solid #fff;
+            border-right-color: #000;
+            border-bottom-color: #000;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            padding: 3px;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        /* The blue title bar */
+        .title-bar {
+            background: linear-gradient(to right, #0000a0, #a6caf0);
+            color: #fff;
+            padding: 4px 8px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* The content area of the window */
+        .window-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* The main title of the diagram */
+        .diagram-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        /* Flex container for the diagram flow */
+        .flow-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Styling for each box in the flow */
+        .flow-box {
+            border: 2px solid #000;
+            border-top-color: #fff;
+            border-left-color: #fff;
+            padding: 15px;
+            background-color: #c0c0c0;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            font-size: 18px;
+        }
+
+        /* Styling for the icons inside the boxes */
+        .flow-box .icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        /* Styling for the arrows connecting the boxes */
+        .arrow {
+            font-size: 48px;
+            font-weight: bold;
+            color: #000;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="win95-window">
+        <div class="title-bar">
+            <span>Conceptual Framework: The Demand-Pull Hypothesis</span>
+        </div>
+        <div class="window-content">
+            <div class="diagram-title">From Invention to Job Advertisement</div>
+            
+            <div class="flow-container">
+                <!-- Step 1: Invention -->
+                <div class="flow-box">
+                    <div class="icon">💡</div>
+                    <div>Technological Invention</div>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <!-- Step 2: Employer Need -->
+                <div class="flow-box">
+                    <div class="icon">🏢</div>
+                    <div>Employers Require New Skills</div>
+                </div>
+                
+                <div class="arrow">→</div>
+
+                <!-- Step 3: Workforce Response -->
+                <div class="flow-box">
+                    <div class="icon">🎓</div>
+                    <div>Workforce Responds (Education & Training)</div>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <!-- Step 4: Measurement -->
+                <div class="flow-box">
+                    <div class="icon">📰</div>
+                    <div>Demand Measured in Job Ads</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

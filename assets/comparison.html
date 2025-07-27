@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparison of Extraction Methods</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        /* General styling for the Windows 95 aesthetic */
+        body {
+            background-color: #008080; /* Windows 95 Teal */
+            font-family: 'VT323', monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #000;
+        }
+
+        /* The main window container */
+        .win95-window {
+            background-color: #c0c0c0; /* Light gray */
+            border: 2px solid #fff;
+            border-right-color: #000;
+            border-bottom-color: #000;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            padding: 3px;
+            width: 95%;
+            max-width: 1200px;
+        }
+
+        /* The blue title bar */
+        .title-bar {
+            background: linear-gradient(to right, #0000a0, #a6caf0);
+            color: #fff;
+            padding: 4px 8px;
+            font-weight: bold;
+        }
+        
+        /* The content area of the window */
+        .window-content {
+            padding: 10px;
+        }
+
+        /* Styling for the comparison table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 2px solid #808080; /* Dark gray */
+            border-top-color: #fff;
+            border-left-color: #fff;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .comparison-table th {
+            background-color: #c0c0c0;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #e0e0e0;
+        }
+        
+        .comparison-table tr:nth-child(odd) {
+            background-color: #c0c0c0;
+        }
+
+        .f1-score {
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        .best-score {
+            color: #008000; /* Green for the best score */
+        }
+        
+        .pro-con-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .pro-con-list li::before {
+            margin-right: 5px;
+        }
+
+        .pro::before {
+            content: '✓';
+            color: #008000; /* Green check */
+        }
+        
+        .con::before {
+            content: '✗';
+            color: #ff0000; /* Red X */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="win95-window">
+        <div class="title-bar">
+            <span>Comparison: Job Title Extraction Methods</span>
+        </div>
+        <div class="window-content">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Approach</th>
+                        <th>How It Works</th>
+                        <th>Pros & Cons</th>
+                        <th>F1-Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Dictionary-Based</strong></td>
+                        <td>Matches ad text against a fixed list of historical job titles (HISCO).</td>
+                        <td>
+                            <ul class="pro-con-list">
+                                <li class="pro">Simple to implement.</li>
+                                <li class="pro">No training data needed.</li>
+                                <li class="con">Misses new or misspelled titles.</li>
+                            </ul>
+                        </td>
+                        <td class="f1-score">0.632</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rule-Based</strong></td>
+                        <td>Uses grammatical patterns common in job ads (e.g., "job as a [noun]").</td>
+                        <td>
+                            <ul class="pro-con-list">
+                                <li class="pro">Flexible, handles variations.</li>
+                                <li class="pro">No training data needed.</li>
+                                <li class="con">Confused by complex ads.</li>
+                            </ul>
+                        </td>
+                        <td class="f1-score">0.690</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NER (Machine Learning)</strong></td>
+                        <td>Trains a model to recognize the "job title" entity in context.</td>
+                        <td>
+                            <ul class="pro-con-list">
+                                <li class="pro">Highest accuracy.</li>
+                                <li class="pro">Can find brand new titles.</li>
+                                <li class="con">Requires extensive manual labeling.</li>
+                            </ul>
+                        </td>
+                        <td class="f1-score best-score">0.944</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Text Generation</strong></td>
+                        <td>An AI model rewrites the ad, keeping only the job titles.</td>
+                        <td>
+                            <ul class="pro-con-list">
+                                <li class="pro">Very high accuracy.</li>
+                                <li class="pro">Excellent at handling OCR errors.</li>
+                                <li class="con">Requires extensive manual labeling.</li>
+                            </ul>
+                        </td>
+                        <td class="f1-score">0.920</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,487 @@
+---
+title: "Seeking Skills: A Historical Analysis of Swedish Job Listings"
+subtitle: "The Application of Cutting-edge Technology to Economic History Research"
+author: "Jonathan Jayes and Suvi Heikkuri"
+date: today
+format:
+  revealjs:
+    theme: [default, win95-theme.scss]
+    include-after-body: browser-caption.js
+    width: 1600
+    height: 900
+    include-in-header:
+    - text: |
+        <style>
+            #my-code pre.sourceCode {
+                height: 700px;
+            }
+        </style>
+
+---
+
+## Goldin & Katz (2008) Supremacy
+
+::: {.browser-window}
+
+![](assets/race_between_educ_and_tech.jpg)
+
+:::
+
+## Competing Theories{.smaller}
+
+```{ascii}
+#| attr-source: "id=my-code"
+#| echo: true
+
++----------------------------------------------------------------------+
+|                     Two Competing Causal Stories                     |
++----------------------------------------------------------------------+
+|                                                                      |
+|  +---------------------------------+  +----------------------------+ |
+|  |     Story 1: Demand-Driven      |  |   Story 2: Supply-Driven   | |
+|  |       (Goldin & Katz)           |  |----------------------------| |
+|  |---------------------------------|  | Education System           | |
+|  |    Technological Change ->      |  | Expands ->                 | |
+|  |    New Skills Demanded by       |  | People Gain New Skills ->  | |
+|  |    Employers ->                 |  | Firms Adapt & Use          | |
+|  |    People Get More Education    |  | New Skills                 | |
+|  +---------------------------------+  +----------------------------+ |
+|                                                                      |
++----------------------------------------------------------------------+
+                   |                                |
+                    \                              /
+                     `------------.---------------'
+                                  |
+                                  V
+           +--------------------------------------------------+
+           |                 Our Proposed Test                |
+           +--------------------------------------------------+
+           | Analyze job adverts in Swedish newspapers.       |
+           |                                                  |
+           | Do adverts show demand for specific skills       |
+           | *before* we see a national increase in           |
+           | education levels?                                |
+           +--------------------------------------------------+
+```
+
+
+## Research Question
+
+```{=html}
+<iframe src="assets/theory.html" width="100%" height="700" style="border:none;"></iframe>
+```
+
+## Motivation
+
+::: {.browser-window}
+![Inspiration Paper - Running out of time](assets/running_out_of_time.png)
+:::
+
+## Findings on Messenger Boys
+
+```{r}
+# Load necessary libraries for data manipulation and plotting
+library(ggplot2)
+library(dplyr)
+library(tibble)
+
+# --- 1. Create Simulated Data (Corrected) ---
+# The 'year' sequence has 15 values, so 'messenger_ads' must also have 15.
+job_data <- tibble(
+  year = seq(1910, 1980, by = 5),
+  messenger_ads = c(
+    80, 100, 120, 150, 200, 250, 350, 400, # Rise to 1945 peak (8 values)
+    380, 300, 220, 150, 50, 20, 10         # Decline from 1950 to 1980 (7 values)
+  )
+)
+
+# This tibble marks the introduction of key technologies.
+# Labels are wrapped using \n for better fit.
+tech_inventions <- tibble(
+  year = c(1920, 1959, 1970),
+  technology = c("Widespread\nTelephone Adoption", "Commercial\nPhotocopier", "Early Office\nComputers"),
+  label_y = c(200, 300, 120) # Y-axis position for labels
+)
+
+# --- 2. Create the ggplot Visualization with Windows 95 Theme ---
+ggplot() +
+  # Plot the line for messenger job ad demand
+  geom_line(data = job_data, aes(x = year, y = messenger_ads), color = "#0000a0", size = 1.5) +
+  geom_point(data = job_data, aes(x = year, y = messenger_ads), color = "#0000a0", size = 3) +
+
+  # Add vertical lines for each key technological invention
+  geom_vline(data = tech_inventions, aes(xintercept = year), linetype = "dashed", color = "darkred", size = 1) +
+
+  # Add text labels for the technology introductions
+  geom_text(
+    data = tech_inventions,
+    aes(x = year + 1, y = label_y, label = technology), # Position labels closer to the line
+    hjust = 0,
+    color = "darkred",
+    family = "mono", # Use a monospaced font for a retro feel
+    fontface = "bold",
+    size = 4,
+    lineheight = 0.9 # Adjust line spacing for wrapped text
+  ) +
+
+  # --- 3. Customize Labels and Theme for a Windows 95 Look ---
+  labs(
+    title = "Decline of Messenger Jobs vs. Rise of Office Technology",
+    subtitle = "Simulated trend based on job ad frequency in newspapers (1910-1980)",
+    x = "Year",
+    y = "Number of Job Adverts (Simulated)"
+  ) +
+  # Extend the x-axis to give labels space
+  coord_cartesian(xlim = c(1910, 1995)) +
+  theme_minimal(base_size = 15) +
+  theme(
+    # Set text elements to use a monospaced font and black color
+    text = element_text(family = "mono", color = "black"),
+    plot.title = element_text(face = "bold", size = 20),
+    plot.subtitle = element_text(size = 14, margin = margin(b = 20)),
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(face = "bold"),
+
+    # Set background colors
+    plot.background = element_rect(fill = "#008080", color = NA), # Teal background
+    panel.background = element_rect(fill = "#c0c0c0", color = NA), # Gray plot area
+
+    # Add a border around the plot panel to mimic a window
+    panel.border = element_rect(color = "black", fill = NA, size = 2),
+
+    # Remove grid lines for a cleaner, more retro look
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  )
+
+```
+
+<!-- ## Methods for Messenger Boys Paper
+
+Count of relative frequency for selected job titles in the [Swedish newspaper database](http://tidningar.kb.se/).
+
+::: {.browser-window}
+![](assets/running_out_of_time_1.png)
+::: -->
+
+## Methods for Messenger Boys Paper
+
+Keyword Search: Count of relative frequency for selected job titles in the [Swedish newspaper database](http://tidningar.kb.se/).
+
+
+::: {.browser-window}
+![](assets/running_out_of_time_2.png)
+:::
+
+
+## Inspiration from Swedish Jobtech
+
+::: {.columns}
+
+::: {.column}
+
+- The [Swedish Jobtech](https://jobtech.dev/) project provides an API that enriches job advertisements with structured data.
+- It uses advanced natural language processing to extract key information from job ads.
+- The API identifies occupations, competencies, traits, and geographical locations from unstructured text.
+- Works with modern Swedish job ads
+:::
+
+::: {.column}
+![](assets/job_tech_1.png)
+:::
+
+:::
+
+
+## Swedish Jobtech Job Enrichment API
+
+<style>
+.occupation { color: #007bff; font-weight: bold; }
+.competency { color: #28a745; font-weight: bold; }
+.trait { color: #fd7e14; font-weight: bold; }
+.geo { color: #dc3545; font-weight: bold; }
+.code-block {
+background-color: #f8f9fa;
+border: 1px solid #dee2e6;
+padding: 15px;
+border-radius: 5px;
+font-family: monospace;
+white-space: pre-wrap;
+font-size: 14px;
+line-height: 1.4;
+}
+.job-ad-box {
+background-color: #fff;
+border: 1px solid #ccc;
+padding: 20px;
+border-radius: 5px;
+font-family: sans-serif;
+font-size: 18px;
+line-height: 1.6;
+}
+</style>
+
+Context: The Job Ad
+
+We start with a typical, unstructured job advertisement.
+
+<div class="job-ad-box">
+"We are looking for a sharp <b>Java developer</b>. You should be <b>meticulous</b>, <b>fast</b>, and <b>friendly</b>. You must know <b>Java</b>, <b>Python</b>, <b>AngularJS</b>, and <b>Cobol</b>. You will be working at our office in <b>Ystad</b>."
+</div>
+
+<!-- How the Jobtech API enriches a job ad -->
+<!-- Here is a simplified example of how the API transforms a regular job ad into structured data. -->
+
+::: {.columns}
+
+:::: {.column width="50%"}
+
+API Input (Job Ad)
+You send in a simple text describing a job.
+
+<div class="code-block">
+We are looking for a <span class="trait">sharp</span> <span class="occupation">Java developer</span>. You should be <span class="trait">meticulous</span>, <span class="trait">fast</span> and <span class="trait">friendly</span>. You must know <span class="competency">Java</span>, <span class="competency">Python</span>, <span class="competency">AngularJS</span> and <span class="competency">Cobol</span>. You will be working at our office in <span class="geo">Ystad</span>.
+</div>
+::::
+
+:::: {.column width="50%"}
+
+API Output (Structured Data)
+The API returns the text, analyzed and broken down into useful categories.
+
+<div class="code-block">
+{
+"occupations": [
+"<span class="occupation">Systems developer</span>",
+"<span class="occupation">Java developer</span>"
+],
+"competencies": [
+"<span class="competency">Java</span>",
+"<span class="competency">Python</span>",
+"<span class="competency">AngularJS</span>",
+"<span class="competency">Cobol</span>"
+],
+"traits": [
+"<span class="trait">Sharp</span>",
+"<span class="trait">Meticulous</span>",
+"<span class="trait">Fast</span>",
+"<span class="trait">Friendly</span>"
+],
+"geos": [
+"<span class="geo">Ystad</span>"
+]
+}
+</div>
+::::
+
+:::
+
+
+## Findings on Digital Skills Demand (2006-2020)
+
+```{r}
+# Load necessary libraries for data manipulation and plotting
+library(ggplot2)
+library(dplyr)
+library(tibble)
+
+# --- 1. Create Simulated Data ---
+# This tibble simulates the percentage of job ads demanding digital competence
+# for the public and private sectors from 2006 to 2020.
+# The data shows both sectors increasing, but the public sector lagging behind.
+skills_data <- tibble(
+  year = 2006:2020,
+  private_sector = seq(from = 25, to = 65, length.out = 15) + rnorm(15, 0, 1.5),
+  public_sector = seq(from = 15, to = 45, length.out = 15) + rnorm(15, 0, 1.5)
+)
+
+# This tibble marks the disruptive events mentioned in the paper.
+disruptive_events <- tibble(
+  year = c(2009, 2020),
+  event = c("2009 Financial Crisis", "COVID-19 Pandemic"),
+  label_y = c(50, 55) # Y-axis position for labels
+)
+
+# --- 2. Create the ggplot Visualization with Windows 95 Theme ---
+ggplot(skills_data, aes(x = year)) +
+  # Plot the lines for private and public sector demand
+  geom_line(aes(y = private_sector, color = "Private Sector"), size = 1.5) +
+  geom_line(aes(y = public_sector, color = "Public Sector"), size = 1.5, linetype = "twodash") +
+
+  # Add points for clarity
+  geom_point(aes(y = private_sector, color = "Private Sector"), size = 3) +
+  geom_point(aes(y = public_sector, color = "Public Sector"), size = 3) +
+
+  # Add vertical lines for each disruptive event
+  geom_vline(data = disruptive_events, aes(xintercept = year), linetype = "dashed", color = "#555555", size = 1) +
+
+  # Add text labels for the events
+  geom_text(
+    data = disruptive_events,
+    aes(x = year - 0.5, y = label_y, label = event),
+    hjust = 1,
+    color = "#333333",
+    family = "mono",
+    fontface = "bold",
+    size = 4
+  ) +
+
+  # --- 3. Customize Labels, Colors, and Theme ---
+  labs(
+    title = "Demand for Digital Skills: Public vs. Private Sector",
+    # subtitle = "Simulated trend showing the percentage of job ads requiring digital competence (2006-2020)",
+    x = "Year",
+    y = "% of Job Ads with Digital Skills",
+    color = "Sector" # Legend title
+  ) +
+  # Define the colors for the lines to match our theme
+  scale_color_manual(values = c(
+    "Private Sector" = "#0000a0", # Blue
+    "Public Sector" = "darkred"   # Red
+  )) +
+  # Extend the y-axis to give title space
+  coord_cartesian(ylim = c(0, 70)) +
+  theme_minimal(base_size = 15) +
+  theme(
+    # Set text elements to use a monospaced font and black color
+    text = element_text(family = "mono", color = "black"),
+    plot.title = element_text(face = "bold", size = 20),
+    plot.subtitle = element_text(size = 14, margin = margin(b = 20)),
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(face = "bold"),
+
+    # Set background colors
+    plot.background = element_rect(fill = "#008080", color = NA), # Teal background
+    panel.background = element_rect(fill = "#c0c0c0", color = NA), # Gray plot area
+
+    # Add a border around the plot panel
+    panel.border = element_rect(color = "black", fill = NA, size = 2),
+
+    # Style the legend to match
+    legend.position = "bottom",
+    legend.background = element_rect(fill = "#c0c0c0", color = NA),
+    legend.title = element_text(face = "bold"),
+    legend.text = element_text(face = "bold"),
+    legend.key = element_rect(fill = "#c0c0c0", color = NA),
+
+    # Remove grid lines
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  )
+
+```
+
+
+## What kind of data do we have?
+
+:::{.browser-window}
+![](assets/newspaper_big.jpg)
+:::
+
+## What kind of data do we have?
+
+:::{.browser-window}
+![](assets/newspaper_small.png)
+:::
+
+
+# First Steps
+
+Extract (just) Job Titles from the Swedish Newspaper Database
+
+Trial Case with 3 newspapers, 1880 - 1925, sampling one issue per year, every five years.
+
+1,000 hand annotated job titles
+
+## Trial Approaches
+
+```{=html}
+<iframe src="assets/comparison.html" width="100%" height="700" style="border:none;"></iframe>
+```
+
+## Methods 1 & 2: No Training Data Required{.smaller}
+
+::: {.columns}
+:::: {.column width="50%"}
+### 1. Dictionary-Based Approach
+
+**Core Idea:** This method relies on a pre-existing "dictionary" of known job titles, the Historical International Standard Classification of Occupations (HISCO).
+
+**How it Works:**
+
+1.  Every word in a job ad is broken down to its root form (lemmatized).
+
+2.  The root word is checked against the lemmatized list of ~1,300 titles in the HISCO dictionary.
+
+3.  If a match is found, the original word from the ad is extracted as a job title.
+
+**Key Weakness:** It's rigid. It fails if a job title isn't in the dictionary, is misspelled, or contains OCR errors. It can also produce false positives (e.g., extracting "arkitekt" from the word "arkitektur").
+
+**F1-Score: 0.632**
+::::
+
+:::: {.column width="50%"}
+### 2. Rule-Based Approach
+
+**Core Idea:** This method leverages the predictable, formulaic language commonly used in job advertisements.
+
+**How it Works:**
+It follows a sequence of grammatical rules:
+
+1.  First, it looks for specific phrases like "piga för allt".
+
+2.  If none are found, it looks for the word "som" and extracts the first noun that follows.
+
+3.  If that fails, it looks for words containing "tjänst".
+
+4.  As a last resort, it identifies the main noun (the subject) of the sentence.
+
+**Key Weakness:** It struggles with ads that list multiple positions and depends heavily on modern tools correctly identifying the grammar of archaic, abbreviated text.
+
+**F1-Score: 0.690**
+::::
+:::
+
+---
+
+## Methods 3 & 4: Machine Learning Approaches{.smaller}
+
+::: {.columns}
+:::: {.column width="50%"}
+### 3. Named Entity Recognition (NER)
+
+**Core Idea:** This approach trains a machine learning model to "learn" what a job title looks like in context, treating it as a custom entity, like "Person" or "Plats".
+
+**How it Works:**
+
+1.  Researchers manually label thousands of job titles in a training dataset.
+
+2.  A model (in this case, a state-of-the-art "transformer") is trained on these examples.
+
+3.  The trained model can then identify job titles in new, unseen ads, even if it has never encountered that specific title before.
+
+**Key Strength:** It is the most accurate and flexible method, achieving the highest performance by understanding context.
+
+**F1-Score: 0.944**
+::::
+
+:::: {.column width="50%"}
+### 4. Text Generation
+
+**Core Idea:** This approach uses a powerful language model (hmByT5) to perform a translation-like task.
+
+**How it Works:**
+
+1.  The model is trained to read an entire job ad and *rewrite* it, outputting only the job titles it contains, formatted in a specific way (e.g., `<bagare> <kock>`).
+
+2.  If no job title is found, it outputs "ingen".
+
+**Key Strength:** It is highly accurate and exceptionally robust against OCR errors and spelling variations because it processes text at the byte-level, not the word-level.
+
+**F1-Score: 0.920**
+::::
+:::
+
+
+## Anton
+
