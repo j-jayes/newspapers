@@ -557,6 +557,12 @@ Whereas previous state-of-the-art systems relied on highly specialized, domain-s
 
 ## Takeaways
 
+- Structuring data for economic history research is becoming easier by the day.
+
+- With a few well-planned examples, LLMs can help us extract structured data from unstructured text.
+
+- The barriers to using these methods are low, as I hope to have shown.
+
 :::{.browser-window}
 ![Perhaps it is worth taking Anton's approach](assets/anton.jpeg)
 :::
