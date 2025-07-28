@@ -27,6 +27,15 @@ format:
 
 :::
 
+:::{.notes}
+
+- Goldin & Katz (2008) argue that the demand for skilled labor drives educational attainment.
+
+- Evidence is from wages > arguing that wages are a proxy for demand.
+
+:::
+
+
 ## Competing Theories{.smaller}
 
 ```{ascii}
@@ -65,16 +74,40 @@ format:
 ```
 
 
+:::{.notes}
+
+- But there isn't compelling evidence that the skills were demanded by employers directly.
+
+- It could be that the education system expanded, and people gained new skills, which firms then adapted to use.
+
+- We want to test this by looking at job adverts in Swedish newspapers.
+
+:::
+
+
 # Research Question{background-color="#1F8C71"}
 
 ```{=html}
 <iframe src="assets/theory.html" width="100%" height="700" style="border:none;"></iframe>
 ```
 
+:::{.notes}
+
+- We want to measure the skills demanded by employers over time, after a new technology is introduced.
+
+:::
+
+
 ## Motivation
 
 ::: {.browser-window}
 ![Inspiration Paper - Running out of time](assets/running_out_of_time.png)
+:::
+
+:::{.notes}
+
+- A great paper by Tobias Karlsson in my department looking at the decline of messenger boys. They find that the introduction of new office technologies led to a decline in messenger jobs.
+
 :::
 
 ## Findings on Messenger Boys
@@ -174,6 +207,12 @@ Keyword Search: Count of relative frequency for selected job titles in the [Swed
 :::
 
 
+:::{.notes}
+
+- They use a simple keyword search to count the relative frequency of selected job titles in the Swedish newspaper database. We think that we can do better, capturing skills demanded by employers in a more structured way.
+
+:::
+
 ## Inspiration from Swedish Jobtech
 
 ::: {.columns}
@@ -192,6 +231,13 @@ Keyword Search: Count of relative frequency for selected job titles in the [Swed
 
 :::
 
+:::{.notes}
+
+- The jobtech API enriches job advertisements with structured data, identifying occupations, competencies, traits, and geographical locations from unstructured text.
+
+- Does not work with historical job ads, but we think that we can adapt the method to do so.
+
+:::
 
 ## Swedish Jobtech Job Enrichment API
 
@@ -372,10 +418,24 @@ ggplot(skills_data, aes(x = year)) +
 ```
 
 
+:::{.notes}
+
+With the Jobtech API, we can see that the demand for digital skills (.e.g. powerpoint, excel) in job ads increased significantly from 2006 to 2020, with the public sector lagging behind the private sector.
+
+:::
+
 ## What kind of data do we have?
 
 :::{.browser-window}
 ![](assets/newspaper_big.jpg)
+:::
+
+:::{.notes}
+
+Newspapers in Sweden have been digitized and are available online, providing a rich source of historical job advertisements.
+
+They have many job ads, but they require some work to extract structured data from them.
+
 :::
 
 ## What kind of data do we have?
@@ -384,10 +444,16 @@ ggplot(skills_data, aes(x = year)) +
 ![](assets/newspaper_small.png)
 :::
 
+:::{.notes}
+
+Close up, we can see the first word is often the job title, and there is a short description of the job.
+
+:::
+
 
 # First Steps{background-color="#1F8C71"}
 
-Extract (just) Job Titles from the Swedish Newspaper Database
+Goal: Extract (just) Job Titles from the Swedish Newspaper Database
 
 Trial Case with 2 newspapers, 1880 - 1925, sampling ten issues per year, every five years, about 6 adverts per issue.
 
@@ -452,7 +518,7 @@ It follows a sequence of grammatical rules:
 
 **How it Works:**
 
-1.  Researchers manually label thousands of job titles in a training dataset.
+1.  We manually label 1,200 job titles in a training dataset.
 
 2.  A model (in this case, a state-of-the-art "transformer") is trained on these examples.
 
@@ -479,6 +545,10 @@ It follows a sequence of grammatical rules:
 **F1-Score: 0.920**
 ::::
 :::
+
+:::{.notes}
+
+XLM-R through huggingface. Fine tuned with 1,000 job ads, 200 in test set.
 
 ## Text Generation Approach
 
@@ -538,7 +608,7 @@ Now, analyze the following job advertisement text and provide your output in the
 
 ::: {.columns}
 ::: {.column}
-![Melissa Dell's American Stories](assets/dell_layouts.png)
+![Melissa Dell's American Stories (2023)](assets/dell_layouts.png)
 
 :::
 ::: {.column}
