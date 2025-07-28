@@ -65,7 +65,7 @@ format:
 ```
 
 
-## Research Question
+# Research Question{background-color="#1F8C71"}
 
 ```{=html}
 <iframe src="assets/theory.html" width="100%" height="700" style="border:none;"></iframe>
@@ -385,13 +385,13 @@ ggplot(skills_data, aes(x = year)) +
 :::
 
 
-# First Steps
+# First Steps{background-color="#1F8C71"}
 
 Extract (just) Job Titles from the Swedish Newspaper Database
 
-Trial Case with 3 newspapers, 1880 - 1925, sampling one issue per year, every five years.
+Trial Case with 2 newspapers, 1880 - 1925, sampling ten issues per year, every five years, about 6 adverts per issue.
 
-1,000 hand annotated job titles
+1,200 hand annotated job titles, 1,000 in training and 200 in test set.
 
 ## Trial Approaches
 
@@ -417,7 +417,7 @@ Trial Case with 3 newspapers, 1880 - 1925, sampling one issue per year, every fi
 
 **Key Weakness:** It's rigid. It fails if a job title isn't in the dictionary, is misspelled, or contains OCR errors. It can also produce false positives (e.g., extracting "arkitekt" from the word "arkitektur").
 
-**F1-Score: 0.632**
+**F1-Score: 0.442**
 ::::
 
 :::: {.column width="50%"}
@@ -428,17 +428,15 @@ Trial Case with 3 newspapers, 1880 - 1925, sampling one issue per year, every fi
 **How it Works:**
 It follows a sequence of grammatical rules:
 
-1.  First, it looks for specific phrases like "piga för allt".
+1.  First, it looks for the first word in the ad.
 
 2.  If none are found, it looks for the word "som" and extracts the first noun that follows.
 
 3.  If that fails, it looks for words containing "tjänst".
 
-4.  As a last resort, it identifies the main noun (the subject) of the sentence.
-
 **Key Weakness:** It struggles with ads that list multiple positions and depends heavily on modern tools correctly identifying the grammar of archaic, abbreviated text.
 
-**F1-Score: 0.690**
+**F1-Score: 0.590**
 ::::
 :::
 
@@ -462,13 +460,13 @@ It follows a sequence of grammatical rules:
 
 **Key Strength:** It is the most accurate and flexible method, achieving the highest performance by understanding context.
 
-**F1-Score: 0.944**
+**F1-Score: 0.944** (but likely overfitted to the training data)
 ::::
 
 :::: {.column width="50%"}
 ### 4. Text Generation
 
-**Core Idea:** This approach uses a powerful language model (hmByT5) to perform a translation-like task.
+**Core Idea:** This approach uses a powerful language model (llama3.2:1b) to perform a translation-like task.
 
 **How it Works:**
 
@@ -476,12 +474,89 @@ It follows a sequence of grammatical rules:
 
 2.  If no job title is found, it outputs "ingen".
 
-**Key Strength:** It is highly accurate and exceptionally robust against OCR errors and spelling variations because it processes text at the byte-level, not the word-level.
+**Key Strength:** It is highly accurate and exceptionally robust against OCR errors and spelling variations because it "reads" the entire ad.
 
 **F1-Score: 0.920**
 ::::
 :::
 
+## Text Generation Approach
 
-## Anton
+```{r}
+#| echo: true
+#| eval: false
+#| attr-source: "id=my-code"
 
+### The Prompt
+
+You are an expert historical text analyst specializing in 19th and 20th-century Swedish labor markets. Your task is to meticulously read a historical job advertisement and extract all specific job titles mentioned.
+
+**INSTRUCTIONS:**
+
+1.  **Identify Job Titles:** A job title is a specific name for an occupation (e.g., "bagare", "smed", "kontorsbud"). It is NOT a generic description of a person (e.g., "en ung man", "en flicka"). However, if a generic term like "piga" is used in the context of seeking help for specific tasks, it should be considered a job title.
+2.  **Extract All Titles:** If an advertisement mentions multiple distinct job titles, extract every single one.
+3.  **Handle OCR Errors:** The text may contain errors from the scanning process. Use your judgment to identify the most likely correct job title.
+4.  **Format the Output:** You MUST return your findings as a valid JSON object with a single key, `"job_titles"`. The value of this key must be a list of strings. Each string in the list should be one extracted job title.
+5.  **No Title Found:** If you read the text and determine that no specific job title is mentioned, you MUST return an empty list: `{"job_titles": []}`.
+
+**EXAMPLES:**
+
+**Example 1: Single Title**
+* **Input Text:** `En duktig Skomakare kan genast få arbete.`
+* **Your Output:** `{"job_titles": ["Skomakare"]}`
+
+**Example 2: Multiple Titles**
+* **Input Text:** `Sökes: en erfaren Kock samt en rask Serveringsflicka.`
+* **Your Output:** `{"job_titles": ["Kock", "Serveringsflicka"]}`
+
+**Example 3: Generic Term as Title**
+* **Input Text:** `En plig piga för alla i hemmet förekommande göromål får plats genast.`
+* **Your Output:** `{"job_titles": ["piga"]}`
+
+**Example 4: No Specific Title**
+* **Input Text:** `En ung, rask man med goda rekommendationer kan få anställning.`
+* **Your Output:** `{"job_titles": []}`
+
+**Example 5: Compound Title**
+* **Input Text:** `En skicklig Kontors- och Handelsbiträde erhåller god plats.`
+* **Your Output:** `{"job_titles": ["Kontors- och Handelsbiträde"]}`
+
+---
+
+**YOUR TASK:**
+
+Now, analyze the following job advertisement text and provide your output in the specified JSON format.
+
+**Input Text:**
+`[PASTE THE HISTORICAL JOB ADVERTISEMENT TEXT HERE]`
+```
+
+
+# Looking forward{background-color="#1F8C71"}
+
+::::{.browser-window}
+
+::: {.columns}
+::: {.column}
+![Melissa Dell's American Stories](assets/dell_layouts.png)
+
+:::
+::: {.column}
+![Google DeepMind's Maths Olympiad Medal](assets/maths.png)
+
+:::
+::: 
+
+::::
+
+:::{.notes}
+
+Whereas previous state-of-the-art systems relied on highly specialized, domain-specific architectures, the 2025 models were presented as general-purpose reasoners. These systems operated end-to-end in natural language, interpreting problems and generating human-readable proofs without the need for handcrafted pipelines, external computational tools, or translation into formal mathematical languages
+
+:::
+
+## Takeaways
+
+:::{.browser-window}
+![Perhaps it is worth taking Anton's approach](assets/anton.jpeg)
+:::

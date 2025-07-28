@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Jonathan Jayes and Suvi Heikkuri">
-  <meta name="dcterms.date" content="2025-07-27">
+  <meta name="dcterms.date" content="2025-07-28">
   <title>Seeking Skills: A Historical Analysis of Swedish Job Listings</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -408,7 +408,7 @@ Jonathan Jayes and Suvi Heikkuri
 </div>
 </div>
 
-  <p class="date">2025-07-27</p>
+  <p class="date">2025-07-28</p>
 </section>
 <section id="goldin-katz-2008-supremacy" class="slide level2">
 <h2>Goldin &amp; Katz (2008) Supremacy</h2>
@@ -450,8 +450,9 @@ Jonathan Jayes and Suvi Heikkuri
 <span id="my-code-29"><a href="#my-code-29"></a>           +--------------------------------------------------+</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="research-question" class="slide level2">
-<h2>Research Question</h2>
+<section>
+<section id="research-question" class="title-slide slide level1 center" data-background-color="#1F8C71">
+<h1>Research Question</h1>
 <iframe src="assets/theory.html" width="100%" height="700" style="border:none;"></iframe>
 </section>
 <section id="motivation" class="slide level2">
@@ -559,13 +560,13 @@ line-height: 1.6;
 <div class="browser-window">
 <p><img data-src="assets/newspaper_small.png"></p>
 </div>
-</section>
+</section></section>
 <section>
-<section id="first-steps" class="title-slide slide level1 center">
+<section id="first-steps" class="title-slide slide level1 center" data-background-color="#1F8C71">
 <h1>First Steps</h1>
 <p>Extract (just) Job Titles from the Swedish Newspaper Database</p>
-<p>Trial Case with 3 newspapers, 1880 - 1925, sampling one issue per year, every five years.</p>
-<p>1,000 hand annotated job titles</p>
+<p>Trial Case with 2 newspapers, 1880 - 1925, sampling ten issues per year, every five years, about 6 adverts per issue.</p>
+<p>1,200 hand annotated job titles, 1,000 in training and 200 in test set.</p>
 </section>
 <section id="trial-approaches" class="slide level2">
 <h2>Trial Approaches</h2>
@@ -584,19 +585,18 @@ line-height: 1.6;
 <li><p>If a match is found, the original word from the ad is extracted as a job title.</p></li>
 </ol>
 <p><strong>Key Weakness:</strong> It’s rigid. It fails if a job title isn’t in the dictionary, is misspelled, or contains OCR errors. It can also produce false positives (e.g., extracting “arkitekt” from the word “arkitektur”).</p>
-<p><strong>F1-Score: 0.632</strong></p>
+<p><strong>F1-Score: 0.442</strong></p>
 </div><div class="column" style="width:50%;">
 <h3 id="rule-based-approach">2. Rule-Based Approach</h3>
 <p><strong>Core Idea:</strong> This method leverages the predictable, formulaic language commonly used in job advertisements.</p>
 <p><strong>How it Works:</strong> It follows a sequence of grammatical rules:</p>
 <ol type="1">
-<li><p>First, it looks for specific phrases like “piga för allt”.</p></li>
+<li><p>First, it looks for the first word in the ad.</p></li>
 <li><p>If none are found, it looks for the word “som” and extracts the first noun that follows.</p></li>
 <li><p>If that fails, it looks for words containing “tjänst”.</p></li>
-<li><p>As a last resort, it identifies the main noun (the subject) of the sentence.</p></li>
 </ol>
 <p><strong>Key Weakness:</strong> It struggles with ads that list multiple positions and depends heavily on modern tools correctly identifying the grammar of archaic, abbreviated text.</p>
-<p><strong>F1-Score: 0.690</strong></p>
+<p><strong>F1-Score: 0.590</strong></p>
 </div></div>
 </section>
 <section id="methods-3-4-machine-learning-approaches" class="slide level2 smaller">
@@ -612,21 +612,111 @@ line-height: 1.6;
 <li><p>The trained model can then identify job titles in new, unseen ads, even if it has never encountered that specific title before.</p></li>
 </ol>
 <p><strong>Key Strength:</strong> It is the most accurate and flexible method, achieving the highest performance by understanding context.</p>
-<p><strong>F1-Score: 0.944</strong></p>
+<p><strong>F1-Score: 0.944</strong> (but likely overfitted to the training data)</p>
 </div><div class="column" style="width:50%;">
 <h3 id="text-generation">4. Text Generation</h3>
-<p><strong>Core Idea:</strong> This approach uses a powerful language model (hmByT5) to perform a translation-like task.</p>
+<p><strong>Core Idea:</strong> This approach uses a powerful language model (llama3.2:1b) to perform a translation-like task.</p>
 <p><strong>How it Works:</strong></p>
 <ol type="1">
 <li><p>The model is trained to read an entire job ad and <em>rewrite</em> it, outputting only the job titles it contains, formatted in a specific way (e.g., <code>&lt;bagare&gt; &lt;kock&gt;</code>).</p></li>
 <li><p>If no job title is found, it outputs “ingen”.</p></li>
 </ol>
-<p><strong>Key Strength:</strong> It is highly accurate and exceptionally robust against OCR errors and spelling variations because it processes text at the byte-level, not the word-level.</p>
+<p><strong>Key Strength:</strong> It is highly accurate and exceptionally robust against OCR errors and spelling variations because it “reads” the entire ad.</p>
 <p><strong>F1-Score: 0.920</strong></p>
 </div></div>
 </section>
-<section id="anton" class="slide level2">
-<h2>Anton</h2>
+<section id="text-generation-approach" class="slide level2">
+<h2>Text Generation Approach</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="my-code"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="my-code-1"><a href="#my-code-1"></a><span class="do">### The Prompt</span></span>
+<span id="my-code-2"><a href="#my-code-2"></a></span>
+<span id="my-code-3"><a href="#my-code-3"></a>You are an expert historical text analyst specializing <span class="cf">in</span> <span class="dv">19</span>th and <span class="dv">20</span>th<span class="sc">-</span>century Swedish labor markets. Your task is to meticulously read a historical job advertisement and extract all specific job titles mentioned.</span>
+<span id="my-code-4"><a href="#my-code-4"></a></span>
+<span id="my-code-5"><a href="#my-code-5"></a><span class="sc">**</span>INSTRUCTIONS<span class="sc">:</span><span class="er">**</span></span>
+<span id="my-code-6"><a href="#my-code-6"></a></span>
+<span id="my-code-7"><a href="#my-code-7"></a><span class="fl">1.</span>  <span class="sc">**</span>Identify Job Titles<span class="sc">:</span><span class="er">**</span> A job title is a specific name <span class="cf">for</span> an <span class="fu">occupation</span> (e.g., <span class="st">"bagare"</span>, <span class="st">"smed"</span>, <span class="st">"kontorsbud"</span>). It is NOT a generic description of a <span class="fu">person</span> (e.g., <span class="st">"en ung man"</span>, <span class="st">"en flicka"</span>). However, <span class="cf">if</span> a generic term like <span class="st">"piga"</span> is used <span class="cf">in</span> the context of seeking help <span class="cf">for</span> specific tasks, it should be considered a job title.</span>
+<span id="my-code-8"><a href="#my-code-8"></a><span class="fl">2.</span>  <span class="sc">**</span>Extract All Titles<span class="sc">:</span><span class="er">**</span> If an advertisement mentions multiple distinct job titles, extract every single one.</span>
+<span id="my-code-9"><a href="#my-code-9"></a><span class="fl">3.</span>  <span class="sc">**</span>Handle OCR Errors<span class="sc">:</span><span class="er">**</span> The text may contain errors from the scanning process. Use your judgment to identify the most likely correct job title.</span>
+<span id="my-code-10"><a href="#my-code-10"></a><span class="fl">4.</span>  <span class="sc">**</span>Format the Output<span class="sc">:</span><span class="er">**</span> You MUST return your findings as a valid JSON object with a single key, <span class="st">`</span><span class="at">"job_titles"</span><span class="st">`</span>. The value of this key must be a list of strings. Each string <span class="cf">in</span> the list should be one extracted job title.</span>
+<span id="my-code-11"><a href="#my-code-11"></a><span class="fl">5.</span>  <span class="sc">**</span>No Title Found<span class="sc">:</span><span class="er">**</span> If you read the text and determine that no specific job title is mentioned, you MUST return an empty list<span class="sc">:</span> <span class="st">`</span><span class="at">{"job_titles": []}</span><span class="st">`</span>.</span>
+<span id="my-code-12"><a href="#my-code-12"></a></span>
+<span id="my-code-13"><a href="#my-code-13"></a><span class="sc">**</span>EXAMPLES<span class="sc">:</span><span class="er">**</span></span>
+<span id="my-code-14"><a href="#my-code-14"></a></span>
+<span id="my-code-15"><a href="#my-code-15"></a><span class="er">**</span>Example <span class="dv">1</span><span class="sc">:</span> Single Title<span class="sc">**</span></span>
+<span id="my-code-16"><a href="#my-code-16"></a><span class="er">*</span> <span class="er">**</span>Input Text<span class="sc">:</span><span class="er">**</span> <span class="st">`</span><span class="at">En duktig Skomakare kan genast få arbete.</span><span class="st">`</span></span>
+<span id="my-code-17"><a href="#my-code-17"></a><span class="sc">*</span> <span class="er">**</span>Your Output<span class="sc">:</span><span class="er">**</span> <span class="st">`</span><span class="at">{"job_titles": ["Skomakare"]}</span><span class="st">`</span></span>
+<span id="my-code-18"><a href="#my-code-18"></a></span>
+<span id="my-code-19"><a href="#my-code-19"></a><span class="sc">**</span>Example <span class="dv">2</span><span class="sc">:</span> Multiple Titles<span class="sc">**</span></span>
+<span id="my-code-20"><a href="#my-code-20"></a><span class="er">*</span> <span class="er">**</span>Input Text<span class="sc">:</span><span class="er">**</span> <span class="st">`</span><span class="at">Sökes: en erfaren Kock samt en rask Serveringsflicka.</span><span class="st">`</span></span>
+<span id="my-code-21"><a href="#my-code-21"></a><span class="sc">*</span> <span class="er">**</span>Your Output<span class="sc">:</span><span class="er">**</span> <span class="st">`</span><span class="at">{"job_titles": ["Kock", "Serveringsflicka"]}</span><span class="st">`</span></span>
+<span id="my-code-22"><a href="#my-code-22"></a></span>
+<span id="my-code-23"><a href="#my-code-23"></a><span class="sc">**</span>Example <span class="dv">3</span><span class="sc">:</span> Generic Term as Title<span class="sc">**</span></span>
+<span id="my-code-24"><a href="#my-code-24"></a><span class="er">*</span> <span class="er">**</span>Input Text<span class="sc">:</span><span class="er">**</span> <span class="st">`</span><span class="at">En plig piga för alla i hemmet förekommande göromål får plats genast.</span><span class="st">`</span></span>
+<span id="my-code-25"><a href="#my-code-25"></a><span class="sc">*</span> <span class="er">**</span>Your Output<span class="sc">:</span><span class="er">**</span> <span class="st">`</span><span class="at">{"job_titles": ["piga"]}</span><span class="st">`</span></span>
+<span id="my-code-26"><a href="#my-code-26"></a></span>
+<span id="my-code-27"><a href="#my-code-27"></a><span class="sc">**</span>Example <span class="dv">4</span><span class="sc">:</span> No Specific Title<span class="sc">**</span></span>
+<span id="my-code-28"><a href="#my-code-28"></a><span class="er">*</span> <span class="er">**</span>Input Text<span class="sc">:</span><span class="er">**</span> <span class="st">`</span><span class="at">En ung, rask man med goda rekommendationer kan få anställning.</span><span class="st">`</span></span>
+<span id="my-code-29"><a href="#my-code-29"></a><span class="sc">*</span> <span class="er">**</span>Your Output<span class="sc">:</span><span class="er">**</span> <span class="st">`</span><span class="at">{"job_titles": []}</span><span class="st">`</span></span>
+<span id="my-code-30"><a href="#my-code-30"></a></span>
+<span id="my-code-31"><a href="#my-code-31"></a><span class="sc">**</span>Example <span class="dv">5</span><span class="sc">:</span> Compound Title<span class="sc">**</span></span>
+<span id="my-code-32"><a href="#my-code-32"></a><span class="er">*</span> <span class="er">**</span>Input Text<span class="sc">:</span><span class="er">**</span> <span class="st">`</span><span class="at">En skicklig Kontors- och Handelsbiträde erhåller god plats.</span><span class="st">`</span></span>
+<span id="my-code-33"><a href="#my-code-33"></a><span class="sc">*</span> <span class="er">**</span>Your Output<span class="sc">:</span><span class="er">**</span> <span class="st">`</span><span class="at">{"job_titles": ["Kontors- och Handelsbiträde"]}</span><span class="st">`</span></span>
+<span id="my-code-34"><a href="#my-code-34"></a></span>
+<span id="my-code-35"><a href="#my-code-35"></a><span class="sc">---</span></span>
+<span id="my-code-36"><a href="#my-code-36"></a></span>
+<span id="my-code-37"><a href="#my-code-37"></a><span class="er">**</span>YOUR TASK<span class="sc">:</span><span class="er">**</span></span>
+<span id="my-code-38"><a href="#my-code-38"></a></span>
+<span id="my-code-39"><a href="#my-code-39"></a>Now, analyze the following job advertisement text and provide your output <span class="cf">in</span> the specified JSON format.</span>
+<span id="my-code-40"><a href="#my-code-40"></a></span>
+<span id="my-code-41"><a href="#my-code-41"></a><span class="sc">**</span>Input Text<span class="sc">:</span><span class="er">**</span></span>
+<span id="my-code-42"><a href="#my-code-42"></a><span class="st">`</span><span class="at">[PASTE THE HISTORICAL JOB ADVERTISEMENT TEXT HERE]</span><span class="st">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="looking-forward" class="title-slide slide level1 center" data-background-color="#1F8C71">
+<h1>Looking forward</h1>
+<div class="browser-window">
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/dell_layouts.png"></p>
+<figcaption>Melissa Dell’s American Stories</figcaption>
+</figure>
+</div>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/maths.png"></p>
+<figcaption>Google DeepMind’s Maths Olympiad Medal</figcaption>
+</figure>
+</div>
+</div></div>
+</div>
+<aside class="notes">
+<p>Whereas previous state-of-the-art systems relied on highly specialized, domain-specific architectures, the 2025 models were presented as general-purpose reasoners. These systems operated end-to-end in natural language, interpreting problems and generating human-readable proofs without the need for handcrafted pipelines, external computational tools, or translation into formal mathematical languages</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="takeaways" class="slide level2">
+<h2>Takeaways</h2>
+<div class="browser-window">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/anton.jpeg"></p>
+<figcaption>Perhaps it is worth taking Anton’s approach</figcaption>
+</figure>
+</div>
+</div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
