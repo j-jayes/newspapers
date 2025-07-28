@@ -459,12 +459,6 @@ Trial Case with 2 newspapers, 1880 - 1925, sampling ten issues per year, every f
 
 1,200 hand annotated job titles, 1,000 in training and 200 in test set.
 
-## Trial Approaches
-
-```{=html}
-<iframe src="assets/comparison.html" width="100%" height="700" style="border:none;"></iframe>
-```
-
 ## Methods 1 & 2: No Training Data Required{.smaller}
 
 ::: {.columns}
@@ -549,6 +543,22 @@ It follows a sequence of grammatical rules:
 :::{.notes}
 
 XLM-R through huggingface. Fine tuned with 1,000 job ads, 200 in test set.
+
+:::
+
+
+
+## Trial Approaches
+
+```{=html}
+<iframe src="assets/comparison.html" width="100%" height="700" style="border:none;"></iframe>
+```
+
+::: {.notes}
+
+Text generation is nearly as accurate as NER, but it is so much easier to implement!
+
+:::
 
 ## Text Generation Approach
 
