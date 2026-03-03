@@ -1,0 +1,14 @@
+# Core
+pydantic>=2.0
+Pillow>=10.0
+
+# Segmentation (YOLOv11)
+ultralytics>=8.3
+
+# Extraction (Vision LLM)
+instructor>=1.0
+google-generativeai>=0.8
+
+# Dev / test
+pytest>=8.0
+ruff>=0.8
