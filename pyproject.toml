@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "newspapers"
+version = "0.1.0"
+description = "Multimodal AI pipeline for structured extraction of historical Swedish labor market data (1880–1926)."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.0",
+    "Pillow>=10.0",
+]
+
+[project.optional-dependencies]
+segmentation = [
+    "ultralytics>=8.3",
+]
+extraction = [
+    "instructor>=1.0",
+    "google-generativeai>=0.8",
+]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.8",
+]
+all = [
+    "newspapers[segmentation,extraction,dev]",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 99
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
