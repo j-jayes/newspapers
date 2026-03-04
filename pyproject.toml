@@ -12,6 +12,9 @@ requires-python = ">=3.11"
 dependencies = [
     "pydantic>=2.0",
     "Pillow>=10.0",
+    "google-api-python-client>=2.0",
+    "google-auth-httplib2>=0.2",
+    "google-auth-oauthlib>=1.0",
 ]
 
 [project.optional-dependencies]
@@ -19,15 +22,29 @@ segmentation = [
     "ultralytics>=8.3",
 ]
 extraction = [
-    "instructor>=1.0",
-    "google-generativeai>=0.8",
+    "google-genai",
+    "langextract",
+    "huggingface-hub>=0.25",
+]
+notebook = [
+    "matplotlib>=3.8",
+    "pandas>=2.0",
+    "tqdm>=4.66",
+    "ipykernel>=6.0",
+    "ipywidgets>=8.0",
+]
+analysis = [
+    "opencv-python-headless>=4.9",
+    "scipy>=1.13",
+    "numpy>=1.26",
+    "supervision>=0.27",
 ]
 dev = [
     "pytest>=8.0",
     "ruff>=0.8",
 ]
 all = [
-    "newspapers[segmentation,extraction,dev]",
+    "newspapers[segmentation,extraction,notebook,analysis,dev]",
 ]
 
 [tool.setuptools.packages.find]
