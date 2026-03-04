@@ -48,8 +48,8 @@ def load_model():
     dtype = torch.bfloat16 if device == "cuda" else torch.float32
     logger.info("Model type: %s | Device: %s | Dtype: %s", model_type, device, dtype)
 
-    if model_type == "deepseek_ocr_2":
-        # DeepSeek-OCR-2: uses custom AutoModel with trust_remote_code
+    if model_type in ("deepseek_ocr_2", "deepseek_vl_v2"):
+        # DeepSeek-OCR-2 / DeepSeek-VL-V2: uses custom AutoModel with trust_remote_code
         from transformers import AutoModel, AutoTokenizer
         processor = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)
         model = AutoModel.from_pretrained(
@@ -156,7 +156,7 @@ def _run_inference(images: list[Image.Image], text: str, max_tokens: int) -> str
     config = json.loads(config_path.read_text()) if config_path.exists() else {}
     model_type = config.get("model_type", "")
 
-    if model_type == "deepseek_ocr_2":
+    if model_type in ("deepseek_ocr_2", "deepseek_vl_v2"):
         # DeepSeek-OCR-2 uses model.infer() with its own tokenizer
         # For simplicity, save image to temp file and use infer()
         import tempfile

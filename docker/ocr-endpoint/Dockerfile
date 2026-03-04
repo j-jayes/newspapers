@@ -17,6 +17,8 @@ RUN pip3 install --no-cache-dir \
     "pydantic>=2.0" \
     "torchvision==0.21.0" \
     "addict" \
+    "easydict" \
+    "einops" \
     "matplotlib" \
     "requests"
 
