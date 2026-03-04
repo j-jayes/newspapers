@@ -14,7 +14,11 @@ RUN pip3 install --no-cache-dir \
     "pillow>=10.0" \
     "fastapi>=0.115" \
     "uvicorn[standard]>=0.34" \
-    "pydantic>=2.0"
+    "pydantic>=2.0" \
+    "torchvision==0.21.0" \
+    "addict" \
+    "matplotlib" \
+    "requests"
 
 COPY server.py /app/server.py
 
