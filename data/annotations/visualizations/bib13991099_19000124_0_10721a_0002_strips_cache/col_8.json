@@ -1,0 +1,20 @@
+[
+  {
+    "label": "article_text",
+    "box": [
+      43,
+      50,
+      848,
+      758
+    ]
+  },
+  {
+    "label": "commercial_advertisement",
+    "box": [
+      854,
+      89,
+      942,
+      751
+    ]
+  }
+]

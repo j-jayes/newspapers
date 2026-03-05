@@ -1,0 +1,47 @@
+[
+  {
+    "label": "masthead",
+    "box": [
+      175,
+      372,
+      237,
+      629
+    ]
+  },
+  {
+    "label": "commercial_advertisement",
+    "box": [
+      283,
+      608,
+      1000,
+      977
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      332,
+      26,
+      1000,
+      414
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      333,
+      419,
+      560,
+      550
+    ]
+  },
+  {
+    "label": "commercial_advertisement",
+    "box": [
+      570,
+      436,
+      1000,
+      565
+    ]
+  }
+]

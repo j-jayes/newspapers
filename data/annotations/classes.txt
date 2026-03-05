@@ -1,0 +1,6 @@
+job_advertisement
+article_text
+headline
+commercial_advertisement
+financial_table
+masthead

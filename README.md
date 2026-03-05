@@ -37,20 +37,21 @@ Multimodal AI pipeline for structured extraction of historical Swedish labor mar
 
 ## Pipeline Overview
 
-1. **Ingest** – Download JPEG2000 scans from the KB archive and convert to JPG/PNG.
-2. **Segment** – Run a fine-tuned YOLOv11 model to detect individual job advertisements on each page.
-3. **Extract** – Send cropped ad images to a Vision LLM (Gemini) via `instructor` to produce typed `JobAdvertisement` records.
-4. **Analyse** – Aggregate and visualise the structured dataset for economic history research.
+1. **Ingest** – Download JPEG2000 scans from the KB archive (via Google Drive scraper) and convert to JPG/PNG.
+2. **Segment** – Run a fine-tuned YOLOv11 model to detect and crop individual job advertisements on each page.
+3. **Transcribe & Extract (Hybrid)** – Process the cropped ad images via high-fidelity transcription (Hybrid OCR / Vision LLM) to text. Pass the text to Google's `langextract` library to produce typed `JobAdvertisement` records with precise source grounding and HTML visualizations.
+4. **Analyse** – Aggregate and visualise the structured dataset for quantitative economic history research.
 
 ## Quickstart
 
 ```bash
-# Install in editable mode with all dependencies
-make install
+# Create a virtual environment with uv
+uv venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install in editable mode with all dependencies using uv
+uv pip install -e ".[all]"
 
 # Run the test suite
 make test
-
-# Run linting
-make lint
 ```

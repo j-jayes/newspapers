@@ -1,0 +1,32 @@
+# YOLO dataset configuration for historical Swedish newspaper layout detection.
+#
+# Directory layout expected by Ultralytics YOLOv11:
+#
+#   data/annotations/
+#     images/
+#       train/   ← JPG pages used for training
+#       val/     ← JPG pages used for validation
+#     labels/
+#       train/   ← YOLO .txt labels for training images
+#       val/     ← YOLO .txt labels for validation images
+#     visualizations/  ← human-review overlay PNGs (not used by YOLO)
+#
+# Paths below are relative to the repo root.  Pass the absolute path to this
+# file when calling model.train(), or run from the repo root.
+
+path: data/annotations   # dataset root directory
+
+train: images/train       # training images (relative to `path`)
+val:   images/val         # validation images (relative to `path`)
+
+# Number of classes
+nc: 6
+
+# Class names — index must match data/annotations/classes.txt and annotate.py
+names:
+  0: job_advertisement
+  1: article_text
+  2: headline
+  3: commercial_advertisement
+  4: financial_table
+  5: masthead

@@ -1,0 +1,362 @@
+[
+  {
+    "label": "masthead",
+    "box": [
+      26,
+      369,
+      50,
+      989
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      55,
+      126,
+      79,
+      485
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      53,
+      495,
+      171,
+      922
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      53,
+      939,
+      171,
+      992
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      79,
+      58,
+      172,
+      487
+    ]
+  },
+  {
+    "label": "commercial_advertisement",
+    "box": [
+      174,
+      529,
+      203,
+      923
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      174,
+      154,
+      187,
+      486
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      174,
+      941,
+      313,
+      992
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      188,
+      59,
+      281,
+      487
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      206,
+      526,
+      219,
+      922
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      220,
+      497,
+      361,
+      924
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      281,
+      62,
+      296,
+      486
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      295,
+      61,
+      360,
+      488
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      315,
+      942,
+      327,
+      992
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      328,
+      942,
+      498,
+      993
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      362,
+      91,
+      374,
+      485
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      365,
+      525,
+      377,
+      925
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      374,
+      60,
+      562,
+      488
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      377,
+      497,
+      496,
+      927
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      499,
+      532,
+      510,
+      925
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      499,
+      943,
+      511,
+      993
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      511,
+      498,
+      735,
+      929
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      513,
+      943,
+      622,
+      993
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      564,
+      127,
+      576,
+      487
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      577,
+      63,
+      735,
+      490
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      624,
+      945,
+      635,
+      993
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      637,
+      945,
+      737,
+      995
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      736,
+      137,
+      750,
+      489
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      736,
+      526,
+      751,
+      930
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      739,
+      945,
+      751,
+      994
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      750,
+      65,
+      942,
+      492
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      752,
+      499,
+      852,
+      931
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      753,
+      945,
+      933,
+      996
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      855,
+      498,
+      942,
+      930
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      935,
+      945,
+      947,
+      995
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      942,
+      184,
+      955,
+      491
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      944,
+      532,
+      957,
+      931
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      948,
+      946,
+      1000,
+      996
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      957,
+      67,
+      1000,
+      493
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      957,
+      501,
+      1000,
+      933
+    ]
+  }
+]

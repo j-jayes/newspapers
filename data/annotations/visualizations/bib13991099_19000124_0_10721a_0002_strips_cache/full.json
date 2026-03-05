@@ -1,0 +1,875 @@
+[
+  {
+    "label": "masthead",
+    "box": [
+      31,
+      385,
+      45,
+      617
+    ]
+  },
+  {
+    "label": "commercial_advertisement",
+    "box": [
+      58,
+      43,
+      203,
+      143
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      57,
+      150,
+      70,
+      273
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      209,
+      42,
+      574,
+      143
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      71,
+      150,
+      210,
+      274
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      216,
+      150,
+      222,
+      218
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      224,
+      150,
+      310,
+      274
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      315,
+      150,
+      321,
+      213
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      323,
+      150,
+      575,
+      274
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      57,
+      279,
+      63,
+      375
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      65,
+      279,
+      126,
+      380
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      131,
+      279,
+      137,
+      348
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      139,
+      279,
+      196,
+      380
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      202,
+      279,
+      208,
+      350
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      210,
+      279,
+      513,
+      380
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      518,
+      279,
+      524,
+      377
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      526,
+      279,
+      575,
+      380
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      58,
+      385,
+      69,
+      497
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      71,
+      385,
+      174,
+      499
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      179,
+      385,
+      185,
+      491
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      187,
+      385,
+      305,
+      499
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      309,
+      385,
+      315,
+      461
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      317,
+      385,
+      352,
+      499
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      358,
+      385,
+      369,
+      499
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      371,
+      385,
+      442,
+      499
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      448,
+      385,
+      454,
+      469
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      456,
+      385,
+      508,
+      499
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      513,
+      385,
+      519,
+      492
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      521,
+      385,
+      574,
+      499
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      58,
+      505,
+      64,
+      563
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      65,
+      505,
+      203,
+      616
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      209,
+      505,
+      215,
+      606
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      217,
+      505,
+      545,
+      616
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      551,
+      505,
+      557,
+      611
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      559,
+      505,
+      608,
+      616
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      614,
+      505,
+      620,
+      564
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      622,
+      505,
+      938,
+      616
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      59,
+      620,
+      381,
+      730
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      387,
+      620,
+      393,
+      724
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      395,
+      620,
+      563,
+      730
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      569,
+      620,
+      575,
+      725
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      577,
+      620,
+      893,
+      730
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      59,
+      736,
+      381,
+      843
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      387,
+      736,
+      393,
+      814
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      395,
+      736,
+      448,
+      843
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      454,
+      736,
+      465,
+      842
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      467,
+      736,
+      938,
+      843
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      59,
+      849,
+      69,
+      903
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      71,
+      849,
+      85,
+      955
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      87,
+      850,
+      93,
+      915
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      95,
+      850,
+      170,
+      955
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      172,
+      850,
+      178,
+      902
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      180,
+      850,
+      254,
+      955
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      256,
+      850,
+      262,
+      912
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      264,
+      850,
+      339,
+      955
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      341,
+      850,
+      347,
+      901
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      349,
+      850,
+      424,
+      955
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      426,
+      850,
+      432,
+      892
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      434,
+      850,
+      509,
+      955
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      511,
+      850,
+      517,
+      911
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      519,
+      850,
+      588,
+      955
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      590,
+      850,
+      596,
+      912
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      598,
+      850,
+      667,
+      955
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      669,
+      850,
+      675,
+      895
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      677,
+      850,
+      850,
+      955
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      587,
+      43,
+      597,
+      126
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      604,
+      43,
+      938,
+      144
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      583,
+      150,
+      595,
+      273
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      597,
+      150,
+      639,
+      274
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      641,
+      150,
+      647,
+      240
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      649,
+      150,
+      685,
+      274
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      687,
+      150,
+      693,
+      222
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      695,
+      150,
+      714,
+      274
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      716,
+      150,
+      722,
+      237
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      724,
+      150,
+      800,
+      274
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      802,
+      150,
+      808,
+      185
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      810,
+      150,
+      938,
+      274
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      582,
+      279,
+      588,
+      335
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      590,
+      279,
+      632,
+      380
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      635,
+      279,
+      646,
+      380
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      648,
+      279,
+      688,
+      380
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      693,
+      279,
+      705,
+      380
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      707,
+      279,
+      831,
+      380
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      836,
+      279,
+      842,
+      360
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      844,
+      279,
+      938,
+      380
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      582,
+      385,
+      588,
+      492
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      590,
+      385,
+      638,
+      499
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      643,
+      385,
+      649,
+      477
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      651,
+      385,
+      680,
+      499
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      686,
+      385,
+      691,
+      499
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      693,
+      385,
+      750,
+      499
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      755,
+      385,
+      761,
+      459
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      763,
+      385,
+      803,
+      499
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      809,
+      385,
+      815,
+      461
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      817,
+      385,
+      938,
+      499
+    ]
+  },
+  {
+    "label": "commercial_advertisement",
+    "box": [
+      900,
+      621,
+      939,
+      730
+    ]
+  },
+  {
+    "label": "commercial_advertisement",
+    "box": [
+      858,
+      849,
+      938,
+      956
+    ]
+  }
+]

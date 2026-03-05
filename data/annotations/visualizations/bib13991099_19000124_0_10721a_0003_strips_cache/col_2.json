@@ -1,0 +1,101 @@
+[
+  {
+    "label": "article_text",
+    "box": [
+      46,
+      0,
+      883,
+      93
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      26,
+      117,
+      126,
+      921
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      26,
+      955,
+      107,
+      1000
+    ]
+  },
+  {
+    "label": "commercial_advertisement",
+    "box": [
+      903,
+      0,
+      954,
+      88
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      129,
+      121,
+      232,
+      922
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      237,
+      342,
+      250,
+      689
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      260,
+      120,
+      396,
+      922
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      401,
+      330,
+      414,
+      756
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      424,
+      118,
+      984,
+      922
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      990,
+      282,
+      1000,
+      800
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      101,
+      137,
+      107,
+      922
+    ]
+  }
+]

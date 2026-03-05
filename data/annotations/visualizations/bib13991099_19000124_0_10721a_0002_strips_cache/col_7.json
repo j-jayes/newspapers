@@ -1,0 +1,173 @@
+[
+  {
+    "label": "article_text",
+    "box": [
+      35,
+      64,
+      187,
+      475
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      36,
+      492,
+      172,
+      944
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      175,
+      495,
+      364,
+      949
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      187,
+      65,
+      362,
+      478
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      377,
+      93,
+      393,
+      458
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      392,
+      72,
+      434,
+      480
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      394,
+      500,
+      483,
+      947
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      447,
+      72,
+      501,
+      479
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      488,
+      500,
+      566,
+      951
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      501,
+      75,
+      650,
+      481
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      570,
+      503,
+      652,
+      955
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      653,
+      79,
+      881,
+      485
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      654,
+      507,
+      725,
+      958
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      729,
+      509,
+      784,
+      958
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      788,
+      513,
+      843,
+      960
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      887,
+      95,
+      933,
+      486
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      887,
+      513,
+      981,
+      727
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      887,
+      735,
+      934,
+      961
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      937,
+      100,
+      1000,
+      488
+    ]
+  }
+]

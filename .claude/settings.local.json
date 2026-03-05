@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \":*)",
+      "WebFetch(domain:replicate.com)",
+      "Bash(docker build --platform linux/amd64 -t ghcr.io/j-jayes/ocr-vlm-server:latest .)",
+      "Bash(docker image ls ghcr.io/j-jayes/ocr-vlm-server)",
+      "Bash(docker buildx ls)",
+      "Bash(docker build -t ghcr.io/j-jayes/ocr-vlm-server:latest .)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" run list --limit 2 --repo j-jayes/newspapers --workflow=\"Build OCR VLM Server Images\")",
+      "Bash(python:*)"
+    ]
+  }
+}

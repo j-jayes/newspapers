@@ -1,0 +1,35 @@
+{
+  "image": "bib13991099_19000124_0_10721a_0002.jpg",
+  "annotated_at": "2026-03-04T10:06:18.574224+00:00",
+  "generator_model": "gemini-2.5-flash",
+  "critic_model": "gemini-2.5-pro",
+  "critique_rounds": 1,
+  "rounds": [
+    {
+      "round": 0,
+      "model": "gemini-2.5-flash",
+      "role": "generator",
+      "n_regions": 181,
+      "class_counts": {
+        "masthead": 1,
+        "commercial_advertisement": 3,
+        "headline": 72,
+        "article_text": 74,
+        "financial_table": 4,
+        "job_advertisement": 27
+      }
+    },
+    {
+      "round": 1,
+      "model": "gemini-2.5-pro",
+      "role": "critic",
+      "n_regions": 189,
+      "class_counts": {
+        "masthead": 1,
+        "commercial_advertisement": 3,
+        "article_text": 94,
+        "headline": 91
+      }
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+[
+  {
+    "label": "headline",
+    "box": [
+      48,
+      172,
+      62,
+      485
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      63,
+      64,
+      143,
+      485
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      145,
+      173,
+      159,
+      485
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      160,
+      64,
+      222,
+      485
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      223,
+      193,
+      237,
+      485
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      238,
+      64,
+      345,
+      485
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      346,
+      215,
+      360,
+      485
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      361,
+      64,
+      429,
+      485
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      431,
+      185,
+      445,
+      485
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      446,
+      64,
+      559,
+      485
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      561,
+      99,
+      574,
+      485
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      576,
+      64,
+      650,
+      485
+    ]
+  },
+  {
+    "label": "job_advertisement",
+    "box": [
+      652,
+      85,
+      770,
+      485
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      772,
+      151,
+      801,
+      485
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      802,
+      64,
+      882,
+      485
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      884,
+      114,
+      898,
+      485
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      899,
+      64,
+      989,
+      485
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      991,
+      182,
+      1000,
+      485
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      1000,
+      64,
+      111,
+      485
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      111,
+      87,
+      114,
+      485
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      114,
+      64,
+      120,
+      485
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      120,
+      121,
+      122,
+      485
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      122,
+      64,
+      129,
+      485
+    ]
+  }
+]

@@ -1,0 +1,83 @@
+[
+  {
+    "label": "masthead",
+    "box": [
+      27,
+      72,
+      38,
+      229
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      42,
+      355,
+      69,
+      742
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      76,
+      156,
+      191,
+      946
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      212,
+      218,
+      237,
+      936
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      247,
+      164,
+      529,
+      951
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      555,
+      226,
+      574,
+      888
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      583,
+      175,
+      862,
+      966
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      890,
+      350,
+      902,
+      815
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      908,
+      183,
+      935,
+      974
+    ]
+  }
+]

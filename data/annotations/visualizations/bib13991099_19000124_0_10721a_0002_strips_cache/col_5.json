@@ -1,0 +1,218 @@
+[
+  {
+    "label": "masthead",
+    "box": [
+      36,
+      114,
+      49,
+      887
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      65,
+      98,
+      91,
+      996
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      92,
+      26,
+      205,
+      497
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      214,
+      187,
+      228,
+      687
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      229,
+      27,
+      296,
+      497
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      300,
+      196,
+      313,
+      762
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      315,
+      26,
+      344,
+      497
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      75,
+      521,
+      343,
+      992
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      359,
+      532,
+      370,
+      990
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      371,
+      521,
+      398,
+      992
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      400,
+      126,
+      414,
+      888
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      418,
+      59,
+      432,
+      993
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      434,
+      25,
+      473,
+      996
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      479,
+      219,
+      492,
+      800
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      495,
+      250,
+      510,
+      751
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      516,
+      251,
+      532,
+      750
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      531,
+      25,
+      565,
+      992
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      567,
+      56,
+      610,
+      994
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      619,
+      102,
+      634,
+      946
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      636,
+      25,
+      668,
+      993
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      679,
+      107,
+      706,
+      945
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      708,
+      25,
+      874,
+      994
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      890,
+      169,
+      903,
+      884
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      905,
+      24,
+      939,
+      993
+    ]
+  }
+]

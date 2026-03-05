@@ -1,0 +1,65 @@
+[
+  {
+    "label": "commercial_advertisement",
+    "box": [
+      29,
+      266,
+      136,
+      985
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      140,
+      266,
+      162,
+      990
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      170,
+      266,
+      198,
+      978
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      203,
+      268,
+      575,
+      995
+    ]
+  },
+  {
+    "label": "headline",
+    "box": [
+      587,
+      325,
+      617,
+      966
+    ]
+  },
+  {
+    "label": "article_text",
+    "box": [
+      620,
+      279,
+      903,
+      1000
+    ]
+  },
+  {
+    "label": "commercial_advertisement",
+    "box": [
+      907,
+      296,
+      958,
+      999
+    ]
+  }
+]

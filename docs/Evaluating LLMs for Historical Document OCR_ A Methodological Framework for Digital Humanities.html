@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)https://arxiv.org/html/2510.06743v1 -->
+<html lang="en" data-theme="light" class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/nPMcYTz7RwFEGCyBE0hXUY0cNZ7FQ0m7xvWqouzp2VesVrtTIkv7nS1EU_5sx0oeWDJA_HfXKh-saFug40rh6AxRjOIdipnJLMl6Yz5zL0ofBVU4O_tRm6XpF9Y-UOMY87ebCvq"></script>
+
+<title>Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities</title>
+<!--Generated on Wed Oct  8 07:54:35 2025 by LaTeXML (version 0.8.8) http://dlmf.nist.gov/LaTeXML/.-->
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+<link href="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/arxiv-html-papers-20250916.css" rel="stylesheet" type="text/css">
+<script src="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/bootstrap.bundle.min.js.download"></script>
+<script src="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/html2canvas.min.js.download"></script>
+<script src="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/addons_new.js.download"></script>
+<script src="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/feedbackOverlay.js.download"></script>
+<!--<base href="/html/2510.06743v1/">--><base href="."><link rel="stylesheet" href="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/utz6mli.css"><link rel="icon" type="image/png" href="https://static.arxiv.org/static/browse/0.3.4/images/icons/favicon-16x16.png" sizes="16x16"><link rel="icon" type="image/png" href="https://static.arxiv.org/static/browse/0.3.4/images/icons/favicon-32x32.png" sizes="32x32"><link type="text/css" rel="stylesheet" charset="UTF-8" href="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/m=el_main_css"></head>
+<body data-new-gr-c-s-check-loaded="14.1275.0" data-gr-ext-installed="" data-new-gr-c-s-loaded="14.1275.0"><header class="mob_header">
+    <div class="html-header-logo">
+      <a href="https://arxiv.org/">
+        <img alt="logo" class="logomark" role="presentation" width="100" src="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/arxiv-logomark-small-white.svg">
+        <span class="sr-only"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Back to arXiv</font></font></span>
+      </a>
+    </div>
+
+    <!--TOC, dark mode, links-->
+    <div class="html-header-nav">
+      <!--back to abstract-->
+      
+        <a class="nav-link ar5iv-footer-button hover-effect" aria-label="Back to abstract page" href="https://arxiv.org/abs/2510.06743v1">
+        <svg xmlns="http://www.w3.org/2000/svg" height="1.25em" viewBox="0 0 512 512" fill="#ffffff" aria-hidden="true">
+            <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z"></path>
+        </svg>
+        </a>
+      <!--dark mode-->
+      <a class="ar5iv-toggle-color-scheme" href="javascript:toggleColorScheme()" title="Toggle dark/light mode" aria-label="System preference">
+        <label id="automatic-tog" class="toggle-icon" title="Switch to light mode" for="__palette_3">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"></path></svg>
+        </label>
+        <label id="light-tog" class="toggle-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+        </label>
+        <label id="dark-tog" class="toggle-icon" title="Switch to system preference" for="__palette_2" hidden="">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+        </label>
+      </a>
+      <!--nav-->
+      <button class="navbar-toggler ar5iv-footer-button" type="button" data-bs-theme="dark" data-bs-toggle="collapse" aria-expanded="false" data-bs-target=".ltx_page_main &gt;.ltx_TOC.mobile" aria-controls="navbarSupportedContent" aria-label="Toggle navigation" style="border:none; margin-right: 0em;">
+        <svg xmlns="http://www.w3.org/2000/svg" height="1.25em" viewBox="0 0 448 512" aria-hidden="true" role="img" fill="#ffffff"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path></svg>
+      </button>
+    </div>
+    </header><header class="desktop_header">
+    <div class="html-header-logo">
+      <a href="https://arxiv.org/">
+          <img alt="logo" class="logo" role="presentation" width="100" src="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/arxiv-logo-one-color-white.svg">
+          <span class="sr-only"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Back to arXiv</font></font></span>
+      </a>
+    </div>
+    <div class="html-header-message" role="banner">
+        <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">This is </font></font><strong><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">experimental HTML</font></font></strong><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> to improve accessibility. We invite you to report rendering errors.</font></font><span class="sr-only"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Use Alt+Y to toggle on accessible reporting links and Alt+Shift+Y to toggle off.</font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Learn more </font></font><a href="https://info.arxiv.org/about/accessible_HTML.html" target="_blank"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">about this project</font></font></a><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> and </font></font><a href="https://info.arxiv.org/help/submit_latex_best_practices.html" target="_blank"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">help improve conversions</font></font></a><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> .
+        </font></font></p>
+    </div>
+    <nav class="html-header-nav">
+      <a class="ar5iv-footer-button hover-effect" href="https://info.arxiv.org/about/accessible_HTML.html" target="_blank"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Why HTML?</font></font></a>
+      <a class="ar5iv-footer-button hover-effect" target="_blank" href="https://arxiv.org/html/2510.06743v1/#myForm" onclick="event.preventDefault(); var modal = document.getElementById(&#39;myForm&#39;); modal.style.display = &#39;block&#39;; bugReportState.setInitiateWay(&#39;Header&#39;);"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Report Issue</font></font></a>
+      <a class="ar5iv-footer-button hover-effect" href="https://arxiv.org/abs/2510.06743v1"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Back to Abstract</font></font></a>
+      <a class="ar5iv-footer-button hover-effect" href="https://arxiv.org/pdf/2510.06743v1" target="_blank"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Download PDF</font></font></a>
+      <a class="ar5iv-toggle-color-scheme" href="javascript:toggleColorScheme()" title="Toggle dark/light mode">
+        <label id="automatic-tog" class="toggle-icon" title="Switch to light mode" for="__palette_3">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"></path></svg>
+        </label>
+        <label id="light-tog" class="toggle-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+        </label>
+        <label id="dark-tog" class="toggle-icon" title="Switch to system preference" for="__palette_2" hidden="">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+        </label>
+      </a>
+    </nav></header>
+
+<div class="ltx_page_main" id="main">
+<nav class="ltx_TOC active" aria-labelledby="toc_header"><h2 id="toc_header" class="sr-only"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Table of Contents</font></font></h2>
+
+      <div id="listIcon" type="button" class="hide">
+          <svg width="17px" height="17px" viewBox="0 0 512 512" style="pointer-events: none;">
+          <path d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z"></path>
+          </svg>
+      </div>
+      <div id="arrowIcon" type="button">
+          <svg width="17px" height="17px" viewBox="0 0 448 512" style="pointer-events: none;">
+          <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path>
+          </svg>
+      </div><ol class="ltx_toclist"><li class="ltx_tocentry ltx_tocentry_section">
+    <a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#abstract" title="Abstract">
+      <span class="ltx_text ltx_ref_title">
+        <span class="ltx_tag ltx_tag_ref"></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        Abstract
+      </font></font></span>
+    </a></li>
+<li class="ltx_tocentry ltx_tocentry_section"><a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#S1" title="In Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">1</font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Introduction</font></font></span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section"><a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#S2" title="In Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">2</font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Literature review</font></font></span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section"><a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#S3" title="In Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">3</font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Methodology and Data Integrity Controls</font></font></span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section"><a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#S4" title="In Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">4</font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Experiment Setup</font></font></span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section"><a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#S5" title="In Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">5</font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Experiments and Results</font></font></span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section"><a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#S6" title="In Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">6</font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Discussion</font></font></span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section"><a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#S7" title="In Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">7</font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Conclusion</font></font></span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section"><a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#S8" title="In Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">8</font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Limitations</font></font></span></a></li>
+<li class="ltx_tocentry ltx_tocentry_appendix"><a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#A1" title="In Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Evaluated</font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> Models</font></font></span></a></li>
+<li class="ltx_tocentry ltx_tocentry_appendix"><a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#A2" title="In Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">B </span>Dataset Description</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_appendix"><a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#A3" title="In Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">C </span>Prompts</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section">
+    <a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#bib" title="References">
+      <span class="ltx_text ltx_ref_title">
+        <span class="ltx_tag ltx_tag_ref"></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        References
+      </font></font></span>
+    </a></li></ol></nav>
+
+<div class="ltx_page_content"><div id="target-section" class="section"><a id="license-tr" href="https://info.arxiv.org/help/license/index.html#licenses-available"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">License: CC BY 4.0</font></font></a><div id="watermark-tr"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">arXiv:2510.06743v1 [cs.CV] 08 Oct 2025</font></font></div></div>
+<article class="ltx_document ltx_authors_1line" lang="ru">
+<h1 class="ltx_title ltx_title_document"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities</font></font></h1><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_authors">
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Maria Levchenko 
+ </font></font><br class="ltx_break"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Italian Institute of Germanic Studies (IISG), Rome, Italy 
+ </font></font><br class="ltx_break"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">University of Bologna, Bologna, Italy 
+</font></font><br class="ltx_break"><span class="ltx_text ltx_font_typewriter"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">marylevchenko@gmail.com</font></font></span>
+</span></span>
+</div><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_abstract" id="abstract">
+<h6 class="ltx_title ltx_title_abstract"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Annotation</font></font></h6><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Digital humanities scholars increasingly use Large Language Models for historical document digitization, yet lack appropriate evaluation frameworks for LLM-based OCR. Traditional metrics fail to capture temporal biases and period-specific errors crucial for historical corpus creation. We present an evaluation methodology for LLM-based historical OCR, addressing contamination risks and systematic biases in diplomatic transcription. Using 18th-century Russian Civil font texts, we introduce novel metrics including Historical Character Preservation Rate (HCPR) and Archaic Insertion Rate (AIR), alongside protocols for contamination control and stability testing. We evaluate 12 multimodal LLMs, finding that Gemini and Qwen models outperform traditional OCR while exhibiting "over-historicization"—inserting archaic characters from incorrect historical periods. Post-OCR correction degrades rather than improves performance. Our methodology provides digital humanities practitioners with guidelines for model selection and quality assessment in historical corpus digitization.</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<section class="ltx_section" id="S1">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">1</font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Introduction</font></font></h2><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="S1.p1">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">The evolution of large language models (LLMs) into powerful optical character recognition (OCR) tools has created new opportunities in digital humanities, especially for processing historical documents where traditional OCR systems struggle with non-standard typography, evolving orthographic conventions. However, evaluating LLM-based OCR requires fundamentally different methodological approaches than those developed for traditional machine learning systems. Unlike conventional OCR models, where researchers can control training data, modify architectures, and perform fine-tuning, LLMs present unique evaluation challenges: we cannot access their training data, modify their parameters, or retrain them for specific historical corpora. This constraint necessitates new evaluation frameworks that assess and optimize LLM performance through external factors such as prompt engineering, processing modes, and systematic bias detection.</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S1.p2">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Current OCR evaluation practices prove inadequate for LLM-based historical document processing. Standard metrics like Character Error Rate (CER) and Word Error Rate (WER) fail to capture LLM-specific behaviors such as temporal conflation, where models incorrectly apply orthographic features from different historical periods, or systematic insertion of anachronistic elements. Moreover, the risk of training data contamination, where evaluation texts may have been included in LLM pretraining corpora, undermines traditional benchmarking approaches that assume clean train-test separation.</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S1.p3">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">We address these methodological gaps through a comprehensive evaluation framework, demonstrated through the challenging case study of 18th-century Russian texts printed in Civil font. This domain exemplifies evaluation challenges facing digital humanities: texts feature distinctive orthographic elements (i, , ъ at word endings), archaic grammatical forms, and syntactic structures unfamiliar to modern readers, while being underrepresented in digital corpora and thus effectively low-resource for LLMs. These linguistic elements are rarely preserved online; even the Russian National Corpus often presents 18th-century texts in post-1918 orthography </font></font><cite class="ltx_cite ltx_citemacro_cite"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Savchuk (</font></font><a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#bib.bib9" title=""><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">2009</font></font></a><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">)</font></font></cite><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> . The diplomatic transcription requirement—preserving exact textual features including line breaks, hyphens, and original typographical errors—further demands precise character-level fidelity that tests LLM capabilities beyond normalized text processing.</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S1.p4">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Building on recent evidence that LLMs can outperform specialized OCR systems through holistic page processing and prompt engineering </font></font><cite class="ltx_cite ltx_citemacro_cite"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Humphries et al. (</font></font><a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#bib.bib4" title=""><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">2024</font></font></a><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">); Kim et al. (</font></font><a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#bib.bib6" title=""><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">2025</font></font></a><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">); Sohail et al. (</font></font><a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#bib.bib10" title=""><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">2024</font></font></a><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">)</font></font></cite><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> , our framework introduces key innovations: (1) contamination-aware dataset creation protocols ensuring evaluation integrity, (2) novel metrics designed to capture LLM behaviors in historical contexts, including Historical Character Preservation Rate (HCPR) and Archaic Insertion Rate (AIR), (3) systematic analysis of processing modes and prompt engineering strategies, (4) comprehensive stability testing accounting for LLM output variability, and (5) feature sensitivity analysis identifying document characteristics that affect performance.</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S1.p5">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Using this framework, we evaluate 12 leading commercial and open-source multimodal LLMs on a novel dataset of 1,029 pages from 428 unique 18th-century Russian books, systematic revealing patterns in LLM behavior previously undocumented in historical OCR literature. Our analysis uncovers "over-historicization"—a phenomenon where LLMs systematically insert archaic characters eliminated from the target historical period—demonstrating how LLMs exhibit unexpected temporal biases that standard evaluation approaches cannot detect.</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+</section>
+<section class="ltx_section" id="S2">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">2</font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Literature review</font></font></h2><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="S2.p1">
+<p class="ltx_p">Early research found LLM-based OCR often outperforms state-of-the-art pipelines. Multimodal LLMs often transcribe unseen manuscripts zero-shot for printed and even handwritten documents in English, Finnish, Italian and Japanese. For instance, Humphries et al. (2024) report GPT-4–class models achieved CER around 5–7% on 18th–19th century English manuscripts—a 14% relative improvement over Transkribus—and further reduced CER to  1.8% with LLM-based post-correction <cite class="ltx_cite ltx_citemacro_cite">Humphries et al. (<a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#bib.bib4" title="">2024</a>)</cite>. Similarly, Kim et al. (2025) found general-purpose LLMs outperforming tools like Tesseract and TrOCR on historical tables, and early benchmarks highlight the importance of prompt design (e.g., two-shot prompting, line-by-line input) <cite class="ltx_cite ltx_citemacro_cite">Kim et al. (<a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#bib.bib6" title="">2025</a>)</cite>.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S2.p2">
+<p class="ltx_p">However, recent studies underscore limitations. Crosilla et al. (2025) benchmarked LLMs against Transkribus on multilingual historical datasets and found no consistent overall winner <cite class="ltx_cite ltx_citemacro_cite">Crosilla et al. (<a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#bib.bib3" title="">2025</a>)</cite>. Proprietary models excelled in English, while open-source LLMs and non-English scripts showed weaker performance, reflecting pretraining data biases. Unpredictable generative outputs and hallucinations remain challenges <cite class="ltx_cite ltx_citemacro_cite">Thomas et al. (<a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#bib.bib11" title="">2024</a>); Boros et al. (<a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#bib.bib1" title="">2024</a>)</cite>. While instruction-tuning can aid post-OCR correction, zero-shot self-correction abilities are still limited.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S2.p3">
+<p class="ltx_p">In summary, while LLMs have advanced OCR for some languages, new risks arise: contamination from training data, unpredictable outputs, and the need for task-specific prompt engineering. Notably, little work has evaluated LLMs on Russian historical texts, motivating our focus.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+</section>
+<section class="ltx_section" id="S3">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">3 </span>Methodology and Data Integrity Controls</h2><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="S3.p1">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Preventing Training Data Contamination.</span> Evaluation of LLMs on OCR tasks is complicated by the risk of test set contamination, as standard benchmarks are often present in LLM pretraining corpora. Prior studies have used n-gram overlap, membership inference attacks (MIAs), and surprisal-based probes, but these methods are limited, especially for historical material <cite class="ltx_cite ltx_citemacro_cite">Chang et al. (<a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#bib.bib2" title="">2023</a>); Ravichander et al. (<a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#bib.bib8" title="">2025</a>)</cite>. To ensure robust evaluation, we created a novel dataset of 18th-century Russian texts, digitized from sources never previously recognized or published, and kept strictly offline during all known LLM pretraining periods.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S3.p2">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Dataset.</span> Our corpus consists of 1,029 scanned pages from 428 unique 18th-century books printed in Russian Civil font, sourced from the National Library of Russia’s limited-access collection "Русская книга гражданской печати XVIII в. в библиотеках РФ"(Russian Civil Print Books of the 18th Century in Russian Federation Libraries). We stratified the data by publication period (1750–1800), text density, decorative elements, and subject (fiction, science, religion, etc.) to ensure diversity (see Appendix <a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#A2" title="Appendix B Dataset Description ‣ Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_tag">B</span></a> for details). Images below 150ppi were excluded, following evidence of poor LLM OCR performance at low resolution <cite class="ltx_cite ltx_citemacro_cite">Inoue (<a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#bib.bib5" title="">2025</a>)</cite>.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S3.p3">
+<p class="ltx_p">The ground truth (GT) for this corpus was prepared through a multi-stage process:</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S3.p4">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Layout Analysis</span>: a YOLOv8 model <cite class="ltx_cite ltx_citemacro_cite">Varghese and M. (<a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#bib.bib12" title="">2024</a>)</cite>, fine-tuned on a 495-page subset of this corpus, performed region detection; line detection within regions utilized a pre-trained <a class="ltx_ref ltx_href" href="https://huggingface.co/Riksarkivet/rtmdet_lines" title="">Riksarkivet</a> model.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S3.p5">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Initial OCR</span>: A TrOCR model, also fine-tuned on the same 495-page subset (13,456 lines), generated initial transcriptions for the entire corpus. On a held-out portion of the tool-training data, the TrOCR model achieved a CER of 1.83%, WER of 7.82%, and line Exact Match Rate (EMR) of 99.84%.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S3.p6">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Manual Correction</span>: 100% manual review using the eScriptorium interface. Our transcription adheres to diplomatic principles, preserving period-specific orthography, hyphenation, original errors, typos, and spacing conventions to accurately reflect the source documents. The resulting GT for the entire 1,029-page corpus (which serves as the evaluation set for the LLMs) comprises 28,657 lines and 146,690 words. It will be released upon publication.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S3.p7">
+<p class="ltx_p">GT was produced by a single expert annotator using a two-pass protocol. We audited a stratified sample of 500 lines with a second verifier under the same guidelines; line-level exact-match was 98.6%, and character-level accuracy was 99.93%.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S3.p8">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Baseline: Traditional OCR for Historical Texts.</span> Traditional OCR systems struggle with 18th-century Russian texts in Civil font due to a confluence of challenges, including visually confusable character pairs (e.g., i/ï, т/ш), divergent historical orthographic conventions, typographic inconsistencies from printer-specific variations, and complex page layouts with decorative elements.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S3.p9">
+<p class="ltx_p">To quantify these difficulties, we tested both a general-purpose OCR system (Tesseract), the multilingual BT5 model from the Surya OCR framework <cite class="ltx_cite ltx_citemacro_cite">Paruchuri and Team (<a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#bib.bib7" title="">2025</a>)</cite>, and a specialized “Russian print XVIII cent PyLaia” model trained on similar material via Transkribus (reporting 2.40% CER on its own data). On a 100-page sample from our dataset, as shown in Table <a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#S3.T1" title="Table 1 ‣ 3 Methodology and Data Integrity Controls ‣ Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_tag">1</span></a>, Surya struggled with the Old Russian orthography (45.96% CER), PyLaia showed a markedly poorer CER of 26.93%, and Tesseract performed significantly worse. For reference, a TrOCR model fine-tuned on our data achieved 1.83% CER—an upper bound, not typical of generic OCR models.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<figure class="ltx_table" id="S3.T1">
+<div class="ltx_flex_figure ltx_flex_table">
+<div class="ltx_flex_cell ltx_flex_size_1">
+<table class="ltx_tabular ltx_centering ltx_figure_panel ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_t"><span class="ltx_text ltx_font_bold">OCR System</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t"><span class="ltx_text ltx_font_bold">CER (%)</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t"><span class="ltx_text ltx_font_bold">WER (%)</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">Surya (BT5)</th>
+<td class="ltx_td ltx_align_center ltx_border_t">45.96</td>
+<td class="ltx_td ltx_align_center ltx_border_t">78.33</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Tesseract OCR 4.0</th>
+<td class="ltx_td ltx_align_center">21.55</td>
+<td class="ltx_td ltx_align_center">126.10</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Transkribus PyLaia</th>
+<td class="ltx_td ltx_align_center">26.93</td>
+<td class="ltx_td ltx_align_center">29.07</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b">Fine-tuned TrOCR<sup class="ltx_sup"><span class="ltx_text ltx_font_italic">∗</span></sup>
+</th>
+<td class="ltx_td ltx_align_center ltx_border_b">1.83</td>
+<td class="ltx_td ltx_align_center ltx_border_b">7.82</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">Table 1: </span>OCR results for Old Russian orthography</figcaption><div class="ltx_flex_figure">
+<div class="ltx_flex_cell ltx_flex_size_1">
+<p class="ltx_p ltx_figure_panel ltx_align_center"><sup class="ltx_sup"><span class="ltx_text ltx_font_italic">∗</span></sup> Fine-tuned on our dataset; represents an upper bound, not indicative of typical generalization.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+</div>
+</figure><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="S3.p10">
+<p class="ltx_p">This significant performance drop, even for specialized models not fine-tuned on our specific corpus, underscores the generalization limits of traditional OCR and the impracticality of achieving usable results without extensive, resource-intensive retraining for specific collections. Such limitations motivate our investigation into Large Language Models (LLMs) as a more adaptable alternative.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S3.p11">
+<p class="ltx_p">Our study addresses three research questions: <span class="ltx_text ltx_font_bold">RQ1:</span> How do input parameters (processing mode, text density, decorative elements, subject) affect LLM OCR performance for 18th-century Russian Civil font? <span class="ltx_text ltx_font_bold">RQ2:</span> What is the impact of prompt engineering on period-specific orthographic fidelity? <span class="ltx_text ltx_font_bold">RQ3:</span> What are the characteristic error patterns of LLM-based OCR on historical Russian?</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+</section>
+<section class="ltx_section" id="S4">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">4 </span>Experiment Setup</h2><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="S4.p1">
+<p class="ltx_p">We evaluated 12 leading LLMs (see Appendix <a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#A1" title="Appendix A Evaluated Models ‣ Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_tag">A</span></a>), including commercial models (Claude, GPT, Gemini) and open-source models (Llama, Qwen). Models were accessed either via their official APIs or, for open-source models, through the TogetherAI service.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S4.p2">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Model Stability Evaluation Protocol</span>. To assess performance consistency, we re-evaluated a subset of our models on a fixed sample of 20 documents daily for seven consecutive days. Stability was measured by the Coefficient of Variation (CV) of daily Word Accuracy scores.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S4.p3">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Recognition Modes</span>. <span class="ltx_text ltx_font_italic">Single Line Processing</span>: Each text line is processed independently, mirroring traditional OCR. This mode provides minimal context and is efficient but may miss cross-line dependencies.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S4.p4">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Full Page Processing</span>: The entire page image is provided as a single input, maximizing contextual information. While this may resolve ambiguities, it risks hallucinations or detail loss on dense or complex layouts.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S4.p5">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Sliding Window Processing</span>: Fixed-size windows (e.g., 3 lines at a time, transcribing the center) provide more context than single-line but may be more robust to local errors than full-page mode.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S4.p6">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Prompt Engineering Experiments</span>. We conducted systematic prompt variation experiments (see Appendix <a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#A3" title="Appendix C Prompts ‣ Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_tag">C</span></a>), including 1) a baseline prompt with basic image information (“Extract the OCR text from this 18th-century Russian book line. Preserve the original Old Russian orthography.”), 2) context-enhanced prompts in English (including book information and character list), 3) context-enhanced prompts in Russian.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S4.p7">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Evaluation Metrics</span>. We employed an evaluation framework with multiple metrics to assess OCR accuracy, historical fidelity, and case sensitivity:</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S4.p8">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Standard OCR Metrics</span>. Character Error Rate (CER) and Word Error Rate (WER), using Levenshtein distance between prediction and ground truth.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S4.p9">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Case-Insensitive Metrics</span>. CER and WER after lowercasing, to isolate character recognition from case errors.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S4.p10">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Historical Fidelity Metrics</span>. Historical Character Preservation Rate (HCPR) for period-specific characters (i/ї, , ъ); Archaic Insertion Rate (AIR) for insertion of obsolete, pre-Petrine characters.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S4.p11">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Case Preservation Accuracy</span>. Case Error Rate (CaseER) to specifically assess case assignment errors, with particular focus on visually distinctive characters such as .</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+</section>
+<section class="ltx_section" id="S5">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">5 </span>Experiments and Results</h2><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="S5.p1">
+<p class="ltx_p">We evaluated all models across the three recognition modes using standard metrics (CER, WER, CI-CER, CI-WER, historical character fidelity, and case accuracy). Table <a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#S5.T2" title="Table 2 ‣ 5 Experiments and Results ‣ Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_tag">2</span></a> summarizes model performance for each mode; lower values indicate better performance.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<figure class="ltx_table" id="S5.T2">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_t"><span class="ltx_text ltx_font_bold">Model</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t" colspan="2"><span class="ltx_text ltx_font_bold">Full page</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t" colspan="2"><span class="ltx_text ltx_font_bold">Single Line</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t" colspan="2"><span class="ltx_text ltx_font_bold">Sliding Window</span></th>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_th ltx_th_row"></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column">CER (%)</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column">WER (%)</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column">CER (%)</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column">WER (%)</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column">CER (%)</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column">WER (%)</th>
+<td class="ltx_td"></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">Gemini-2.5-Pro</th>
+<td class="ltx_td ltx_align_center ltx_border_t"><span class="ltx_text ltx_font_bold">3.36</span></td>
+<td class="ltx_td ltx_align_center ltx_border_t"><span class="ltx_text ltx_font_bold">4.69</span></td>
+<td class="ltx_td ltx_align_center ltx_border_t">9.35</td>
+<td class="ltx_td ltx_align_center ltx_border_t">15.99</td>
+<td class="ltx_td ltx_align_center ltx_border_t">7.83</td>
+<td class="ltx_td ltx_align_center ltx_border_t">11.77</td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Gemini-2.5-Flash</th>
+<td class="ltx_td ltx_align_center">4.94</td>
+<td class="ltx_td ltx_align_center">6.70</td>
+<td class="ltx_td ltx_align_center">18.79</td>
+<td class="ltx_td ltx_align_center">26.21</td>
+<td class="ltx_td ltx_align_center">25.63</td>
+<td class="ltx_td ltx_align_center">30.77</td>
+<td class="ltx_td"></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Qwen-2.5-VL</th>
+<td class="ltx_td ltx_align_center">5.81</td>
+<td class="ltx_td ltx_align_center">7.48</td>
+<td class="ltx_td ltx_align_center">7.70</td>
+<td class="ltx_td ltx_align_center">11.29</td>
+<td class="ltx_td ltx_align_center">8.87</td>
+<td class="ltx_td ltx_align_center">12.72</td>
+<td class="ltx_td"></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Gemini-2.0</th>
+<td class="ltx_td ltx_align_center">6.14</td>
+<td class="ltx_td ltx_align_center">10.33</td>
+<td class="ltx_td ltx_align_center">10.04</td>
+<td class="ltx_td ltx_align_center">16.43</td>
+<td class="ltx_td ltx_align_center">14.90</td>
+<td class="ltx_td ltx_align_center">19.50</td>
+<td class="ltx_td"></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Claude-3.5</th>
+<td class="ltx_td ltx_align_center">6.79</td>
+<td class="ltx_td ltx_align_center">8.46</td>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold">5.73</span></td>
+<td class="ltx_td ltx_align_center">9.61</td>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold">7.17</span></td>
+<td class="ltx_td ltx_align_center">11.07</td>
+<td class="ltx_td"></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">OpenAI-o4-mini</th>
+<td class="ltx_td ltx_align_center">6.87</td>
+<td class="ltx_td ltx_align_center">9.07</td>
+<td class="ltx_td ltx_align_center">9.35</td>
+<td class="ltx_td ltx_align_center">13.89</td>
+<td class="ltx_td ltx_align_center">8.17</td>
+<td class="ltx_td ltx_align_center">11.67</td>
+<td class="ltx_td"></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Claude-3.7</th>
+<td class="ltx_td ltx_align_center">7.32</td>
+<td class="ltx_td ltx_align_center">9.47</td>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold">5.63</span></td>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold">9.13</span></td>
+<td class="ltx_td ltx_align_center">7.35</td>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold">10.03</span></td>
+<td class="ltx_td"></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">GPT-4.1</th>
+<td class="ltx_td ltx_align_center">7.90</td>
+<td class="ltx_td ltx_align_center">9.76</td>
+<td class="ltx_td ltx_align_center">7.55</td>
+<td class="ltx_td ltx_align_center">11.89</td>
+<td class="ltx_td ltx_align_center">9.59</td>
+<td class="ltx_td ltx_align_center">13.35</td>
+<td class="ltx_td"></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Llama-4-Maverick</th>
+<td class="ltx_td ltx_align_center">8.29</td>
+<td class="ltx_td ltx_align_center">11.87</td>
+<td class="ltx_td ltx_align_center">8.98</td>
+<td class="ltx_td ltx_align_center">16.62</td>
+<td class="ltx_td ltx_align_center">11.57</td>
+<td class="ltx_td ltx_align_center">16.81</td>
+<td class="ltx_td"></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">GPT-4o</th>
+<td class="ltx_td ltx_align_center">9.23</td>
+<td class="ltx_td ltx_align_center">13.66</td>
+<td class="ltx_td ltx_align_center">23.75</td>
+<td class="ltx_td ltx_align_center">28.30</td>
+<td class="ltx_td ltx_align_center">11.93</td>
+<td class="ltx_td ltx_align_center">17.13</td>
+<td class="ltx_td"></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b">Llama-4-Scout</th>
+<td class="ltx_td ltx_align_center ltx_border_b">15.94</td>
+<td class="ltx_td ltx_align_center ltx_border_b">20.51</td>
+<td class="ltx_td ltx_align_center ltx_border_b">8.98</td>
+<td class="ltx_td ltx_align_center ltx_border_b">15.41</td>
+<td class="ltx_td ltx_align_center ltx_border_b">14.95</td>
+<td class="ltx_td ltx_align_center ltx_border_b">20.78</td>
+<td class="ltx_td ltx_border_b"></td>
+</tr>
+</tbody>
+</table>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">Table 2: </span>Model Performance Comparison: Character Error Rate (CER) and Word Error Rate (WER) across three recognition modes for each model. Best scores in each column are bolded.</figcaption>
+</figure><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="S5.p2">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Recognition Mode Effectiveness</span>. Table <a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#S5.T3" title="Table 3 ‣ 5 Experiments and Results ‣ Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_tag">3</span></a> reports performance in full-page mode (the best mode for most models). For each metric, we provide mean values and the observed range (in parentheses) across all documents. Gemini-2.5-Pro achieved the lowest error rates overall. All models showed higher error rates for historical character preservation than for general character recognition, indicating persistent difficulty with period-specific features.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<figure class="ltx_table" id="S5.T3">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_t"><span class="ltx_text ltx_font_bold">Model</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t"><span class="ltx_text ltx_font_bold">CER (%)</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t"><span class="ltx_text ltx_font_bold">WER (%)</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t"><span class="ltx_text ltx_font_bold">CI-CER (%)</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t"><span class="ltx_text ltx_font_bold">Hist. Char. Error (%)</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">Gemini-2.5-Pro</th>
+<td class="ltx_td ltx_align_center ltx_border_t">3.36 (0.14–20.95)</td>
+<td class="ltx_td ltx_align_center ltx_border_t">4.69 (0.08–31.43)</td>
+<td class="ltx_td ltx_align_center ltx_border_t">3.19</td>
+<td class="ltx_td ltx_align_center ltx_border_t">9.83</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Gemini-2.5-Flash</th>
+<td class="ltx_td ltx_align_center">4.94 (0.75–22.11)</td>
+<td class="ltx_td ltx_align_center">6.70 (0.41–22.82)</td>
+<td class="ltx_td ltx_align_center">4.81</td>
+<td class="ltx_td ltx_align_center">12.86</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Qwen-2.5-VL</th>
+<td class="ltx_td ltx_align_center">5.81 (0.81–86.86)</td>
+<td class="ltx_td ltx_align_center">7.48 (0.99–90.14)</td>
+<td class="ltx_td ltx_align_center">5.54</td>
+<td class="ltx_td ltx_align_center">16.40</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Gemini-2.0</th>
+<td class="ltx_td ltx_align_center">6.14 (1.51–22.16)</td>
+<td class="ltx_td ltx_align_center">10.33 (1.58–30.55)</td>
+<td class="ltx_td ltx_align_center">5.66</td>
+<td class="ltx_td ltx_align_center">32.00</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Claude-3.5</th>
+<td class="ltx_td ltx_align_center">6.79 (0.70–53.96)</td>
+<td class="ltx_td ltx_align_center">8.46 (0.00–51.09)</td>
+<td class="ltx_td ltx_align_center">5.75</td>
+<td class="ltx_td ltx_align_center">15.24</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">OpenAI-o4-mini</th>
+<td class="ltx_td ltx_align_center">6.87 (2.18–57.54)</td>
+<td class="ltx_td ltx_align_center">9.07 (2.37–58.85)</td>
+<td class="ltx_td ltx_align_center">6.76</td>
+<td class="ltx_td ltx_align_center">18.38</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Claude-3.7</th>
+<td class="ltx_td ltx_align_center">7.32 (0.61–51.40)</td>
+<td class="ltx_td ltx_align_center">9.47 (0.21–53.93)</td>
+<td class="ltx_td ltx_align_center">6.21</td>
+<td class="ltx_td ltx_align_center">15.29</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">GPT-4.1</th>
+<td class="ltx_td ltx_align_center">7.90 (1.20–31.14)</td>
+<td class="ltx_td ltx_align_center">9.76 (1.96–31.85)</td>
+<td class="ltx_td ltx_align_center">7.80</td>
+<td class="ltx_td ltx_align_center">16.94</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Llama-4-Maverick</th>
+<td class="ltx_td ltx_align_center">8.29 (1.34–72.57)</td>
+<td class="ltx_td ltx_align_center">11.87 (1.68–69.81)</td>
+<td class="ltx_td ltx_align_center">7.77</td>
+<td class="ltx_td ltx_align_center">22.33</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">GPT-4o</th>
+<td class="ltx_td ltx_align_center">9.23 (1.89–40.08)</td>
+<td class="ltx_td ltx_align_center">13.66 (1.30–48.87)</td>
+<td class="ltx_td ltx_align_center">9.07</td>
+<td class="ltx_td ltx_align_center">20.70</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b">Llama-4-Scout</th>
+<td class="ltx_td ltx_align_center ltx_border_b">15.94 (2.09–97.00)</td>
+<td class="ltx_td ltx_align_center ltx_border_b">20.51 (1.70–99.18)</td>
+<td class="ltx_td ltx_align_center ltx_border_b">14.95</td>
+<td class="ltx_td ltx_align_center ltx_border_b">42.23</td>
+</tr>
+</tbody>
+</table>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">Table 3: </span>Full page mode results. For CER and WER, ranges in parentheses show minimum and maximum values across all documents.</figcaption>
+</figure><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<figure class="ltx_figure" id="S5.F1"><img alt="Refer to caption" class="ltx_graphics ltx_img_landscape" height="372" id="S5.F1.g1" src="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/cer_distribution_full_page.png" width="598">
+<figcaption class="ltx_caption"><span class="ltx_tag ltx_tag_figure">Figure 1: </span>CER distribution by models (full page mode)</figcaption>
+</figure><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="S5.p3">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Stability Testing</span>. We assessed performance consistency by processing 20 documents daily with each model for seven consecutive days. Table <a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#S5.T4" title="Table 4 ‣ 5 Experiments and Results ‣ Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_tag">4</span></a> ranks models by the coefficient of variation (CV) of daily word accuracy; lower CV indicates greater stability. Gemini-2.5-Pro showed both the highest stability and the highest mean word accuracy, while Claude-3.5 exhibited the highest variability.
+The distribution of CERs by model (Figure <a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#S5.F1" title="Rice. 1 ‣ 5 Experiments and Results ‣ Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_tag">1</span></a>) further illustrates these differences in stability, with boxplots indicating both the central tendency and the frequency of outlier cases for each model.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<figure class="ltx_table" id="S5.T4">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_right ltx_th ltx_th_column ltx_th_row ltx_border_t">Rank</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_t"><span class="ltx_text ltx_font_bold">Model</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t"><span class="ltx_text ltx_font_bold">CV</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t"><span class="ltx_text ltx_font_bold">Mean Word Accuracy</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t"><span class="ltx_text ltx_font_bold">StdDev</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_right ltx_th ltx_th_row ltx_border_t">1</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">Gemini-2.5-Pro</th>
+<td class="ltx_td ltx_align_center ltx_border_t">0.037</td>
+<td class="ltx_td ltx_align_center ltx_border_t">0.9620</td>
+<td class="ltx_td ltx_align_center ltx_border_t">0.036</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_right ltx_th ltx_th_row">2</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Gemini-2.0-Flash-Lite</th>
+<td class="ltx_td ltx_align_center">0.051</td>
+<td class="ltx_td ltx_align_center">0.9300</td>
+<td class="ltx_td ltx_align_center">0.048</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_right ltx_th ltx_th_row">3</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Gemini-2.5-Flash</th>
+<td class="ltx_td ltx_align_center">0.081</td>
+<td class="ltx_td ltx_align_center">0.9430</td>
+<td class="ltx_td ltx_align_center">0.077</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_right ltx_th ltx_th_row">4</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">GPT-4.1</th>
+<td class="ltx_td ltx_align_center">0.113</td>
+<td class="ltx_td ltx_align_center">0.9044</td>
+<td class="ltx_td ltx_align_center">0.102</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_right ltx_th ltx_th_row">5</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">o4-mini</th>
+<td class="ltx_td ltx_align_center">0.118</td>
+<td class="ltx_td ltx_align_center">0.9070</td>
+<td class="ltx_td ltx_align_center">0.107</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_right ltx_th ltx_th_row">6</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">GPT-4o</th>
+<td class="ltx_td ltx_align_center">0.227</td>
+<td class="ltx_td ltx_align_center">0.8620</td>
+<td class="ltx_td ltx_align_center">0.195</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_right ltx_th ltx_th_row">7</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Claude-3.7</th>
+<td class="ltx_td ltx_align_center">0.271</td>
+<td class="ltx_td ltx_align_center">0.8486</td>
+<td class="ltx_td ltx_align_center">0.230</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_right ltx_th ltx_th_row ltx_border_b">8</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b">Claude-3.5</th>
+<td class="ltx_td ltx_align_center ltx_border_b">0.307</td>
+<td class="ltx_td ltx_align_center ltx_border_b">0.8340</td>
+<td class="ltx_td ltx_align_center ltx_border_b">0.256</td>
+</tr>
+</tbody>
+</table>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">Table 4: </span>Models ranked by output stability over seven days (lower CV = higher stability).</figcaption>
+</figure><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="S5.p4">
+<p class="ltx_p">No model’s daily performance deviated by more than one standard deviation from the previous day, suggesting overall day-to-day consistency.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S5.p5">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Prompt Engineering Impact</span>. For the top-performing models in full-page mode, we tested three prompting strategies: a simple English prompt, a context-enhanced English prompt, and a context-enhanced Russian prompt. Context-enhanced Russian prompts led to statistically significant CER and WER reductions for several models (e.g., Claude-3.7, Claude-3.5, Gemini-2.5-Flash), with mean CER reductions of up to 0.02 and WER reductions of up to 0.03 (p &lt; 0.05, paired t-test). Models such as GPT-4.1 and o4-mini were less affected by prompt type, suggesting greater robustness. In some cases, context-enhanced English prompts increased error rates, underscoring the impact of prompt language and structure on performance. Figure <a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#S5.F2" title="Rice. 2 ‣ 5 Experiments and Results ‣ Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_tag">2</span></a> illustrates the mean CER for each model and prompt type, demonstrating the relative gains (or lack thereof) from prompt engineering across systems.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<figure class="ltx_figure" id="S5.F2"><img alt="Refer to caption" class="ltx_graphics ltx_img_landscape" height="349" id="S5.F2.g1" src="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/bar_chart_CER_pretty.png" width="598">
+<figcaption class="ltx_caption"><span class="ltx_tag ltx_tag_figure">Figure 2: </span>Mean character error rate (CER) by model and prompt strategy (simple English, context-enhanced English, context-enhanced Russian). Lower values indicate better performance.</figcaption>
+</figure><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="S5.p6">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Parameter Impact Visualization</span>. We quantified each model’s sensitivity to 17 document and image features by computing the absolute correlation of each feature with CER and WER (see Figure  <a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#S5.F3" title="Rice. 3 ‣ 5 Experiments and Results ‣ Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_tag">3</span></a>). The most robust models (Gemini 2.5-Pro, Gemini 2.5-Flash, Qwen 2.5) achieved the lowest overall error rates and demonstrated the lowest sensitivity to layout complexity and line count—features that most strongly predict increased error for weaker models (e.g., Claude 3.5, Llama4-Mav). Notably, while most models were only moderately affected by old-character content, layout complexity (<math alttext="r" class="ltx_Math" display="inline" id="S5.p6.m1" intent=":literal"><semantics><mi>r</mi><annotation encoding="application/x-tex">r</annotation></semantics></math> up to 0.39) and line count (<math alttext="r" class="ltx_Math" display="inline" id="S5.p6.m2" intent=":literal"><semantics><mi>r</mi><annotation encoding="application/x-tex">r</annotation></semantics></math> up to 0.55) sharply increased error rates for several models. Regression analysis confirmed that text features explain the majority of variance in error (<math alttext="R^{2}" class="ltx_Math" display="inline" id="S5.p6.m3" intent=":literal"><semantics><msup><mi>R</mi><mn>2</mn></msup><annotation encoding="application/x-tex">R^{2}</annotation></semantics></math> up to 0.83), with image features only adding modest predictive power.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S5.p7">
+<p class="ltx_p">Document features such as line count and layout complexity are the most predictive of model errors, and only the top-performing models demonstrate resilience to these challenges.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<figure class="ltx_figure" id="S5.F3"><img alt="Refer to caption" class="ltx_graphics ltx_img_square" height="550" id="S5.F3.g1" src="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/model_sensitivity.png" width="628">
+<figcaption class="ltx_caption"><span class="ltx_tag ltx_tag_figure">Figure 3: </span>Model sensitivity to document features. Each cell shows the absolute correlation between a given feature (rows) and OCR error rates (CER/WER, averaged) for each model (columns; names shortened for readability). Higher values indicate greater sensitivity—that is, a model’s performance degrades more as that document feature increases. The most robust models (e.g., Gemini-2.5-Pro, o4-mini) exhibit consistently low sensitivity, while others (e.g., Claude3.5, Llama4-Mav) show heightened sensitivity to line count, old-character content, and layout complexity.</figcaption>
+</figure><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="S5.p8">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Error analysis</span>. A striking and unexpected finding is that LLMs consistently "over-historicize"18th-century Russian texts by inserting archaic Slavonic characters that had already been eliminated by Peter the Great’s reforms. Instead of modernizing texts (the expected error direction), models frequently introduced obsolete characters, suggesting a systematic bias.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<figure class="ltx_table" id="S5.T5">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_t"><span class="ltx_text ltx_font_bold">Model</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_t"><span class="ltx_text ltx_font_bold">Top Archaic Insertions</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_t"><span class="ltx_text ltx_font_bold">Most Common Errors</span></th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_t">GPT-4o</td>
+<td class="ltx_td ltx_align_left ltx_border_t">ѡ, ѧ, ꙋ, ѿ, ꙗ</td>
+<td class="ltx_td ltx_align_left ltx_border_t">ї <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m1" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> i, ъ <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m2" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> ь, т <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m3" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> ш</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">GPT-4.1</td>
+<td class="ltx_td ltx_align_left">ѡ, ѧ, ꙋ, ꙗ</td>
+<td class="ltx_td ltx_align_left">ї <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m4" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> i, ъ <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m5" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> ь, т <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m6" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> ш</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">o4-mini</td>
+<td class="ltx_td ltx_align_left">ѧ, ѭ, ѥ</td>
+<td class="ltx_td ltx_align_left">ї <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m7" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> i, ъ <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m8" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> ь,  <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m9" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> е</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">Gemini-2.5-Flash</td>
+<td class="ltx_td ltx_align_left">ѧ, ѥ</td>
+<td class="ltx_td ltx_align_left">ї <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m10" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> i, т <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m11" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> ш, ъ <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m12" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> ь</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left">Claude-3.7</td>
+<td class="ltx_td ltx_align_left">Minimal archaic insertions</td>
+<td class="ltx_td ltx_align_left">ъ <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m13" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> Ъ, ї <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m14" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> i, ь <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m15" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> ъ</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_b">Qwen2.5</td>
+<td class="ltx_td ltx_align_left ltx_border_b">Minimal archaic insertions</td>
+<td class="ltx_td ltx_align_left ltx_border_b">ї <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m16" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> i, т <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m17" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> п, ъ <math alttext="\rightarrow" class="ltx_Math" display="inline" id="S5.T5.m18" intent=":literal"><semantics><mo stretchy="false">→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math> ь</td>
+</tr>
+</tbody>
+</table>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">Table 5: </span>Archaic character insertions and most common OCR errors by model.</figcaption>
+</figure><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="S5.p9">
+<p class="ltx_p">Table <a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#S5.T5" title="Table 5 ‣ 5 Experiments and Results ‣ Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_tag">5</span></a> summarizes both the top archaic character insertions and the most frequent error types for each model. While OpenAI and Gemini models are prone to introducing pre-Petrine archaic letters, all models struggle most with the preservation of ‘ї’ and accurate handling of the hard sign ‘ъ’.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S5.p10">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Over-historicization</span> appears most prominently in OpenAI models, with GPT-4o inserting archaic characters in 59% of files. These insertions are not random, but follow recognizable patterns:</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S5.p11">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Medieval Slavonic characters</span>: ’ѧ’ (little yus), ’ѡ’ (omega), ’ꙋ’ (monograph uk), and ’ѿ’ (ot) were standard in medieval manuscripts but had been eliminated from Civil font by the mid-18th century.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S5.p12">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Context-sensitive insertions</span>: Models insert archaic characters in predictable linguistic contexts—’ѧ’ typically replaces ’я’ in reflexive verb endings and after palatalized consonants, ’ѡ’ appears in prepositions and prefixes, and ’ꙋ’ substitutes for ’у’ in specific word positions.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S5.p13">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Over-Complication with Diacritics</span>. Models often insert diacritical marks and combining characters that are not present in 18th-century Civil font, further complicating the transcription and introducing anachronistic features. This tendency may be exacerbated by visual noise and typographic ambiguity in the source material. For example, faded ink, paper discoloration, or ink bleed-through can produce artifacts that models misinterpret as diacritics or additional marks. Similarly, nonstandard or worn-out typefaces might blur the distinction between basic characters and diacritical elements, especially for visually similar Cyrillic forms.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S5.p14">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Character Preservation and Confusion</span>. Distinct error patterns are evident in the handling of period-specific characters:</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S5.p15">
+<p class="ltx_p">‘ї’ vs. ‘i’: Although ‘ї’ is legitimate in 18th-century Civil font, models frequently replace it with ‘i’: the most common substitution error across all models.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S5.p16">
+<p class="ltx_p">‘’ <span class="ltx_text ltx_font_italic">(yat) preservation</span>: Rates vary widely, from 77.30% (Claude-3.5) to 89.03% (Gemini-2.0).</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S5.p17">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Hard/soft sign confusion</span>: All models have trouble with the terminal hard sign ‘ъ’—commonly omitted (Claude), replaced with ‘ь’ (Gemini), or incorrectly capitalized ‘ъ→Ъ’ (Claude-3.5/3.7).</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S5.p18">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Visual similarity errors</span>: Certain character pairs are frequently confused due to visual similarity—‘т→ш’ (Gemini), ‘т→п’ (Qwen, o4-mini). This confusion is exacerbated not only by scan degradation or low resolution, but also by the nature of 18th-century typography. Figure <a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#S5.F4" title="Rice. 4 ‣ 5 Experiments and Results ‣ Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_tag">4</span></a> illustrates how the Civil font renders “т” and “ш” in ways that may appear nearly identical.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<figure class="ltx_figure" id="S5.F4">
+<div class="ltx_flex_figure">
+<div class="ltx_flex_cell ltx_flex_size_1"><img alt="Refer to caption" class="ltx_graphics ltx_centering ltx_figure_panel ltx_img_landscape" height="36" id="S5.F4.g1" src="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/line_1.png" width="616"></div>
+<div class="ltx_flex_break"></div>
+<div class="ltx_flex_cell ltx_flex_size_1"><img alt="Refer to caption" class="ltx_graphics ltx_centering ltx_figure_panel ltx_img_landscape" height="38" id="S5.F4.g2" src="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/line_2.png" width="616"></div>
+<div class="ltx_flex_break"></div>
+<div class="ltx_flex_cell ltx_flex_size_1"><img alt="Refer to caption" class="ltx_graphics ltx_centering ltx_figure_panel ltx_img_landscape" height="37" id="S5.F4.g3" src="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/line_3.png" width="616"></div>
+</div>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Figure 4: </span>Excerpt from an 18th-century Russian book printed in Civil font. The letters “ш” (as in обетшаша, ослабша, Бофортши, отшествїи) display notable typographic variability, occasionally resembling the “т” glyph. Such variability, inherent to period printing, contributes to frequent “т→ш” substitution errors.</figcaption>
+</figure><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="S5.p19">
+<p class="ltx_p">These systematic error patterns offer key insights into LLM behavior on historical text:
+<span class="ltx_text ltx_font_bold">1) Temporal conflation</span>: Models conflate orthographic features from different periods (pre-Petrine Church Slavonic, 18th-century Civil font, modern Russian), struggling to maintain strict period boundaries; <span class="ltx_text ltx_font_bold">2) Contextual over-fitting</span>: There is a correlation between text subject and error types; models seem to apply different orthographic standards by genre, likely reflecting biases in their training data; <span class="ltx_text ltx_font_bold">3) Model family signatures</span>: Error profiles differ by provider (OpenAI, Anthropic, Google), suggesting differences in training data and strategies regarding historical texts.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+</section>
+<section class="ltx_section" id="S6">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">6 </span>Discussion</h2><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="S6.p1">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">LLM Behavior: Over-Historicization and Error Patterns</span>. A surprising result is that LLMs systematically "over-historicize"18th-century Russian texts, introducing archaic Slavonic characters that had been eliminated by the era in question. Rather than modernizing spelling, models often default to pre-reform or even medieval forms.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S6.p2">
+<p class="ltx_p">This likely reflects how LLMs, lacking explicit period awareness, generalize from a noisy mixture of training data: rare or visually distinctive archaic forms become signals for “historical text” regardless of actual period accuracy. Multimodal and text-only corpora contain heterogeneous historical Russian (Church Slavonic, pre-reform, post-1918), but models lack explicit period tags, so “historic” cues (yus letters, omega, diacritics) become generic signals for “old text”. Visual ambiguity in the typography and degraded print quality may further reinforce these mistakes, with models erring on the side of complexity and inserting diacritics or combining marks absent from authentic 18th-century Civil font.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S6.p3">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Optimal Model and Prompting Strategies for Historical OCR</span>. Our results indicate that Gemini and Qwen models are the most robust and accurate models across diverse document types, especially where high line counts or layout complexity would otherwise increase error rates. Prompt engineering can enhance performance, particularly when prompts specify period features or are given in Russian, but the best models are less dependent on prompt tweaks. Full-page mode generally yields the best accuracy, but for models highly sensitive to document length, line-by-line mode can be preferable.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S6.p4">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Post-OCR Correction Analysis</span>. Our experiments reveal counterintuitive findings about LLM post-correction effectiveness: when providing both image and OCR text to higher-performing models, performance does not exceed the correcting model’s direct OCR capabilities—models essentially re-perform OCR rather than correct the provided text. We suggest that models rarely apply constrained edits; instead they re-decode from the image, using the text as weak context. Text-only correction (without source images) consistently degrades performance, with models introducing errors that corrupt the original transcription. Two mechanisms likely apply: (i) attention dilution/position effects—LLMs are known to unevenly use long contexts; (ii) editor vs. generator mismatch—chat-tuned models prioritize fluent regeneration over minimal edits unless decoding is constrained. These findings suggest practitioners should focus on selecting optimal models for direct OCR rather than post-correction pipelines, as correction attempts either provide no benefit or actively harm accuracy.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+</section>
+<section class="ltx_section" id="S7">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">7 </span>Conclusion</h2><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="S7.p1">
+<p class="ltx_p">This paper introduces a comprehensive methodological framework for evaluating large language models (LLMs) on historical OCR tasks, exemplified by the case study of 18th-century Russian prints in Civil font. Our results demonstrate that LLM-based approaches substantially outperform traditional OCR systems for these challenging materials, and our work sets out best practices for reliable evaluation and practical implementation. Our stratified coverage across printers, decades, genres, and layouts supports transfer to other historical prints with period-specific orthography; applying the same protocol with a collection-specific grapheme inventory for HCPR/AIR typically requires only a brief 10–20-page pilot.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S7.p2">
+<p class="ltx_p">Looking ahead, we note that LLMs are rapidly improving; having a clearly defined evaluation protocol, public metrics, and detailed error analysis will allow ongoing, transparent tracking of model progress. However, the publication of ground-truth datasets for evaluation is a double-edged sword: once released, they risk being incorporated into future model training, compromising their utility for truly unseen evaluation. Even a single benchmarking release may affect evaluation integrity if outputs are shared or scraped. The trade-off between transparency, reproducibility, and long-term benchmark validity remains an open question for the community.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+</section>
+<section class="ltx_section" id="S8">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">8 </span>Limitations</h2><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="S8.p1">
+<p class="ltx_p">Our dataset is specific to Russian Civil font print from the second half of the 18th century, and our manual ground truth verification process, while rigorous, may still be subject to rare annotation errors, especially for visually ambiguous or degraded source material. All evaluated LLMs were accessed via their respective APIs; however, we excluded OpenAI o3 due to prohibitive usage costs. For consistency, we requested structured (JSON) outputs when supported (e.g., OpenAI models) and programmatically extracted lines from unstructured outputs otherwise. Alternative output formats, such as Markdown or raw text, may yield different recognition results and could be further investigated in future work. Additionally, our model stability experiments revealed that LLM outputs can vary between runs for the same document and model, though this variance was relatively minor within our observation window. Nonetheless, this inherent non-determinism may affect reproducibility and should be considered when interpreting comparative results.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="S8.p2">
+<p class="ltx_p">During evaluation, if a model’s response consisted of a clear API error message (e.g., “Unable to process image” or an explicit failure code), we resubmitted the OCR request to ensure that temporary API or service issues did not affect the results. However, if a model returned a plausible but off-target output (such as an explanation, commentary, or unrelated generative text instead of a transcription), we recorded this as the model’s result without resubmission, in line with our goal of measuring real-world output quality rather than optimizing for best-case scenarios.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+</section>
+<section class="ltx_bibliography" id="bib">
+<h2 class="ltx_title ltx_title_bibliography">Список литературы</h2><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<ul class="ltx_biblist">
+<li class="ltx_bibitem" id="bib.bib1">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Boros et al. (2024)<button class="back-to-reference-btn" aria-label="Back to the article">↑</button></span>
+<span class="ltx_bibblock">
+Emanuela Boros, Maud Ehrmann, Matteo Romanello, Sven Najem-Meyer, and Frédéric Kaplan. 2024.
+
+</span>
+<span class="ltx_bibblock"><a class="ltx_ref ltx_href" href="https://aclanthology.org/2024.latechclfl-1.14/" title="">Post-correction of historical text transcripts with large language models: An exploratory study</a>.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic">Proceedings of the 8th Joint SIGHUM Workshop on Computational Linguistics for Cultural Heritage, Social Sciences, Humanities and Literature (LaTeCH-CLfL 2024)</em>, pages 133–159, St. Julians, Malta. Association for Computational Linguistics.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib2">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Chang et al. (2023)<button class="back-to-reference-btn" aria-label="Back to the article">↑</button></span>
+<span class="ltx_bibblock">
+Kent Chang, Mackenzie Cramer, Sandeep Soni, and David Bamman. 2023.
+
+</span>
+<span class="ltx_bibblock"><a class="ltx_ref ltx_href" href="https://doi.org/10.18653/v1/2023.emnlp-main.453" title="">Speak, memory: An archaeology of books known to ChatGPT/GPT-4</a>.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic">Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing</em>, pages 7312–7327, Singapore. Association for Computational Linguistics.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib3">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Crosilla et al. (2025)<button class="back-to-reference-btn" aria-label="Back to the article">↑</button></span>
+<span class="ltx_bibblock">
+Giorgia Crosilla, Lukas Klic, and Giovanni Colavizza. 2025.
+
+</span>
+<span class="ltx_bibblock"><a class="ltx_ref ltx_href" href="http://arxiv.org/abs/2503.15195" title="">Benchmarking large language models for handwritten text recognition</a>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib4">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Humphries et al. (2024)<button class="back-to-reference-btn" aria-label="Back to the article">↑</button></span>
+<span class="ltx_bibblock">
+Mark Humphries, Lianne C. Leddy, Quinn Downton, Meredith Legace, John McConnell, Isabella Murray, and Elizabeth Spence. 2024.
+
+</span>
+<span class="ltx_bibblock"><a class="ltx_ref ltx_href" href="http://arxiv.org/abs/2411.03340" title="">Unlocking the archives: Using large language models to transcribe handwritten historical documents</a>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib5">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Inoue (2025)<button class="back-to-reference-btn" aria-label="Back to the article">↑</button></span>
+<span class="ltx_bibblock">
+Kotaro Inoue. 2025.
+
+</span>
+<span class="ltx_bibblock">Context-independent ocr with multimodal llms: Effects of image resolution and visual complexity.
+
+</span>
+<span class="ltx_bibblock"><em class="ltx_emph ltx_font_italic">arXiv preprint arXiv:2503.23667</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib6">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Kim et al. (2025)<button class="back-to-reference-btn" aria-label="Back to the article">↑</button></span>
+<span class="ltx_bibblock">
+Seorin Kim, Julien Baudru, Wouter Ryckbosch, Hugues Bersini, and Vincent Ginis. 2025.
+
+</span>
+<span class="ltx_bibblock"><a class="ltx_ref ltx_href" href="http://arxiv.org/abs/2501.11623" title="">Early evidence of how llms outperform traditional systems on ocr/htr tasks for historical records</a>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib7">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Paruchuri and Team (2025)<button class="back-to-reference-btn" aria-label="Back to the article">↑</button></span>
+<span class="ltx_bibblock">
+Vikas Paruchuri and Datalab Team. 2025.
+
+</span>
+<span class="ltx_bibblock">Surya: A lightweight document ocr and analysis toolkit.
+
+</span>
+<span class="ltx_bibblock"><a class="ltx_ref ltx_url ltx_font_typewriter" href="https://github.com/VikParuchuri/surya" title="">https://github.com/VikParuchuri/surya</a>.
+
+</span>
+<span class="ltx_bibblock">GitHub repository.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib8">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Ravichander et al. (2025)<button class="back-to-reference-btn" aria-label="Back to the article">↑</button></span>
+<span class="ltx_bibblock">
+Abhilasha Ravichander, Jillian Fisher, Taylor Sorensen, Ximing Lu, Maria Antoniak, Bill Yuchen Lin, Niloofar Mireshghallah, Chandra Bhagavatula, and Yejin Choi. 2025.
+
+</span>
+<span class="ltx_bibblock"><a class="ltx_ref ltx_href" href="https://doi.org/10.18653/v1/2025.naacl-long.99" title="">Information-guided identification of training data imprint in (proprietary) large language models</a>.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic">Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)</em>, pages 1962–1978, Albuquerque, New Mexico. Association for Computational Linguistics.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib9">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Savchuk (2009)<button class="back-to-reference-btn" aria-label="Back to the article">↑</button></span>
+<span class="ltx_bibblock">
+Svetlana Savchuk. 2009.
+
+</span>
+<span class="ltx_bibblock">The corpus of eighteenth-century texts: Towards the construction of the diachronic corpus of russian.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic">Proceedings of the Corpus Linguistics Conference 2009</em>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib10">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Sohail et al. (2024)<button class="back-to-reference-btn" aria-label="Back to the article">↑</button></span>
+<span class="ltx_bibblock">
+Muhammad Abdullah Sohail, Salaar Masood, and Hamza Iqbal. 2024.
+
+</span>
+<span class="ltx_bibblock"><a class="ltx_ref ltx_href" href="http://arxiv.org/abs/2412.16119" title="">Deciphering the underserved: Benchmarking llm ocr for low-resource scripts</a>.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib11">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Thomas et al. (2024)<button class="back-to-reference-btn" aria-label="Back to the article">↑</button></span>
+<span class="ltx_bibblock">
+Alan Thomas, Robert Gaizauskas, and Haiping Lu. 2024.
+
+</span>
+<span class="ltx_bibblock"><a class="ltx_ref ltx_href" href="https://aclanthology.org/2024.lt4hala-1.14/" title="">Leveraging LLMs for post-OCR correction of historical newspapers</a>.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic">Proceedings of the Third Workshop on Language Technologies for Historical and Ancient Languages (LT4HALA) @ LREC-COLING-2024</em>, pages 116–121, Torino, Italia. ELRA and ICCL.
+
+</span>
+</li>
+<li class="ltx_bibitem" id="bib.bib12">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem">Varghese and M. (2024)<button class="back-to-reference-btn" aria-label="Back to the article">↑</button></span>
+<span class="ltx_bibblock">
+Rejin Varghese and Sambath M. 2024.
+
+</span>
+<span class="ltx_bibblock"><a class="ltx_ref ltx_href" href="https://doi.org/10.1109/ADICS58448.2024.10533619" title="">Yolov8: A novel object detection algorithm with enhanced performance and robustness</a>.
+
+</span>
+<span class="ltx_bibblock">In <em class="ltx_emph ltx_font_italic">2024 International Conference on Advances in Data Engineering and Intelligent Computing Systems (ADICS)</em>, pages 1–6.
+
+</span>
+</li>
+</ul>
+</section>
+<section class="ltx_appendix" id="A1">
+<h2 class="ltx_title ltx_title_appendix">
+<span class="ltx_tag ltx_tag_appendix">Приложение A </span>Evaluated Models</h2><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<figure class="ltx_table" id="A1.tab1">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_justify ltx_align_top ltx_th ltx_th_column ltx_border_l ltx_border_r ltx_border_t">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:65.4pt;"><span class="ltx_text ltx_font_bold">Provider</span></span>
+</span>
+</th>
+<th class="ltx_td ltx_align_justify ltx_align_top ltx_th ltx_th_column ltx_border_r ltx_border_t">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:125.2pt;"><span class="ltx_text ltx_font_bold">Model Name</span></span>
+</span>
+</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_l ltx_border_r ltx_border_t">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:65.4pt;">Anthropic</span>
+</span>
+</td>
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_r ltx_border_t">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:125.2pt;">Claude 3.7 Sonnet</span>
+</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_l ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:65.4pt;">Anthropic</span>
+</span>
+</td>
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:125.2pt;">Claude 3.5 Sonnet 20241022</span>
+</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_l ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:65.4pt;">OpenAI</span>
+</span>
+</td>
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:125.2pt;">GPT-4o-2024-08-06</span>
+</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_l ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:65.4pt;">OpenAI</span>
+</span>
+</td>
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:125.2pt;">GPT-4.1-2025-04-14</span>
+</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_l ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:65.4pt;">OpenAI</span>
+</span>
+</td>
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:125.2pt;">o4-mini-2025-04-16</span>
+</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_l ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:65.4pt;">Google</span>
+</span>
+</td>
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:125.2pt;">Gemini 2.0 Flash</span>
+</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_l ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:65.4pt;">Google</span>
+</span>
+</td>
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:125.2pt;">Gemini 2.5 Pro (05-06)</span>
+</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_l ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:65.4pt;">Google</span>
+</span>
+</td>
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:125.2pt;">Gemini 2.5 Flash (04-17)</span>
+</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_l ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:65.4pt;">Google</span>
+</span>
+</td>
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:125.2pt;">Gemini 2.0 Flash-Lite</span>
+</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_l ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:65.4pt;">Qwen AI</span>
+</span>
+</td>
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:125.2pt;">Qwen2.5-VL-72B-Instruct</span>
+</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_l ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:65.4pt;">Meta</span>
+</span>
+</td>
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:125.2pt;">Llama-4 Maverick 17B 128E Instruct FP8</span>
+</span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_b ltx_border_l ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:65.4pt;">Meta</span>
+</span>
+</td>
+<td class="ltx_td ltx_align_justify ltx_align_top ltx_border_b ltx_border_r">
+<span class="ltx_inline-block ltx_align_top">
+<span class="ltx_p" style="width:125.2pt;">Llama-4 Scout 17B 16E Instruct</span>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+</figure><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</section>
+<section class="ltx_appendix" id="A2">
+<h2 class="ltx_title ltx_title_appendix">
+<span class="ltx_tag ltx_tag_appendix">Приложение B </span>Dataset Description</h2><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="A2.p1">
+<p class="ltx_p">The evaluation dataset comprises 1,029 page images sampled from 428 unique Russian books published between 1752 and 1801, with the majority printed in the 1780s and 1790s. The collection covers a broad range of genres, with the largest shares contributed by fiction (22.7%), religion (15.7%), history (15.0%), and science (12.9%). This diversity helps ensure that both typographical and linguistic variation in Russian print is well-represented for OCR evaluation. All texts are printed in the Civil font, introduced by Peter the Great’s typographic reform.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A2.p2">
+<p class="ltx_p">The resulting corpus contains 28,657 lines and 146,690 words. The 100-page sample from the corpus is published online alongside the LLM-based OCR results (<a class="ltx_ref ltx_href" href="https://github.com/mary-lev/historical-ocr-analysis" title="">github repository</a> contains ground truth transcriptions and model outputs).
+The year and subject distributions are shown in Figures <a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#A2.F5" title="Rice. 5 ‣ Appendix B Dataset Description ‣ Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_tag">5</span></a> and <a class="ltx_ref" href="https://arxiv.org/html/2510.06743v1#A2.F6" title="Rice. 6 ‣ Appendix B Dataset Description ‣ Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities"><span class="ltx_text ltx_ref_tag">6</span></a>. The dataset is dominated by fiction, religion, history, and science, but maintains coverage across a variety of genres, supporting generalizable evaluation of historical OCR models</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<figure class="ltx_figure" id="A2.F5"><img alt="Refer to caption" class="ltx_graphics ltx_img_landscape" height="296" id="A2.F5.g1" src="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/subject_visualization_pie_charts.png" width="628">
+<figcaption class="ltx_caption"><span class="ltx_tag ltx_tag_figure">Figure 5: </span>
+Subject distribution in the evaluation dataset.
+<span class="ltx_text ltx_font_bold">Left:</span> Distribution by unique books (N=428). <span class="ltx_text ltx_font_bold">Right:</span> Distribution by sampled page images (N=1029).
+The dataset is dominated by fiction, religion, history, and science, but maintains coverage across a variety of genres, supporting generalizable evaluation of historical OCR models.
+</figcaption>
+</figure><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<figure class="ltx_figure" id="A2.F6"><img alt="Refer to caption" class="ltx_graphics ltx_img_landscape" height="299" id="A2.F6.g1" src="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/book_year_distribution_pretty.png" width="598">
+<figcaption class="ltx_caption"><span class="ltx_tag ltx_tag_figure">Figure 6: </span>Year distribution in the evaluation dataset. The corpus reflects the rapid growth of Russian print in the late 18th century.</figcaption>
+</figure><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</section>
+<section class="ltx_appendix" id="A3">
+<h2 class="ltx_title ltx_title_appendix">
+<span class="ltx_tag ltx_tag_appendix">Приложение C </span>Prompts</h2><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+<div class="ltx_para" id="A3.p1">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Single Line Mode Prompt.</span> Extract the OCR text from this 18th-century Russian book line. Preserve the original Old Russian orthography. Respond with ONLY a JSON object containing the extracted text in the <span class="ltx_text ltx_font_typewriter">’line’</span> field.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p2">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Sliding Window Mode Prompt.</span> Extract the text from these consecutive lines of an 18th-century Russian book. Focus on the middle line while using surrounding lines as context. Preserve the original Old Russian orthography. Respond with ONLY a JSON object containing the extracted text of the middle line in the <span class="ltx_text ltx_font_typewriter">’line’</span> field.
+Do not include any additional explanations.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p3">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Full Page Mode Prompt.</span> Extract the OCR text from this full page of an 18th-century Russian book. Preserve the original Old Russian orthography. Process each line independently. Respond with ONLY a JSON array where each object has a <span class="ltx_text ltx_font_typewriter">’line’</span> field containing the transcribed text. Do not include any additional explanations.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p4">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Full Page Context-Enhanced Prompt (English).</span> You are an expert OCR system specialized in processing 18th-century Russian texts. Your task is to accurately transcribe text from an image of a page from a {book_year} Russian book titled ‘‘{book_title}’’ published in {publication_info}.</p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p5">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Instructions:</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p6">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Analyze the entire image thoroughly before beginning transcription.</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p7">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Process the text line by line, maintaining the exact layout of the original page.</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p8">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Preserve all original Old Russian orthography, including:</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p9">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">– special characters: , ѳ, , i, ї, ъ</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p10">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">– Original punctuation</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p11">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">– Capitalization as it appears in the original text.</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p12">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Respond with ONLY a JSON array where each object has a </font></font><span class="ltx_text ltx_font_typewriter"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">'line'</font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> field containing the extracted text. Do not include any explanations or additional formatting in your response.</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p13">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Full Page Context-Enhanced Prompt (Russian).</font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> You are an expert OCR system specializing in processing 18th-century Russian texts printed in the civil script after the reform of Peter the Great (1708–1710) but before the spelling reform of 1918. Your task is to accurately transcribe the text from an image of a page from a Russian book of the year {book_year}, titled ''{book_title}'', published in {publication_info}. Orthographic features of this period include:</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p14">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">The presence of specific letters: (yat), i (i decimal) or ї, ѳ (fita), (izhitsa), ъ (hard sign at the end of words)</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p15">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">The absence of letters of the Church Slavonic alphabet (ѡ, ѧ, ѱ, etc.)</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p16">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Using civil script instead of charter or semi-charter</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p17">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Instructions:</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p18">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Please carefully analyze the entire image before starting transcription.</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p19">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Process text line by line, maintaining the exact layout of the original page.</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p20">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Preserve all original Old Russian spelling, including:</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p21">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">– special characters: , ѳ, , i, ї and ъ,</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p22">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">- original punctuation,</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p23">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">– capital letters as they appear in the original text.</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+<div class="ltx_para" id="A3.p24">
+<p class="ltx_p"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Respond ONLY with a JSON array, where each object has a </font></font><span class="ltx_text ltx_font_typewriter"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">'line'</font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> field containing each extracted line of text. Do not include any explanations or additional formatting in your response.</font></font></p><button class="sr-only button" style="display: none;">Report issue for preceding element</button>
+</div>
+</section>
+</article>
+</div>
+
+</div>
+
+
+<dnu-qvzhzbdhfzmt><template shadowrootmode="closed"><link rel="stylesheet" href="https://arxiv.org/3jv1Zy3ezlOcwqB2IFPf41yl-kA_HaK-B-URAgyrkHW62evf1fKd9lrblBvqn1OqYiAPGrM-dB5EdHKolnTkycriPOR2sF6vUkofqkUy7j35KydNdpnSPpWCI4vt8JgxoKVvGA23iWXzHy43t-__N_uQs1KMLs3G2PP5b5dvTF6C1u_c9q0A_RQAAvgryWcKNmtVE36sIXsWl1VOPcRzYts_886tUyvzsboqWHv8GF_WeX7s4BqK_V0MfRMOzsVEmbE7RijtLv6_pQsN2Jv3ktkZBGHGs5SJ-pGbo4J9bVWMm2v1jHuXMjkioMf7SPLgw9ldGfT3gCUqtK6Egf_i0StvLA-S86sKURS1lFigTwAJVvVYHbmgy9SptFY8JmYZE17Dcu4BnvEVnoSnIg"></template></dnu-qvzhzbdhfzmt><button type="button" class="btn btn-primary hover-rp-button" id="openForm"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Report Issue</font></font></button><div class="modal" id="myForm" role="dialog" aria-labelledby="modal-title"><div class="modal-dialog"><form class="modal-content" id="myFormContent" enctype="multipart/form-data"><div class="modal-header" id="modal-header"><h5 class="modal-title">Report GitHub Issue</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body"><label for="form_title" id="modalTitle">Title:</label><input class="form-control" id="form_title" name="form_title" required="required" placeholder="Enter title"><label for="description" id="selectedTextModalDescription" style="display: none;">Content selection saved. Describe the issue below:</label><label for="description" id="nomralModalDescription">Description:</label><textarea class="form-control" id="description" name="description" required="required" style="height: 80px;" maxlength="500" placeholder="500 characters maximum"></textarea></div><div class="modal-footer d-flex justify-content-end"><button type="submit" class="sr-only button" id="modal-submit-sr">Submit without GitHub</button><button type="submit" class="btn btn-primary" id="modal-submit">Submit in GitHub</button></div></form></div></div><button id="small-report-button" type="button" class="btn btn-secondary btn-sm" style="background-color: rgb(179, 27, 27); position: fixed; display: none;">Report Issue for Selection</button><div class="ltx_page_footer">
+        <div class="ltx_page_logo"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+            Generated by
+             </font><a href="https://math.nist.gov/~BMiller/LaTeXML/" class="ltx_LaTeXML_logo"><span style="letter-spacing: -0.2em; margin-right: 0.1em;"><font dir="auto" style="vertical-align: inherit;">
+                    L
+                     </font></span></a><a href="https://math.nist.gov/~BMiller/LaTeXML/" class="ltx_LaTeXML_logo"><span style="letter-spacing: -0.2em; margin-right: 0.1em;"><span style="font-size: 70%; position: relative; bottom: 2.2pt;"><font dir="auto" style="vertical-align: inherit;">A</font></span></span></a><a href="https://math.nist.gov/~BMiller/LaTeXML/" class="ltx_LaTeXML_logo"><span style="letter-spacing: -0.2em; margin-right: 0.1em;"><font dir="auto" style="vertical-align: inherit;"> 
+                    T
+                     </font></span></a><a href="https://math.nist.gov/~BMiller/LaTeXML/" class="ltx_LaTeXML_logo"><span style="letter-spacing: -0.2em; margin-right: 0.1em;"><span style="position: relative; bottom: -0.4ex;"><font dir="auto" style="vertical-align: inherit;">E</font></span></span></a><a href="https://math.nist.gov/~BMiller/LaTeXML/" class="ltx_LaTeXML_logo"><span class="ltx_font_smallcaps"><font dir="auto" style="vertical-align: inherit;"> xml</font></span></a></font><a href="https://math.nist.gov/~BMiller/LaTeXML/" class="ltx_LaTeXML_logo">
+                <span style="letter-spacing: -0.2em; margin-right: 0.1em;"><font dir="auto" style="vertical-align: inherit;"></font><span style="font-size: 70%; position: relative; bottom: 2.2pt;"><font dir="auto" style="vertical-align: inherit;"></font></span><font dir="auto" style="vertical-align: inherit;"></font><span style="position: relative; bottom: -0.4ex;"><font dir="auto" style="vertical-align: inherit;"></font></span>
+                </span>
+                <span class="ltx_font_smallcaps"><font dir="auto" style="vertical-align: inherit;"></font></span>
+                <img alt="[LOGO]" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==">
+            </a>
+        </div></div><footer id="footer" class="ltx_document">
+        <div class="keyboard-glossary">
+            <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Instructions for reporting errors</font></font></h2>
+            <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">We are continuing to improve HTML versions of papers, and your feedback helps enhance accessibility and mobile support. To report errors in the HTML that will help us improve conversion and rendering, choose any of the methods listed below:</font></font></p>
+            <ul>
+                <li><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Click the "Report Issue" button.</font></font></li>
+                <li><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Open a report feedback form via keyboard, use " </font></font><strong><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Ctrl + ?</font></font></strong><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> ".</font></font></li>
+                <li><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Make a text selection and click the "Report Issue for Selection" button near your cursor.</font></font></li>
+                <li class="sr-only"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">You can use Alt+Y to toggle on and Alt+Shift+Y to toggle off accessible reporting links at each section.</font></font></li>
+            </ul>
+            <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Our team has already identified </font></font><a class="ltx_ref" href="https://github.com/arXiv/html_feedback/issues" target="_blank"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">the following issues</font></font></a><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> . We appreciate your time reviewing and reporting rendering errors we may not have found yet. Your efforts will help us improve the HTML versions for all readers, because disability should not be a barrier to accessing research. Thank you for your continued support in championing open access for all.</font></font></p>
+            <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Have a free development cycle? Help support accessibility at arXiv! Our collaborators at LaTeXML maintain a </font></font><a class="ltx_ref" href="https://github.com/brucemiller/LaTeXML/wiki/Porting-LaTeX-packages-for-LaTeXML" target="_blank"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">list of packages that need conversion</font></font></a><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> , and welcome </font></font><a class="ltx_ref" href="https://github.com/brucemiller/LaTeXML/issues" target="_blank"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">developer contributions</font></font></a><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"> .</font></font></p>
+        </div>
+    </footer><div id="goog-gt-tt" class="VIpgJd-yAWNEb-L7lbkb skiptranslate" style="border-radius: 12px; margin: 0 0 0 -23px; padding: 0; font-family: &#39;Google Sans&#39;, Arial, sans-serif;" data-id=""><div id="goog-gt-vt" class="VIpgJd-yAWNEb-hvhgNd"><div class="VIpgJd-yAWNEb-hvhgNd-Ud7fr"><img src="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/24px.svg" width="24" height="24" alt=""><div class=" VIpgJd-yAWNEb-hvhgNd-IuizWc-i3jM8c " dir="ltr">Original text</div></div><div class="VIpgJd-yAWNEb-hvhgNd-k77Iif"><div id="goog-gt-original-text" class="VIpgJd-yAWNEb-nVMfcd-fmcmS VIpgJd-yAWNEb-hvhgNd-axAV1"></div></div><div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid ltr"><div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid-B7I4Od ltr" dir="ltr"><div class="VIpgJd-yAWNEb-hvhgNd-UTujCb">Rate this translation</div><div class="VIpgJd-yAWNEb-hvhgNd-eO9mKe">Your feedback will be used to help improve Google Translate</div></div><div class="VIpgJd-yAWNEb-hvhgNd-xgov5 ltr"><button id="goog-gt-thumbUpButton" type="button" class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Good translation" aria-label="Good translation" aria-pressed="false"><span id="goog-gt-thumbUpIcon"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7H2v13h16c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM7 18H4V9h3v9zm14-7l-3 7H9V8l4.34-4.34L12 9h9v2z"></path></svg></span><span id="goog-gt-thumbUpIconFilled"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7v13h11c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM5 7H1v13h4V7z"></path></svg></span></button><button id="goog-gt-thumbDownButton" type="button" class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Poor translation" aria-label="Poor translation" aria-pressed="false"><span id="goog-gt-thumbDownIcon"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7h5V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zM17 6h3v9h-3V6zM3 13l3-7h9v10l-4.34 4.34L12 15H3v-2z"></path></svg></span><span id="goog-gt-thumbDownIconFilled"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zm16 0h4V4h-4v13z"></path></svg></span></button></div></div><div id="goog-gt-votingHiddenPane" class="VIpgJd-yAWNEb-hvhgNd-aXYTce"><form id="goog-gt-votingForm" action="https://translate.googleapis.com/translate_voting?client=te_lib" method="post" target="votingFrame" class="VIpgJd-yAWNEb-hvhgNd-aXYTce"><input type="text" name="sl" id="goog-gt-votingInputSrcLang"><input type="text" name="tl" id="goog-gt-votingInputTrgLang"><input type="text" name="query" id="goog-gt-votingInputSrcText"><input type="text" name="gtrans" id="goog-gt-votingInputTrgText"><input type="text" name="vote" id="goog-gt-votingInputVote"></form><iframe name="votingFrame" frameborder="0" src="./Evaluating LLMs for Historical Document OCR_ A Methodological Framework for Digital Humanities_files/saved_resource.html"></iframe></div></div></div><style></style></body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
