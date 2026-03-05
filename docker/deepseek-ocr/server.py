@@ -121,7 +121,8 @@ def _run_inference(images: list[Image.Image], text: str) -> str:
     tmp_dir = tempfile.mkdtemp()
     tmp_img = os.path.join(tmp_dir, "input.png")
     images[0].save(tmp_img)
-    prompt = f"<image>\n{text}" if text else "<image>\nConvert the document to markdown. "
+    # Always use the standard DeepSeek-OCR-2 prompt format (ignores user text)
+    prompt = "<image>\n<|grounding|>Convert the document to markdown. "
 
     model.infer(
         tokenizer,
