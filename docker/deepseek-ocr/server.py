@@ -118,17 +118,29 @@ def _run_inference(images: list[Image.Image], text: str) -> str:
     tmp_dir = tempfile.mkdtemp()
     tmp_img = os.path.join(tmp_dir, "input.png")
     images[0].save(tmp_img)
-    prompt = f"<image>\n{text}" if text else "<image>\nConvert the document to markdown."
-    result = model.infer(
-        tokenizer, prompt=prompt, image_file=tmp_img,
+    prompt = f"<image>\n{text}" if text else "<image>\nConvert the document to markdown. "
+
+    model.infer(
+        tokenizer,
+        prompt=prompt,
+        image_file=tmp_img,
         output_path=tmp_dir,
-        base_size=1024, image_size=768,
-        eval_mode=True,
+        base_size=1024,
+        image_size=768,
+        crop_mode=True,
+        save_results=True,
     )
-    # Clean up
+
+    # Read the output file written by model.infer()
+    result = ""
+    result_file = os.path.join(tmp_dir, "result.mmd")
+    if os.path.exists(result_file):
+        with open(result_file) as f:
+            result = f.read()
+
     import shutil
     shutil.rmtree(tmp_dir, ignore_errors=True)
-    return result if isinstance(result, str) else str(result)
+    return result
 
 
 @app.get("/health")
