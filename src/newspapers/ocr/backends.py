@@ -239,3 +239,162 @@ def get_all_backends(
             )
 
     return backends
+
+
+# ---------------------------------------------------------------------------
+# Endpoint lifecycle manager — create on demand, delete when done
+# ---------------------------------------------------------------------------
+
+# Registry: (endpoint_name, hf_model_repo, custom_image_url, env_var)
+_ENDPOINT_REGISTRY = [
+    (
+        "deepseek-ocr",
+        "deepseek-ai/DeepSeek-OCR-2",
+        "ghcr.io/j-jayes/deepseek-ocr-server:latest",
+        "DEEPSEEK_OCR_ENDPOINT",
+    ),
+    (
+        "lighton-ocr",
+        "lightonai/LightOnOCR-2-1B",
+        "ghcr.io/j-jayes/ocr-vlm-server:latest",
+        "LIGHTON_OCR_ENDPOINT",
+    ),
+    (
+        "glm-ocr",
+        "zai-org/GLM-OCR",
+        "ghcr.io/j-jayes/ocr-vlm-server:latest",
+        "GLM_OCR_ENDPOINT",
+    ),
+]
+
+
+class EndpointManager:
+    """Create HF Inference Endpoints on demand, delete them when done.
+
+    Usage::
+
+        with EndpointManager() as mgr:
+            backends = mgr.get_backends()
+            # ... use backends ...
+        # endpoints are deleted automatically
+    """
+
+    def __init__(
+        self,
+        *,
+        instance_type: str = "nvidia-l4",
+        instance_size: str = "x1",
+        region: str = "us-east-1",
+        vendor: str = "aws",
+    ) -> None:
+        self.instance_type = instance_type
+        self.instance_size = instance_size
+        self.region = region
+        self.vendor = vendor
+        self._created: list[str] = []  # endpoint names we created
+        self._endpoints: dict[str, str] = {}  # env_var -> url
+
+    def __enter__(self) -> "EndpointManager":
+        self._spin_up()
+        return self
+
+    def __exit__(self, *exc: object) -> None:
+        self.delete_all()
+
+    def _spin_up(self) -> None:
+        """Create all endpoints and wait for them to be running."""
+        import time
+        from huggingface_hub import create_inference_endpoint, list_inference_endpoints
+
+        _load_dotenv()  # needed for GEMINI_API_KEY / HF_TOKEN
+
+        # Clear any stale endpoint URLs so we always create fresh ones
+        for _, _, _, env_var in _ENDPOINT_REGISTRY:
+            os.environ.pop(env_var, None)
+
+        for ep_name, model_repo, image_url, env_var in _ENDPOINT_REGISTRY:
+            logger.info("Creating endpoint %s (%s)...", ep_name, model_repo)
+            try:
+                ep = create_inference_endpoint(
+                    name=ep_name,
+                    repository=model_repo,
+                    framework="custom",
+                    task="custom",
+                    accelerator="gpu",
+                    vendor=self.vendor,
+                    region=self.region,
+                    type="protected",
+                    instance_size=self.instance_size,
+                    instance_type=self.instance_type,
+                    custom_image={
+                        "health_route": "/health",
+                        "url": image_url,
+                        "port": 8000,
+                    },
+                )
+            except Exception as exc:
+                if "409" in str(exc) or "Conflict" in str(exc):
+                    # Name conflict — try with a suffix
+                    from huggingface_hub import get_inference_endpoint
+                    logger.warning("Endpoint %s already exists, reusing it", ep_name)
+                    ep = get_inference_endpoint(ep_name)
+                    if ep.status == "paused":
+                        logger.info("Resuming paused endpoint %s...", ep_name)
+                        ep.resume()
+                else:
+                    raise
+            self._created.append(ep.name)
+            self._endpoints[env_var] = ep.url
+            os.environ[env_var] = ep.url
+            logger.info("  -> %s: %s (status: %s)", ep.name, ep.url, ep.status)
+
+        # Wait for all to be running
+        if self._created:
+            logger.info("Waiting for %d endpoint(s) to start...", len(self._created))
+            while True:
+                eps = {e.name: e.status for e in list_inference_endpoints()}
+                pending = [n for n in self._created if eps.get(n) not in ("running", "failed")]
+                if not pending:
+                    break
+                logger.info("  Still initializing: %s", ", ".join(pending))
+                time.sleep(15)
+
+            # Check for failures
+            eps = {e.name: e.status for e in list_inference_endpoints()}
+            for n in self._created:
+                if eps.get(n) == "failed":
+                    logger.error("Endpoint %s FAILED to start", n)
+
+    def delete_all(self) -> None:
+        """Delete only the endpoints we created (not pre-existing ones)."""
+        from huggingface_hub import get_inference_endpoint
+
+        for ep_name in self._created:
+            try:
+                logger.info("Deleting endpoint %s...", ep_name)
+                ep = get_inference_endpoint(ep_name)
+                ep.delete()
+            except Exception as exc:
+                logger.warning("Could not delete %s: %s", ep_name, exc)
+        self._created.clear()
+
+    def get_backends(self, *, gemini_model: str = "gemini-2.5-flash") -> list[OCRBackend]:
+        """Return OCR backends using the managed endpoints."""
+        backends: list[OCRBackend] = []
+
+        gemini_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GEMINI_FLASH_API_KEY")
+        if gemini_key:
+            backends.append(GeminiOCR(model_name=gemini_model))
+
+        hf_token = os.environ.get("HF_TOKEN")
+        for display_name, model_id, env_var in _HF_MODELS:
+            url = self._endpoints.get(env_var)
+            if url:
+                backends.append(
+                    HuggingFaceOCR(
+                        name=display_name, model_id=model_id,
+                        endpoint_url=url, token=hf_token,
+                    )
+                )
+
+        return backends

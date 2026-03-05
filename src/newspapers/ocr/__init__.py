@@ -1,6 +1,7 @@
 """Modular OCR backends for multi-model transcription comparison."""
 
 from newspapers.ocr.backends import (
+    EndpointManager,
     GeminiOCR,
     HuggingFaceOCR,
     OCRBackend,
@@ -9,6 +10,7 @@ from newspapers.ocr.backends import (
 )
 
 __all__ = [
+    "EndpointManager",
     "GeminiOCR",
     "HuggingFaceOCR",
     "OCRBackend",
