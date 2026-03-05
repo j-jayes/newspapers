@@ -173,15 +173,10 @@ def _run_inference(images: list[Image.Image], text: str, max_tokens: int) -> str
         return ""
 
     elif model_type == "lightonocr":
-        # LightOnOCR-2 uses chat template
+        # LightOnOCR-2 uses chat template — image only, no text prompt
         conversation = [{"role": "user", "content": []}]
         for img in images:
-            buf = io.BytesIO()
-            img.save(buf, format="PNG")
-            buf.seek(0)
             conversation[0]["content"].append({"type": "image", "image": img})
-        if text:
-            conversation[0]["content"].append({"type": "text", "text": text})
 
         inputs = processor.apply_chat_template(
             conversation,
