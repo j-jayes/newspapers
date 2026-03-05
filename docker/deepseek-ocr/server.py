@@ -122,7 +122,8 @@ def _run_inference(images: list[Image.Image], text: str) -> str:
     result = model.infer(
         tokenizer, prompt=prompt, image_file=tmp_img,
         output_path=tmp_dir,
-        base_size=1024, image_size=768
+        base_size=1024, image_size=768,
+        eval_mode=True,
     )
     # Clean up
     import shutil
