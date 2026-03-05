@@ -115,14 +115,18 @@ def _extract_from_request(req: ChatRequest) -> tuple[list[Image.Image], str]:
 def _run_inference(images: list[Image.Image], text: str) -> str:
     if not images:
         return ""
-    tmp = tempfile.NamedTemporaryFile(suffix=".png", delete=False)
-    images[0].save(tmp.name)
+    tmp_dir = tempfile.mkdtemp()
+    tmp_img = os.path.join(tmp_dir, "input.png")
+    images[0].save(tmp_img)
     prompt = f"<image>\n{text}" if text else "<image>\nConvert the document to markdown."
     result = model.infer(
-        tokenizer, prompt=prompt, image_file=tmp.name,
+        tokenizer, prompt=prompt, image_file=tmp_img,
+        output_path=tmp_dir,
         base_size=1024, image_size=768
     )
-    os.unlink(tmp.name)
+    # Clean up
+    import shutil
+    shutil.rmtree(tmp_dir, ignore_errors=True)
     return result if isinstance(result, str) else str(result)
 
 
