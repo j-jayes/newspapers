@@ -1,11 +1,11 @@
-FROM nvidia/cuda:12.4.1-runtime-ubuntu22.04
+FROM nvidia/cuda:12.4.1-devel-ubuntu22.04
 
 # System deps
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3 python3-pip curl && \
+    python3 python3-pip python3-dev curl git && \
     rm -rf /var/lib/apt/lists/*
 
-# Python deps — DeepSeek-OCR-2 requires transformers 4.x (custom code uses LlamaFlashAttention2)
+# Python deps — DeepSeek-OCR-2 requires transformers 4.x + flash-attn
 RUN pip3 install --no-cache-dir \
     torch==2.6.0 --index-url https://download.pytorch.org/whl/cu124 && \
     pip3 install --no-cache-dir \
@@ -22,6 +22,9 @@ RUN pip3 install --no-cache-dir \
     "einops" \
     "matplotlib" \
     "requests"
+
+# flash-attn must be compiled (requires CUDA devel headers)
+RUN pip3 install --no-cache-dir flash-attn==2.7.3 --no-build-isolation
 
 COPY server.py /app/server.py
 

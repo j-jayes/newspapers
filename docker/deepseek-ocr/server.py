@@ -41,7 +41,10 @@ def load_model():
 
     tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)
     model = AutoModel.from_pretrained(
-        MODEL_PATH, trust_remote_code=True, use_safetensors=True
+        MODEL_PATH,
+        _attn_implementation='flash_attention_2',
+        trust_remote_code=True,
+        use_safetensors=True,
     ).eval().to(device=device, dtype=dtype)
 
     logger.info("Model loaded successfully")
